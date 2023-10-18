@@ -1,29 +1,64 @@
-import path from "path";
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import path from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import terser from '@rollup/plugin-terser';
+import replace from '@rollup/plugin-replace';
+import resolve from '@rollup/plugin-node-resolve';
 
-export default defineConfig(({mode}) => {
+export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     build: {
-      sourcemap: mode === 'development' ? "inline" : false,
-      minify: false,
+      sourcemap: mode === 'development' ? 'inline' : false,
+      minify: mode === 'development' ? false : true,
       // Use Vite lib mode https://vitejs.dev/guide/build.html#library-mode
       lib: {
-        entry: path.resolve(__dirname, "./src/index.ts"),
-        formats: ["cjs"],
+        entry: path.resolve(__dirname, './src/index.tsx'),
+        formats: ['cjs'],
       },
       rollupOptions: {
+        plugins: [
+          mode === 'development'
+              ? ''
+              : terser({
+                compress: {
+                  defaults: false,
+                  drop_console: true,
+                },
+                mangle: {
+                  eval: true,
+                  module: true,
+                  toplevel: true,
+                  safari10: true,
+                  properties: false,
+                },
+                output: {
+                  comments: false,
+                  ecma: '2020',
+                },
+              }),
+          resolve({
+            browser: false,
+          }),
+          replace({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+          }),
+        ],
         output: {
           // Overwrite default Vite output fileName
-          entryFileNames: "main.js",
-          assetFileNames: "styles.css",
+          entryFileNames: 'main.js',
+          assetFileNames: 'styles.css',
         },
-        external: ["obsidian"],
+        external: ['obsidian'],
       },
       // Use root as the output dir
       emptyOutDir: false,
-      outDir: ".",
+      outDir: '.',
     },
-  }
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    },
+  };
 });

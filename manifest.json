@@ -1,10 +1,10 @@
 {
-  "id": "another-react-starter",
-  "name": "Another React Starter",
-  "description": "Obsidian + ReactJS + Less + Vite + Prettier",
-  "version": "0.0.0",
+  "id": "card-library",
+  "name": "Card Library",
+  "description": "A canvas card library plugin",
+  "version": "0.0.1",
   "author": "Boninall",
   "authorUrl": "https://github.com/Quorafind/",
   "isDesktopOnly": false,
-  "minAppVersion": "0.14.1"
+  "minAppVersion": "1.1.0"
 }

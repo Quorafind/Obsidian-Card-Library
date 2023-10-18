@@ -1,6 +1,1581 @@
-.DiceRoller__container {
+/*
+! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+*//*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+div[data-type='card-library-view'] *,
+div[data-type='card-library-view'] ::before,
+div[data-type='card-library-view'] ::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+div[data-type='card-library-view'] ::before,
+div[data-type='card-library-view'] ::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+*/
+
+div[data-type='card-library-view'] html {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4; /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+  font-feature-settings: normal; /* 5 */
+  font-variation-settings: normal; /* 6 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+div[data-type='card-library-view'] body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+div[data-type='card-library-view'] hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+div[data-type='card-library-view'] abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+div[data-type='card-library-view'] h1,
+div[data-type='card-library-view'] h2,
+div[data-type='card-library-view'] h3,
+div[data-type='card-library-view'] h4,
+div[data-type='card-library-view'] h5,
+div[data-type='card-library-view'] h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+div[data-type='card-library-view'] a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+div[data-type='card-library-view'] b,
+div[data-type='card-library-view'] strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+div[data-type='card-library-view'] code,
+div[data-type='card-library-view'] kbd,
+div[data-type='card-library-view'] samp,
+div[data-type='card-library-view'] pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+div[data-type='card-library-view'] small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+div[data-type='card-library-view'] sub,
+div[data-type='card-library-view'] sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+div[data-type='card-library-view'] sub {
+  bottom: -0.25em;
+}
+
+div[data-type='card-library-view'] sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+div[data-type='card-library-view'] table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+div[data-type='card-library-view'] button,
+div[data-type='card-library-view'] input,
+div[data-type='card-library-view'] optgroup,
+div[data-type='card-library-view'] select,
+div[data-type='card-library-view'] textarea {
+  font-family: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+div[data-type='card-library-view'] button,
+div[data-type='card-library-view'] select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+div[data-type='card-library-view'] button,
+div[data-type='card-library-view'] [type='button'],
+div[data-type='card-library-view'] [type='reset'],
+div[data-type='card-library-view'] [type='submit'] {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+div[data-type='card-library-view'] :-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+div[data-type='card-library-view'] :-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+div[data-type='card-library-view'] progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+div[data-type='card-library-view'] ::-webkit-inner-spin-button,
+div[data-type='card-library-view'] ::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+div[data-type='card-library-view'] [type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+div[data-type='card-library-view'] ::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+div[data-type='card-library-view'] ::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+div[data-type='card-library-view'] summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+div[data-type='card-library-view'] blockquote,
+div[data-type='card-library-view'] dl,
+div[data-type='card-library-view'] dd,
+div[data-type='card-library-view'] h1,
+div[data-type='card-library-view'] h2,
+div[data-type='card-library-view'] h3,
+div[data-type='card-library-view'] h4,
+div[data-type='card-library-view'] h5,
+div[data-type='card-library-view'] h6,
+div[data-type='card-library-view'] hr,
+div[data-type='card-library-view'] figure,
+div[data-type='card-library-view'] p,
+div[data-type='card-library-view'] pre {
+  margin: 0;
+}
+
+div[data-type='card-library-view'] fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+div[data-type='card-library-view'] legend {
+  padding: 0;
+}
+
+div[data-type='card-library-view'] ol,
+div[data-type='card-library-view'] ul,
+div[data-type='card-library-view'] menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+div[data-type='card-library-view'] dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+div[data-type='card-library-view'] textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+div[data-type='card-library-view'] input::-moz-placeholder, div[data-type='card-library-view'] textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+div[data-type='card-library-view'] input::placeholder,
+div[data-type='card-library-view'] textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+div[data-type='card-library-view'] button,
+div[data-type='card-library-view'] [role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+div[data-type='card-library-view'] :disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+div[data-type='card-library-view'] img,
+div[data-type='card-library-view'] svg,
+div[data-type='card-library-view'] video,
+div[data-type='card-library-view'] canvas,
+div[data-type='card-library-view'] audio,
+div[data-type='card-library-view'] iframe,
+div[data-type='card-library-view'] embed,
+div[data-type='card-library-view'] object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+div[data-type='card-library-view'] img,
+div[data-type='card-library-view'] video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+div[data-type='card-library-view'] [hidden] {
+  display: none;
+}
+  div[data-type='card-library-view'] * {
+  border-color: hsl(var(--border));
+}
+  div[data-type='card-library-view'] body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+div[data-type='card-library-view'] *, div[data-type='card-library-view'] ::before, div[data-type='card-library-view'] ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+div[data-type='card-library-view'] ::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+div[data-type='card-library-view'] .z-50 {
+  z-index: 50;
+}
+div[data-type='card-library-view'] .flex {
   display: flex;
 }
-.DiceRoller__container input {
-  width: 60px;
+div[data-type='card-library-view'] .inline-flex {
+  display: inline-flex;
+}
+div[data-type='card-library-view'] .h-10 {
+  height: 2.5rem;
+}
+div[data-type='card-library-view'] .h-8 {
+  height: 2rem;
+}
+div[data-type='card-library-view'] .h-9 {
+  height: 2.25rem;
+}
+div[data-type='card-library-view'] .w-9 {
+  width: 2.25rem;
+}
+div[data-type='card-library-view'] .w-\[168px\] {
+  width: 168px;
+}
+div[data-type='card-library-view'] .w-\[196px\] {
+  width: 196px;
+}
+div[data-type='card-library-view'] .w-\[240px\] {
+  width: 240px;
+}
+div[data-type='card-library-view'] .w-1\/4 {
+  width: 25%;
+}
+div[data-type='card-library-view'] .w-72 {
+  width: 18rem;
+}
+div[data-type='card-library-view'] .flex-col {
+  flex-direction: column;
+}
+div[data-type='card-library-view'] .items-center {
+  align-items: center;
+}
+div[data-type='card-library-view'] .justify-center {
+  justify-content: center;
+}
+div[data-type='card-library-view'] .space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+div[data-type='card-library-view'] .space-y-1\.5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.375rem * var(--tw-space-y-reverse));
+}
+div[data-type='card-library-view'] .rounded-md {
+  border-radius: calc(var(--radius) - 2px);
+}
+div[data-type='card-library-view'] .rounded-xl {
+  border-radius: 0.75rem;
+}
+div[data-type='card-library-view'] .border {
+  border-width: 1px;
+}
+div[data-type='card-library-view'] .border-input {
+  border-color: hsl(var(--input));
+}
+div[data-type='card-library-view'] .bg-destructive {
+  background-color: hsl(var(--destructive));
+}
+div[data-type='card-library-view'] .bg-primary {
+  background-color: hsl(var(--primary));
+}
+div[data-type='card-library-view'] .bg-secondary {
+  background-color: hsl(var(--secondary));
+}
+div[data-type='card-library-view'] .bg-transparent {
+  background-color: transparent;
+}
+div[data-type='card-library-view'] .bg-card {
+  background-color: hsl(var(--card));
+}
+div[data-type='card-library-view'] .bg-popover {
+  background-color: hsl(var(--popover));
+}
+div[data-type='card-library-view'] .p-6 {
+  padding: 1.5rem;
+}
+div[data-type='card-library-view'] .p-4 {
+  padding: 1rem;
+}
+div[data-type='card-library-view'] .px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+div[data-type='card-library-view'] .px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+div[data-type='card-library-view'] .px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+div[data-type='card-library-view'] .py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+div[data-type='card-library-view'] .pt-0 {
+  padding-top: 0px;
+}
+div[data-type='card-library-view'] .text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+div[data-type='card-library-view'] .text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+div[data-type='card-library-view'] .font-medium {
+  font-weight: 500;
+}
+div[data-type='card-library-view'] .font-semibold {
+  font-weight: 600;
+}
+div[data-type='card-library-view'] .leading-none {
+  line-height: 1;
+}
+div[data-type='card-library-view'] .tracking-tight {
+  letter-spacing: -0.025em;
+}
+div[data-type='card-library-view'] .text-destructive-foreground {
+  color: hsl(var(--destructive-foreground));
+}
+div[data-type='card-library-view'] .text-primary {
+  color: hsl(var(--primary));
+}
+div[data-type='card-library-view'] .text-primary-foreground {
+  color: hsl(var(--primary-foreground));
+}
+div[data-type='card-library-view'] .text-secondary-foreground {
+  color: hsl(var(--secondary-foreground));
+}
+div[data-type='card-library-view'] .text-card-foreground {
+  color: hsl(var(--card-foreground));
+}
+div[data-type='card-library-view'] .text-muted-foreground {
+  color: hsl(var(--muted-foreground));
+}
+div[data-type='card-library-view'] .text-popover-foreground {
+  color: hsl(var(--popover-foreground));
+}
+div[data-type='card-library-view'] .underline-offset-4 {
+  text-underline-offset: 4px;
+}
+div[data-type='card-library-view'] .shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+div[data-type='card-library-view'] .shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+div[data-type='card-library-view'] .shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+div[data-type='card-library-view'] .outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+div[data-type='card-library-view'] .outline {
+  outline-style: solid;
+}
+div[data-type='card-library-view'] .transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+@keyframes enter {
+
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1)) rotate(var(--tw-enter-rotate, 0));
+  }
+}
+@keyframes exit {
+
+  to {
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
+  }
+}
+.theme-light div[data-type='card-library-view'] .view-content {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+}
+.theme-dark div[data-type='card-library-view'] .view-content {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+  --radius: 0.5rem;
+}
+div[data-type='card-library-view'] .hover\:bg-accent:hover {
+  background-color: hsl(var(--accent));
+}
+div[data-type='card-library-view'] .hover\:bg-destructive\/90:hover {
+  background-color: hsl(var(--destructive) / 0.9);
+}
+div[data-type='card-library-view'] .hover\:bg-primary\/90:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+div[data-type='card-library-view'] .hover\:bg-secondary\/80:hover {
+  background-color: hsl(var(--secondary) / 0.8);
+}
+div[data-type='card-library-view'] .hover\:text-accent-foreground:hover {
+  color: hsl(var(--accent-foreground));
+}
+div[data-type='card-library-view'] .hover\:underline:hover {
+  text-decoration-line: underline;
+}
+div[data-type='card-library-view'] .focus-visible\:outline-none:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+div[data-type='card-library-view'] .focus-visible\:ring-1:focus-visible {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+div[data-type='card-library-view'] .focus-visible\:ring-ring:focus-visible {
+  --tw-ring-color: hsl(var(--ring));
+}
+div[data-type='card-library-view'] .disabled\:pointer-events-none:disabled {
+  pointer-events: none;
+}
+div[data-type='card-library-view'] .disabled\:opacity-50:disabled {
+  opacity: 0.5;
+}
+div[data-type='card-library-view'] .data-\[state\=open\]\:animate-in[data-state=open] {
+  animation-name: enter;
+  animation-duration: 150ms;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+div[data-type='card-library-view'] .data-\[state\=closed\]\:animate-out[data-state=closed] {
+  animation-name: exit;
+  animation-duration: 150ms;
+  --tw-exit-opacity: initial;
+  --tw-exit-scale: initial;
+  --tw-exit-rotate: initial;
+  --tw-exit-translate-x: initial;
+  --tw-exit-translate-y: initial;
+}
+div[data-type='card-library-view'] .data-\[state\=closed\]\:fade-out-0[data-state=closed] {
+  --tw-exit-opacity: 0;
+}
+div[data-type='card-library-view'] .data-\[state\=open\]\:fade-in-0[data-state=open] {
+  --tw-enter-opacity: 0;
+}
+div[data-type='card-library-view'] .data-\[state\=closed\]\:zoom-out-95[data-state=closed] {
+  --tw-exit-scale: .95;
+}
+div[data-type='card-library-view'] .data-\[state\=open\]\:zoom-in-95[data-state=open] {
+  --tw-enter-scale: .95;
+}
+div[data-type='card-library-view'] .data-\[side\=bottom\]\:slide-in-from-top-2[data-side=bottom] {
+  --tw-enter-translate-y: -0.5rem;
+}
+div[data-type='card-library-view'] .data-\[side\=left\]\:slide-in-from-right-2[data-side=left] {
+  --tw-enter-translate-x: 0.5rem;
+}
+div[data-type='card-library-view'] .data-\[side\=right\]\:slide-in-from-left-2[data-side=right] {
+  --tw-enter-translate-x: -0.5rem;
+}
+div[data-type='card-library-view'] .data-\[side\=top\]\:slide-in-from-bottom-2[data-side=top] {
+  --tw-enter-translate-y: 0.5rem;
+}
+/*
+! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+*//*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+div[data-type='card-library-view'] *,
+div[data-type='card-library-view'] ::before,
+div[data-type='card-library-view'] ::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+div[data-type='card-library-view'] ::before,
+div[data-type='card-library-view'] ::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+*/
+
+div[data-type='card-library-view'] html {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4; /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+  font-feature-settings: normal; /* 5 */
+  font-variation-settings: normal; /* 6 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+div[data-type='card-library-view'] body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+div[data-type='card-library-view'] hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+div[data-type='card-library-view'] abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+div[data-type='card-library-view'] h1,
+div[data-type='card-library-view'] h2,
+div[data-type='card-library-view'] h3,
+div[data-type='card-library-view'] h4,
+div[data-type='card-library-view'] h5,
+div[data-type='card-library-view'] h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+div[data-type='card-library-view'] a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+div[data-type='card-library-view'] b,
+div[data-type='card-library-view'] strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+div[data-type='card-library-view'] code,
+div[data-type='card-library-view'] kbd,
+div[data-type='card-library-view'] samp,
+div[data-type='card-library-view'] pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+div[data-type='card-library-view'] small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+div[data-type='card-library-view'] sub,
+div[data-type='card-library-view'] sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+div[data-type='card-library-view'] sub {
+  bottom: -0.25em;
+}
+
+div[data-type='card-library-view'] sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+div[data-type='card-library-view'] table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+div[data-type='card-library-view'] button,
+div[data-type='card-library-view'] input,
+div[data-type='card-library-view'] optgroup,
+div[data-type='card-library-view'] select,
+div[data-type='card-library-view'] textarea {
+  font-family: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+div[data-type='card-library-view'] button,
+div[data-type='card-library-view'] select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+div[data-type='card-library-view'] button,
+div[data-type='card-library-view'] [type='button'],
+div[data-type='card-library-view'] [type='reset'],
+div[data-type='card-library-view'] [type='submit'] {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+div[data-type='card-library-view'] :-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+div[data-type='card-library-view'] :-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+div[data-type='card-library-view'] progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+div[data-type='card-library-view'] ::-webkit-inner-spin-button,
+div[data-type='card-library-view'] ::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+div[data-type='card-library-view'] [type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+div[data-type='card-library-view'] ::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+div[data-type='card-library-view'] ::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+div[data-type='card-library-view'] summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+div[data-type='card-library-view'] blockquote,
+div[data-type='card-library-view'] dl,
+div[data-type='card-library-view'] dd,
+div[data-type='card-library-view'] h1,
+div[data-type='card-library-view'] h2,
+div[data-type='card-library-view'] h3,
+div[data-type='card-library-view'] h4,
+div[data-type='card-library-view'] h5,
+div[data-type='card-library-view'] h6,
+div[data-type='card-library-view'] hr,
+div[data-type='card-library-view'] figure,
+div[data-type='card-library-view'] p,
+div[data-type='card-library-view'] pre {
+  margin: 0;
+}
+
+div[data-type='card-library-view'] fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+div[data-type='card-library-view'] legend {
+  padding: 0;
+}
+
+div[data-type='card-library-view'] ol,
+div[data-type='card-library-view'] ul,
+div[data-type='card-library-view'] menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+div[data-type='card-library-view'] dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+div[data-type='card-library-view'] textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+div[data-type='card-library-view'] input::-moz-placeholder, div[data-type='card-library-view'] textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+div[data-type='card-library-view'] input::placeholder,
+div[data-type='card-library-view'] textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+div[data-type='card-library-view'] button,
+div[data-type='card-library-view'] [role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+div[data-type='card-library-view'] :disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+div[data-type='card-library-view'] img,
+div[data-type='card-library-view'] svg,
+div[data-type='card-library-view'] video,
+div[data-type='card-library-view'] canvas,
+div[data-type='card-library-view'] audio,
+div[data-type='card-library-view'] iframe,
+div[data-type='card-library-view'] embed,
+div[data-type='card-library-view'] object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+div[data-type='card-library-view'] img,
+div[data-type='card-library-view'] video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+div[data-type='card-library-view'] [hidden] {
+  display: none;
+}
+  div[data-type='card-library-view'] * {
+  border-color: hsl(var(--border));
+}
+  div[data-type='card-library-view'] body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+div[data-type='card-library-view'] *, div[data-type='card-library-view'] ::before, div[data-type='card-library-view'] ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+div[data-type='card-library-view'] ::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+div[data-type='card-library-view'] .z-50 {
+  z-index: 50;
+}
+div[data-type='card-library-view'] .flex {
+  display: flex;
+}
+div[data-type='card-library-view'] .inline-flex {
+  display: inline-flex;
+}
+div[data-type='card-library-view'] .h-10 {
+  height: 2.5rem;
+}
+div[data-type='card-library-view'] .h-8 {
+  height: 2rem;
+}
+div[data-type='card-library-view'] .h-9 {
+  height: 2.25rem;
+}
+div[data-type='card-library-view'] .w-9 {
+  width: 2.25rem;
+}
+div[data-type='card-library-view'] .w-\[168px\] {
+  width: 168px;
+}
+div[data-type='card-library-view'] .w-\[196px\] {
+  width: 196px;
+}
+div[data-type='card-library-view'] .w-\[240px\] {
+  width: 240px;
+}
+div[data-type='card-library-view'] .w-1\/4 {
+  width: 25%;
+}
+div[data-type='card-library-view'] .w-72 {
+  width: 18rem;
+}
+div[data-type='card-library-view'] .flex-col {
+  flex-direction: column;
+}
+div[data-type='card-library-view'] .items-center {
+  align-items: center;
+}
+div[data-type='card-library-view'] .justify-center {
+  justify-content: center;
+}
+div[data-type='card-library-view'] .space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+div[data-type='card-library-view'] .space-y-1\.5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.375rem * var(--tw-space-y-reverse));
+}
+div[data-type='card-library-view'] .rounded-md {
+  border-radius: calc(var(--radius) - 2px);
+}
+div[data-type='card-library-view'] .rounded-xl {
+  border-radius: 0.75rem;
+}
+div[data-type='card-library-view'] .border {
+  border-width: 1px;
+}
+div[data-type='card-library-view'] .border-input {
+  border-color: hsl(var(--input));
+}
+div[data-type='card-library-view'] .bg-destructive {
+  background-color: hsl(var(--destructive));
+}
+div[data-type='card-library-view'] .bg-primary {
+  background-color: hsl(var(--primary));
+}
+div[data-type='card-library-view'] .bg-secondary {
+  background-color: hsl(var(--secondary));
+}
+div[data-type='card-library-view'] .bg-transparent {
+  background-color: transparent;
+}
+div[data-type='card-library-view'] .bg-card {
+  background-color: hsl(var(--card));
+}
+div[data-type='card-library-view'] .bg-popover {
+  background-color: hsl(var(--popover));
+}
+div[data-type='card-library-view'] .p-6 {
+  padding: 1.5rem;
+}
+div[data-type='card-library-view'] .p-4 {
+  padding: 1rem;
+}
+div[data-type='card-library-view'] .px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+div[data-type='card-library-view'] .px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+div[data-type='card-library-view'] .px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+div[data-type='card-library-view'] .py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+div[data-type='card-library-view'] .pt-0 {
+  padding-top: 0px;
+}
+div[data-type='card-library-view'] .text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+div[data-type='card-library-view'] .text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+div[data-type='card-library-view'] .font-medium {
+  font-weight: 500;
+}
+div[data-type='card-library-view'] .font-semibold {
+  font-weight: 600;
+}
+div[data-type='card-library-view'] .leading-none {
+  line-height: 1;
+}
+div[data-type='card-library-view'] .tracking-tight {
+  letter-spacing: -0.025em;
+}
+div[data-type='card-library-view'] .text-destructive-foreground {
+  color: hsl(var(--destructive-foreground));
+}
+div[data-type='card-library-view'] .text-primary {
+  color: hsl(var(--primary));
+}
+div[data-type='card-library-view'] .text-primary-foreground {
+  color: hsl(var(--primary-foreground));
+}
+div[data-type='card-library-view'] .text-secondary-foreground {
+  color: hsl(var(--secondary-foreground));
+}
+div[data-type='card-library-view'] .text-card-foreground {
+  color: hsl(var(--card-foreground));
+}
+div[data-type='card-library-view'] .text-muted-foreground {
+  color: hsl(var(--muted-foreground));
+}
+div[data-type='card-library-view'] .text-popover-foreground {
+  color: hsl(var(--popover-foreground));
+}
+div[data-type='card-library-view'] .underline-offset-4 {
+  text-underline-offset: 4px;
+}
+div[data-type='card-library-view'] .shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+div[data-type='card-library-view'] .shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+div[data-type='card-library-view'] .shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+div[data-type='card-library-view'] .outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+div[data-type='card-library-view'] .outline {
+  outline-style: solid;
+}
+div[data-type='card-library-view'] .transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+@keyframes enter {
+
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1)) rotate(var(--tw-enter-rotate, 0));
+  }
+}
+@keyframes exit {
+
+  to {
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
+  }
+}
+div[data-type='card-library-view'] .hover\:bg-accent:hover {
+  background-color: hsl(var(--accent));
+}
+div[data-type='card-library-view'] .hover\:bg-destructive\/90:hover {
+  background-color: hsl(var(--destructive) / 0.9);
+}
+div[data-type='card-library-view'] .hover\:bg-primary\/90:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+div[data-type='card-library-view'] .hover\:bg-secondary\/80:hover {
+  background-color: hsl(var(--secondary) / 0.8);
+}
+div[data-type='card-library-view'] .hover\:bg-primary\/70:hover {
+  background-color: hsl(var(--primary) / 0.7);
+}
+div[data-type='card-library-view'] .hover\:text-accent-foreground:hover {
+  color: hsl(var(--accent-foreground));
+}
+div[data-type='card-library-view'] .hover\:underline:hover {
+  text-decoration-line: underline;
+}
+div[data-type='card-library-view'] .focus-visible\:outline-none:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+div[data-type='card-library-view'] .focus-visible\:ring-1:focus-visible {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+div[data-type='card-library-view'] .focus-visible\:ring-ring:focus-visible {
+  --tw-ring-color: hsl(var(--ring));
+}
+div[data-type='card-library-view'] .disabled\:pointer-events-none:disabled {
+  pointer-events: none;
+}
+div[data-type='card-library-view'] .disabled\:opacity-50:disabled {
+  opacity: 0.5;
+}
+div[data-type='card-library-view'] .data-\[state\=open\]\:animate-in[data-state=open] {
+  animation-name: enter;
+  animation-duration: 150ms;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+div[data-type='card-library-view'] .data-\[state\=closed\]\:animate-out[data-state=closed] {
+  animation-name: exit;
+  animation-duration: 150ms;
+  --tw-exit-opacity: initial;
+  --tw-exit-scale: initial;
+  --tw-exit-rotate: initial;
+  --tw-exit-translate-x: initial;
+  --tw-exit-translate-y: initial;
+}
+div[data-type='card-library-view'] .data-\[state\=closed\]\:fade-out-0[data-state=closed] {
+  --tw-exit-opacity: 0;
+}
+div[data-type='card-library-view'] .data-\[state\=open\]\:fade-in-0[data-state=open] {
+  --tw-enter-opacity: 0;
+}
+div[data-type='card-library-view'] .data-\[state\=closed\]\:zoom-out-95[data-state=closed] {
+  --tw-exit-scale: .95;
+}
+div[data-type='card-library-view'] .data-\[state\=open\]\:zoom-in-95[data-state=open] {
+  --tw-enter-scale: .95;
+}
+div[data-type='card-library-view'] .data-\[side\=bottom\]\:slide-in-from-top-2[data-side=bottom] {
+  --tw-enter-translate-y: -0.5rem;
+}
+div[data-type='card-library-view'] .data-\[side\=left\]\:slide-in-from-right-2[data-side=left] {
+  --tw-enter-translate-x: 0.5rem;
+}
+div[data-type='card-library-view'] .data-\[side\=right\]\:slide-in-from-left-2[data-side=right] {
+  --tw-enter-translate-x: -0.5rem;
+}
+div[data-type='card-library-view'] .data-\[side\=top\]\:slide-in-from-bottom-2[data-side=top] {
+  --tw-enter-translate-y: 0.5rem;
 }
