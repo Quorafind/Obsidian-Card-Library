@@ -1,0 +1,25 @@
+@import "globals";
+
+@layer base {
+  .card-list-container {
+  @apply w-full h-full p-4 grid gap-4 md:grid-cols-2 lg:grid-cols-5;
+  }
+
+  .status-text-container {
+  @apply flex flex-col items-center justify-center w-full mt-4 mb-4;
+
+    &.completed {
+    @apply mb-16;
+    }
+
+    &.invisible {
+    @apply hidden;
+    }
+
+    > .status-text {
+    @apply text-sm text-gray-500;
+    }
+  }
+
+
+}

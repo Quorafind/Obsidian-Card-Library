@@ -1,0 +1,92 @@
+Arguments: 
+  E:\nodejs\node.exe E:\nodejs\node_modules\yarn\bin\yarn.js config get npmScopes --json
+
+PATH: 
+  C:\Program Files\PlasticSCM5\server;C:\Program Files\PlasticSCM5\client;C:\Python310\Scripts\;C:\Python310\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\scoop\apps\gsudo\current;C:\ProgramData\scoop\shims;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;E:\dev\nvm;E:\nodejs;E:\dev\Git\cmd;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\ProgramData\chocolatey\bin;C:\Program Files\PostgreSQL\14\bin;E:\dev\nvm;E:\nodejs;E:\go\bin;D:\software\ultraedit;D:\software\Calibre\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Users\bon\.cargo\bin;C:\Users\bon\scoop\shims;C:\Users\bon\AppData\Local\Microsoft\WindowsApps;E:\dev\nvm;E:\nodejs;C:\Users\bon\AppData\Local\Pandoc\;C:\Users\bon\AppData\Local\Programs\EmEditor;D:\software\Microsoft VS Code\bin;E:\dev\nvm;E:\nodejs;C:\Users\bon\go\bin;C:\Users\bon\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\bon\.dotnet\tools
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.7.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: E:\obdev\.obsidian\plugins\Obsidian-Card-Library\package.json: Unexpected string in JSON at position 771
+      at JSON.parse (<anonymous>)
+      at E:\dev\nvm\v18.7.0\node_modules\yarn\lib\cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (E:\dev\nvm\v18.7.0\node_modules\yarn\lib\cli.js:310:30)
+      at E:\dev\nvm\v18.7.0\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "obsidian-another-react-starter",
+    "version": "0.0.0",
+    "description": "Obsidian + ReactJS + Less + Vite + Prettier",
+    "author": "Boninall",
+    "main": "main.js",
+    "license": "MIT",
+    "scripts": {
+      "lint": "eslint . --ext .ts",
+      "dev": "npm run lint && vite build --watch --mode=development",
+      "build:nolint": "NODE_ENV=production rollup -c",
+      "build": "vite build",
+      "test": "jest",
+      "test:watch": "yarn test -- --watch"
+    },
+    "dependencies": {
+      "@radix-ui/react-dialog": "^1.0.5",
+      "@radix-ui/react-icons": "^1.3.0",
+      "@radix-ui/react-label": "^2.0.2",
+      "@radix-ui/react-popover": "^1.0.7",
+      "@radix-ui/react-select": "^2.0.0",
+      "@radix-ui/react-separator": "^1.0.3",
+      "@radix-ui/react-slot": "^1.0.2",
+      ""
+      "class-variance-authority": "^0.7.0",
+      "clsx": "^2.0.0",
+      "cmdk": "^0.2.0",
+      "lucide-react": "^0.287.0",
+      "obsidian": "latest",
+      "postcss-discard": "^2.0.0",
+      "postcss-prefix-selector": "^1.16.0",
+      "shadcn-ui": "0.4.1",
+      "tailwind-merge": "^1.14.0",
+      "tailwindcss-animate": "^1.0.7",
+      "tslib": "2.4.1"
+    },
+    "devDependencies": {
+      "@rollup/plugin-commonjs": "^25.0.7",
+      "@rollup/plugin-node-resolve": "^15.2.1",
+      "@rollup/plugin-replace": "^5.0.2",
+      "@rollup/plugin-terser": "^0.4.3",
+      "@types/node": "14.14.34",
+      "@types/react": "^18.2.18",
+      "@types/react-dom": "^18.2.7",
+      "@typescript-eslint/eslint-plugin": "^4.17.0",
+      "@typescript-eslint/parser": "^4.17.0",
+      "@vitejs/plugin-react": "^1.2.0",
+      "autoprefixer": "^10.4.16",
+      "eslint": "^7.22.0",
+      "eslint-config-prettier": "^8.3.0",
+      "eslint-plugin-prettier": "^4.0.0",
+      "eslint-plugin-react": "^7.27.1",
+      "less": "^4.2.0",
+      "postcss": "^8.4.31",
+      "prettier": "^2.6.0",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "tailwindcss": "^3.3.3",
+      "typescript": "5.1.3",
+      "vite": "^4.4.11"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -1,0 +1,128 @@
+.card-library-settings {
+  .card-library-setting-header {
+    border-bottom: var(--color-base-40) 0px solid;
+  }
+
+  .card-library-setting-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .card-library-setting-tab-group {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .card-library-navigation-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 3px;
+    margin-right: 10px;
+    margin-bottom: 2px;
+    padding: 6px 5px 4px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .card-library-navigation-item-selected {
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+  }
+
+  .memo-save-location-setting {
+    border-top: 3px dashed var(--background-modifier-border);
+
+    .setting-item-name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .memo-save-location-title {
+        font-size: var(--font-ui-medium);
+      }
+    }
+
+    .memo-save-location-desc {
+      width: 100%;
+      height: 280px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+      align-items: center;
+      justify-items: center;
+
+      .memo-save-location-desc-item {
+        width: 280px;
+        height: 120px;
+        position: relative;
+        background: var(--background-secondary);
+        border-radius: var(--radius-m);
+        //cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--size-2-2);
+        font-size: 14px;
+        color: var(--card-library-text-hover);
+
+        > .memo-save-location-desc-item-toggle {
+          position: absolute;
+          right: var(--size-4-3);
+          bottom: var(--size-2-3);
+        }
+
+        > .memo-save-location-desc-item-setting {
+          position: absolute;
+          left: var(--size-2-3);
+          bottom: var(--size-2-3);
+          cursor: pointer;
+
+          > * {
+            cursor: pointer;
+          }
+        }
+
+        //&:hover {
+        //  background: var(--background-modifier-hover);
+        //}
+
+        &.CANVAS {
+          background: #c2d7ce;
+
+          //&:hover {
+          //  background: #9cb9ac;
+          //}
+        }
+
+        &.DAILY {
+          background: #f0e2c9;
+
+          //&:hover {
+          //  background: #d5cab8;
+          //}
+        }
+
+        &.MULTI {
+          background: #e2c9c9;
+
+          //&:hover {
+          //  background: #cea8a8;
+          //}
+        }
+
+        &.FILE {
+          background: #c9dfe2;
+
+          //&:hover {
+          //  background: #a8c2c9;
+          //}
+        }
+      }
+    }
+
+    .setting-item-control {
+      display: none;
+    }
+  }
+}

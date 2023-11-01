@@ -15,3 +15,9 @@ dist-ssr
 
 .yarn/*
 
+
+*.zip
+*.tgz
+*.tar.gz
+*.rar
+

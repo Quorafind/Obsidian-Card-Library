@@ -3,10 +3,36 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-border;
+  .card-library {
+  @apply border-border bg-background text-foreground p-0;
+    .markdown-embed {
+      @apply pl-0;
+    }
   }
-  body {
-    @apply bg-background text-foreground;
+}
+
+svg, span, div {
+  &.card-color-1 {
+    color: rgb(var(--mod-facet-color-1));
   }
+
+    &.card-color-2 {
+        color: rgb(var(--mod-facet-color-2));
+    }
+
+    &.card-color-3 {
+        color: rgb(var(--mod-facet-color-3));
+    }
+
+    &.card-color-4 {
+        color: rgb(var(--mod-facet-color-4));
+    }
+
+    &.card-color-5 {
+        color: rgb(var(--mod-facet-color-5));
+    }
+
+    &.card-color-6 {
+        color: rgb(var(--mod-facet-color-6));
+    }
 }
