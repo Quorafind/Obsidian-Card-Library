@@ -21,7 +21,7 @@ export class CardLibraryView extends ItemView {
   }
 
   getIcon(): string {
-    return 'calendar-with-checkmark';
+    return 'library';
   }
 
   async onOpen(): Promise<void> {

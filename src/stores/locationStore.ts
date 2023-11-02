@@ -11,7 +11,7 @@ type ActionPayloads = {
     tags: string[];
   };
   SET_QUERY_WITH_TYPE: {
-    target: 'tags' | 'color' | 'type' | 'linked';
+    target: QueryType;
     value: CardSpecType[] | string[] | boolean[];
   };
   SET_TYPE: {
@@ -194,6 +194,7 @@ export const defaultState: State = {
     type: [],
     color: [],
     linked: [],
+    path: [],
     text: '',
     filter: '',
   },
