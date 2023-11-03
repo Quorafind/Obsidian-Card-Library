@@ -3,8 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-  .card-library {
-  @apply border-border bg-background text-foreground p-0;
+  .card-library.view-content {
+
+    section#page-wrapper {
+      @apply flex flex-col h-full;
+
+      .content-wrapper {
+        @apply flex flex-col flex-1 h-full max-h-full;
+      }
+    }
+    @apply  !overflow-hidden border-border bg-background text-foreground p-0;
     .canvas-embed {
       .embed-title {
         @apply hidden;

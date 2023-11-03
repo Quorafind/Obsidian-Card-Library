@@ -1,8 +1,31 @@
 @import "globals";
 
 @layer base {
-  .card-list-container {
-  @apply w-full h-full p-4 grid gap-4 md:grid-cols-2 lg:grid-cols-5;
+
+    .card-list-container {
+    @apply w-full p-4 grid gap-4 md:grid-cols-2 lg:grid-cols-5;
+
+      .cl-card {
+        &:hover {
+          .pin-button {
+            > * {
+              @apply text-muted-foreground transition duration-300 ease-in-out;
+            }
+          }
+        }
+      }
+  }
+
+  .mobile-view {
+    .card-list-container {
+    @apply grid-cols-2;
+    }
+  }
+
+  .mobile-view.mobile-tiny-view {
+    .card-list-container {
+    @apply grid-cols-1;
+    }
   }
 
   .status-text-container {

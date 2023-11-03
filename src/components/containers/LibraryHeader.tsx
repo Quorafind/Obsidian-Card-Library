@@ -5,7 +5,7 @@ import { CardLibraryToolbar } from '@/components/containers/CardLibraryToolbar';
 export default function LibraryHeader() {
   return (
     <div className="library-header border-b">
-      <div className="flex h-16 items-center px-4 space-x-2">
+      <div className="flex h-16 items-center px-4 space-x-2 overflow-x-scroll w-full">
         <CanvasSwitcher />
         <CardLibraryToolbar />
       </div>

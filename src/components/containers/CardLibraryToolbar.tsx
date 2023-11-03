@@ -18,7 +18,7 @@ export function CardLibraryToolbar() {
   const isFiltered = !queryIsEmptyOrBlank(query);
 
   return (
-    <div className="flex items-center justify-between w-full">
+    <div className="flex items-center justify-between w-full gap-2">
       <div className="flex flex-1 items-center space-x-2">
         {types.length > 0 && (
           <CardLibraryFacetedFilter target="type" facets={countByKey(cards, 'type')} title="Type" options={types} />

@@ -225,13 +225,13 @@ export default function CardList(): React.JSX.Element {
   };
 
   return (
-    <div ref={wrapperElement} className="w-full h-full">
+    <div ref={wrapperElement} className="w-full flex flex-col overflow-y-scroll">
       <div className="card-list-container">
         {temp.map((card, index) => {
           return <CardComponent {...card} key={index} />;
         })}
       </div>
-      <div ref={statusRef} className="status-text-container">
+      <div ref={statusRef} className="status-text-container py-4">
         <p className="status-text">
           {isFetching ? (
             'Fetching data...'
