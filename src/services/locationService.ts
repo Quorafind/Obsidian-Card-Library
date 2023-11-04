@@ -115,6 +115,7 @@ class LocationService {
   };
 
   public setQueryWithType = (target: QueryType, value: CardSpecType[] | string[]) => {
+    console.log(target, value);
     appStore.dispatch({
       type: 'SET_QUERY_WITH_TYPE',
       payload: {

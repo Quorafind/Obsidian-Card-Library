@@ -1,5 +1,5 @@
 import appStore from '../stores/appStore';
-import { App, PluginManifest } from 'obsidian';
+import { App, MarkdownEditor, PluginManifest } from 'obsidian';
 import { CardLibraryView } from '@/cardLibraryIndex';
 import { CardLibrarySettings } from '@/types/settings';
 
@@ -59,6 +59,15 @@ class GlobalService {
       type: 'SET_SETTING',
       payload: {
         settings,
+      },
+    });
+  };
+
+  public setEditor = (editor: MarkdownEditor) => {
+    appStore.dispatch({
+      type: 'SET_EDITOR',
+      payload: {
+        editor,
       },
     });
   };

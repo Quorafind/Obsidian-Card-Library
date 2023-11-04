@@ -11,13 +11,16 @@ main.js
 dist-ssr
 *.local
 
-
-
 .yarn/*
-
 
 *.zip
 *.tgz
 *.tar.gz
 *.rar
+
+# Core feature file
+src/lib/patchEditor.ts
+src/components/ui/editor.tsx
+src/hooks/useEditorInstance.ts
+
 

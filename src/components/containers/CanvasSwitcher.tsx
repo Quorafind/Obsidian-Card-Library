@@ -26,6 +26,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Search } from '@/components/ui/search';
 import AppContext from '@/stores/appContext';
 import { locationService } from '@/services';
+import { LayoutDashboardIcon } from 'lucide-react';
 
 const groups = [
   {
@@ -43,8 +44,6 @@ const groups = [
   },
 ];
 
-type Team = typeof groups[number]['teams'][number];
-
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>;
 
 interface TeamSwitcherProps extends PopoverTriggerProps {}
@@ -53,13 +52,12 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
   const {
     fileState: { files },
     locationState: { query },
+    globalState: { view, isMobileView },
   } = useContext(AppContext);
   const [initialied, setInitialized] = React.useState(false);
 
   const [open, setOpen] = React.useState(false);
   const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false);
-  const [selectedTeam, setSelectedTeam] = React.useState<Team[]>([groups[0].teams[0]]);
-  const [containerElement, setContainerElement] = React.useState<HTMLElement | null>(null);
   const selectedValues = new Set(query['path'] ?? []);
 
   useEffect(() => {
@@ -79,10 +77,6 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
     };
   }, [files]);
 
-  useEffect(() => {
-    setContainerElement(document.querySelector("div[data-type='card-library-view'] .content") as HTMLElement);
-  }, []);
-
   return (
     <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
       <Popover open={open} onOpenChange={setOpen}>
@@ -92,13 +86,23 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
             role="combobox"
             aria-expanded={open}
             aria-label="Select a team"
-            className={cn('w-[200px] justify-between', className)}
+            className={cn('canvas-switcher w-[140px] justify-between', className, isMobileView ? 'p-0.5' : '')}
+            size={isMobileView ? 'icon' : 'default'}
           >
-            {groups[1].teams.find((team) => team.value === Array.from(selectedValues)[0])?.label ?? 'All Canvases'}
-            <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+            {isMobileView ? (
+              <>
+                <LayoutDashboardIcon className="mx-1 h-4 w-4 text-muted-foreground" />
+                <CaretSortIcon className="h-4 w-4 shrink-0 opacity-50" />
+              </>
+            ) : (
+              <>
+                {groups[1].teams.find((team) => team.value === Array.from(selectedValues)[0])?.label ?? 'All Canvases'}
+                <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+              </>
+            )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0">
+        <PopoverContent className="w-[200px] p-0 dark:border-slate-500">
           <Command>
             <CommandList>
               <CommandInput className="focus:outline-none focus:shadow-none" placeholder="Search canvas..." />
@@ -155,24 +159,24 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
           </Command>
         </PopoverContent>
       </Popover>
-      <DialogContent container={containerElement}>
+      <DialogContent container={view.containerEl} className={'dark:border-slate-500'}>
         <DialogHeader>
-          <DialogTitle>Create team</DialogTitle>
-          <DialogDescription>Add a new team to manage products and customers.</DialogDescription>
+          <DialogTitle>Create canvas</DialogTitle>
+          <DialogDescription>Add a new canvas to specific folder or default folder.</DialogDescription>
         </DialogHeader>
         <div>
           <div className="space-y-4 py-2 pb-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Team name</Label>
-              <Search id="name" placeholder="Acme Inc." />
+              <Label htmlFor="name">Canvas name</Label>
+              <Search id="name" className={'dark:focus-visible:border-slate-600'} placeholder="default" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="plan">Subscription plan</Label>
+              <Label htmlFor="plan">Folder</Label>
               <Select>
-                <SelectTrigger>
+                <SelectTrigger className={'dark:border-slate-600'}>
                   <SelectValue placeholder="Select a plan" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className={'dark:border-slate-600'}>
                   <SelectItem value="free">
                     <span className="font-medium">Free</span> -{' '}
                     <span className="text-muted-foreground">Trial for two weeks</span>

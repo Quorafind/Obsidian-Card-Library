@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import AppContext from '@/stores/appContext';
-import { CardComponent } from '@/components/containers/CardComponent';
+import { CCard } from '@/components/containers/CCard';
 import useStateRef from '@/hooks/useStateRef';
 import { debounce, Notice } from 'obsidian';
 import '@/less/card-list.less';
@@ -228,7 +228,7 @@ export default function CardList(): React.JSX.Element {
     <div ref={wrapperElement} className="w-full flex flex-col overflow-y-scroll">
       <div className="card-list-container">
         {temp.map((card, index) => {
-          return <CardComponent {...card} key={index} />;
+          return <CCard {...card} key={index} />;
         })}
       </div>
       <div ref={statusRef} className="status-text-container py-4">

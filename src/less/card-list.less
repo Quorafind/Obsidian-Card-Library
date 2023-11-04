@@ -2,10 +2,34 @@
 
 @layer base {
 
+  .mobile-view {
     .card-list-container {
-    @apply w-full p-4 grid gap-4 md:grid-cols-2 lg:grid-cols-5;
+    @apply grid-cols-2;
+    }
+
+    .canvas-switcher {
+    @apply w-12;
+    }
+
+    .search-bar {
+      @apply w-40;
+    }
+  }
+
+  .mobile-view.mobile-tiny-view {
+    .card-list-container {
+    @apply grid-cols-1;
+    }
+  }
+
+  .card-list-container {
+    @apply w-full max-w-full p-4 grid gap-4 grid-cols-5;
 
       .cl-card {
+
+        .cm-line {
+          @apply text-xs;
+        }
         &:hover {
           .pin-button {
             > * {
@@ -16,20 +40,8 @@
       }
   }
 
-  .mobile-view {
-    .card-list-container {
-    @apply grid-cols-2;
-    }
-  }
-
-  .mobile-view.mobile-tiny-view {
-    .card-list-container {
-    @apply grid-cols-1;
-    }
-  }
-
   .status-text-container {
-  @apply flex flex-col items-center justify-center w-full mt-4 mb-4;
+  @apply flex flex-col items-center justify-center w-full max-w-full mt-4 mb-4;
 
     &.completed {
     @apply mb-16;

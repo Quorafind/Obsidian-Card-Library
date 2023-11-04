@@ -19,8 +19,10 @@ import AppContext from '@/stores/appContext';
 import { useContext } from 'react';
 import { locationService } from '@/services';
 
+export type FacetedType = 'type' | 'tags' | 'color' | 'linked';
+
 interface DataTableFacetedFilterProps {
-  target?: 'type' | 'tags' | 'color' | 'status' | 'priority' | 'linked';
+  target?: FacetedType;
   facets?: Map<string, number>;
   title?: string;
   options: {
@@ -30,16 +32,17 @@ interface DataTableFacetedFilterProps {
   }[];
 }
 
-export function CardLibraryFacetedFilter({ target, facets, title, options }: DataTableFacetedFilterProps) {
+export function FacetedFilter({ target, facets, title, options }: DataTableFacetedFilterProps) {
   const {
     locationState: { query },
+    globalState: { view, isMobileView },
   } = useContext(AppContext);
   const selectedValues = new Set(query[target as QueryType] ?? []);
 
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 border-dashed">
+        <Button variant="outline" size="sm" className="w-48 min-w-[4rem] max-w-fit h-8 border-dashed">
           <PlusCircledIcon className="mr-2 h-4 w-4" />
           {title}
           {selectedValues?.size > 0 && (
@@ -67,7 +70,11 @@ export function CardLibraryFacetedFilter({ target, facets, title, options }: Dat
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0" align="start">
+      <PopoverContent
+        container={isMobileView ? document.body : view.contentEl}
+        className="w-[200px] p-0 dark:border-slate-500"
+        align="start"
+      >
         <Command>
           <CommandInput placeholder={title} className="shadow-none active:shadow-none" />
           <CommandList>

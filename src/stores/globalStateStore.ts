@@ -1,4 +1,4 @@
-import { App, PluginManifest } from 'obsidian';
+import { App, MarkdownEditor, PluginManifest } from 'obsidian';
 import { CardLibraryView } from '@/cardLibraryIndex';
 import { CardLibrarySettings } from '@/types/settings';
 
@@ -7,6 +7,7 @@ export interface AppSetting {
   settings: CardLibrarySettings;
   app: App;
   view: CardLibraryView;
+  editor: MarkdownEditor;
 }
 
 export interface State extends AppSetting {
@@ -36,6 +37,9 @@ type ActionPayloads = {
   };
   SET_VIEW: {
     view: CardLibraryView;
+  };
+  SET_EDITOR: {
+    editor: MarkdownEditor;
   };
   SET_SETTING: {
     settings: CardLibrarySettings;
@@ -92,7 +96,16 @@ export function reducer(state: State, action: Actions) {
         view: action.payload.view,
       };
     }
+    case 'SET_EDITOR': {
+      if (action.payload.editor === state.editor) {
+        return state;
+      }
 
+      return {
+        ...state,
+        editor: action.payload.editor,
+      };
+    }
     case 'SET_CHANGED_BY_SELF': {
       if (action.payload.changedBySelf === state.changedBySelf) {
         return state;
@@ -126,6 +139,7 @@ export const defaultState: State = {
   settings: null,
   app: null,
   view: null,
+  editor: null,
   editCardId: '',
   isMobileView: false,
   changedBySelf: false,

@@ -8,4 +8,5 @@ interface CardPatch {
   pinned?: boolean;
   deleted?: boolean;
   rowStatus?: CardRowStatus;
+  color?: string;
 }

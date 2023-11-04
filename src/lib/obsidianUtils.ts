@@ -1,5 +1,5 @@
 import { fileService, globalService } from '@/services';
-import { TFile, moment, App, Notice } from 'obsidian';
+import { App, moment, normalizePath, Notice, TFile } from 'obsidian';
 import {
   CanvasData,
   CanvasEdgeData,
@@ -34,8 +34,20 @@ export function checkMediaExtension(path: string): boolean {
   return ['mp4', 'mov', 'avi', 'mkv', 'mp3', 'wav', 'ogg', 'flac'].includes(ext);
 }
 
-export function checkIfLinked(id: string, edges: CanvasEdgeData[]) {
+export function checkIfLinked(id: string, edges: CanvasEdgeData[]): boolean {
   return edges.some((edge) => edge.fromNode === id || edge.toNode === id);
+}
+
+export async function readFileContent(app: App, path: string): Promise<string> {
+  if (!path.endsWith('excalidraw.md')) {
+    return await app.vault.adapter.read(normalizePath(path));
+  } else {
+    return path;
+  }
+}
+
+export function getColorString(color: string): string {
+  return color ? (color.startsWith('#') ? 'color-custom' : `color-${color}`) : 'color-blank';
 }
 
 export function getCanvasFile(path: string, app: App): TFile | undefined {
@@ -111,7 +123,7 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
       id,
       pinned: !!node?.pinned,
       rowStatus: node?.archived ? 'ARCHIVED' : 'NORMAL',
-      color: node?.color ? (node?.color.startsWith('#') ? 'color-custom' : `color-${node?.color}`) : 'color-blank',
+      color: getColorString(node?.color),
       content,
       deletedAt: node?.deletedAt ? moment(node?.deletedAt).format('YYYY/MM/DD HH:mm:SS') : '',
       path: file.path,
@@ -241,6 +253,7 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
     }
   }
 
+  if (patch.color) node.color = patch.color;
   if (patch.rowStatus) node.rowStatus = patch.rowStatus;
   if (patch.pinned !== undefined) node.pinned = patch.pinned;
   const deletedTime = moment();
@@ -256,6 +269,7 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
     content: patch.content ?? oldCard.content,
     rowStatus: patch.rowStatus ?? oldCard.rowStatus,
     pinned: patch.pinned ?? oldCard.pinned,
+    color: getColorString(patch.color ?? oldCard.color),
     deletedAt: patch.deleted
       ? deletedTime.format('YYYY/MM/DD HH:mm:ss')
       : patch.deleted === false

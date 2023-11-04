@@ -54,6 +54,17 @@ declare module 'obsidian' {
     containerEl: HTMLElement;
   }
 
+  interface MarkdownEditor {
+    constructor: any;
+    set: (value: string) => void;
+    get: () => string;
+    onUpdate: (e: any, update: boolean) => void;
+    destroy: () => void;
+    clear: () => void;
+    editor: any;
+    toggleSource: () => void;
+  }
+
   interface Menu {
     dom: HTMLElement;
 
@@ -73,6 +84,10 @@ declare module 'obsidian' {
       };
     };
     commands: any;
+  }
+
+  interface View {
+    contentEl: HTMLElement;
   }
 
   interface MarkdownFileInfo {

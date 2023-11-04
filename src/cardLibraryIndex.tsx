@@ -8,6 +8,7 @@ import { cardService, globalService } from '@/services';
 import { CardLibrarySettings } from '@/types/settings';
 import { KeyEvent, modKeys, ribbonCommandsList, TargetLocation } from '@/types/obsidian';
 import { t } from '@/translations/helper';
+import { patchEditor } from '@/lib/patchEditor';
 
 const openCardLibraryCb = () => {
   new Notice('Open card library successfully');
@@ -78,6 +79,8 @@ export class CardLibraryView extends ItemView {
   async handleResize() {
     const leaf = this.leaf;
     if (leaf && leaf.height !== 0) {
+      console.log(leaf.width, leaf.height);
+      globalService.setMobileView(leaf.width < 950);
       if (leaf.width > 950) {
         leaf.view.contentEl.classList.toggle('mobile-view', false);
         leaf.view.contentEl.classList.toggle('mobile-tiny-view', false);
@@ -97,6 +100,12 @@ export class CardLibraryView extends ItemView {
   }
 
   async onOpen(): Promise<void> {
+    this.registerEvent(
+      this.app.workspace.on('layout-change', () => {
+        console.log('layout-change');
+        this.handleResize();
+      }),
+    );
     this.registerEvent(
       this.app.workspace.on('resize', () => {
         this.handleResize();
@@ -133,11 +142,16 @@ export default class CardLibrary extends Plugin {
   async onload(): Promise<void> {
     await this.initSettings();
 
+    this.initEditor();
     this.initCommands();
     this.initRibbon();
     this.registerView(VIEW_TYPE, (leaf: WorkspaceLeaf) => (this.view = new CardLibraryView(leaf)));
 
     this.app.workspace.onLayoutReady(this.onLayoutReady.bind(this));
+  }
+
+  initEditor(): void {
+    patchEditor(this.app)();
   }
 
   initCommands(): void {

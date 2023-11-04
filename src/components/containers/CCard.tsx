@@ -3,37 +3,32 @@ import React, { useContext, useEffect, useMemo } from 'react';
 import { ImageIcon, Link1Icon, FileTextIcon, ReaderIcon } from '@radix-ui/react-icons';
 import { FileType2, FilmIcon, PinIcon, PinOffIcon } from 'lucide-react';
 import AppContext from '@/stores/appContext';
-import { MarkdownRenderer, normalizePath } from 'obsidian';
-import { VIEW_TYPE } from '@/cardLibraryIndex';
 import { cn } from '@/lib/utils';
-import { ActionProps, CardAction } from '@/components/containers/CardAction';
-import { cardService, globalService } from '@/services';
+import { ActionProps, CardActionButton } from '@/components/containers/CardActionButton';
+import { cardService, globalService, locationService } from '@/services';
 import { CardEditor } from '@/components/containers/CardEditor';
 import { Button } from '@/components/ui/button';
 import useHover from '@/hooks/useHover';
+import { readFileContent } from '@/lib/obsidianUtils';
+import useMarkdownRenderer from '@/hooks/useMarkdownRenderer';
+import { TooltipTrigger, Tooltip, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
 
 interface MouseActionProps {
   handleDoubleClick: () => void;
   handleSingleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
+export const COLOR_MAP = {
+  'color-1': 'bg-red-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-red-500/80 dark:text-slate-200',
+  'color-2': 'bg-orange-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-orange-500/80 dark:text-slate-200',
+  'color-3': 'bg-yellow-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-yellow-500/80 dark:text-slate-200',
+  'color-4': 'bg-green-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-green-500/80 dark:text-slate-200',
+  'color-5': 'bg-cyan-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-cyan-500/80 dark:text-slate-200',
+  'color-6': 'bg-violet-100/30  dark:bg-gray-700/80 dark:border-2 dark:border-violet-500/80 dark:text-slate-200',
+};
+
 function switchColor(color: string) {
-  switch (color) {
-    case 'color-1':
-      return 'bg-red-100/30';
-    case 'color-2':
-      return 'bg-orange-100/30';
-    case 'color-3':
-      return 'bg-yellow-100/30';
-    case 'color-4':
-      return 'bg-green-100/30';
-    case 'color-5':
-      return 'bg-cyan-100/30';
-    case 'color-6':
-      return 'bg-violet-100/30';
-    default:
-      return 'bg-gray-100/30';
-  }
+  return COLOR_MAP[color] || 'bg-gray-100/30 dark:bg-gray-700/80 dark:border-gray-700/80 dark:text-slate-200';
 }
 
 const CARD_COMPONENT_MAP = {
@@ -46,12 +41,12 @@ const CARD_COMPONENT_MAP = {
 };
 
 const ICON_MAP = {
-  text: <ReaderIcon className="h-4 w-4 text-muted-foreground" />,
-  pdf: <FileType2 className="h-4 w-4 text-muted-foreground" />,
-  file: <FileTextIcon className="h-4 w-4 text-muted-foreground" />,
-  image: <ImageIcon className="h-4 w-4 text-muted-foreground" />,
-  link: <Link1Icon className="h-4 w-4 text-muted-foreground" />,
-  media: <FilmIcon className="h-4 w-4 text-muted-foreground" />,
+  text: <ReaderIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
+  pdf: <FileType2 className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
+  file: <FileTextIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
+  image: <ImageIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
+  link: <Link1Icon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
+  media: <FilmIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
 };
 
 function getPin(card: Model.Card, handlePin?: (pinned: boolean) => void) {
@@ -87,20 +82,36 @@ function CardActionHeader({
   title?: string;
 }) {
   return (
-    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 pt-4">
-      {icon}
+    <CardHeader className="w-full max-w-full flex flex-row items-center justify-between space-y-0 pb-2 pt-4">
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger className="shadow-none">
+            <div
+              onClick={async () => {
+                await navigator.clipboard.writeText(card.content);
+              }}
+            >
+              {icon}
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Copy to clipboard</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+
       <CardTitle className="max-w-[10rem] overflow-hidden text-sm font-medium text-ellipsis whitespace-nowrap">
         {title}
       </CardTitle>
       <div className="flex flex-row items-center gap-2">
         {getPin(card, funcProps.handlePin)}
-        <CardAction {...funcProps} {...card} />
+        <CardActionButton {...funcProps} {...card} />
       </div>
     </CardHeader>
   );
 }
 
-export function CardComponent(props: Model.Card): React.JSX.Element {
+export function CCard(props: Model.Card): React.JSX.Element {
   const {
     globalState: { editCardId },
   } = useContext(AppContext);
@@ -134,6 +145,17 @@ export function CardComponent(props: Model.Card): React.JSX.Element {
   };
 
   const handleSingleClick = async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if ((event.target as HTMLElement).className === 'tag') {
+      const currentQuery = locationService.getState().query;
+      const tags = [...(currentQuery.tags || [])] as string[];
+      const index = tags.indexOf((event.target as HTMLAnchorElement).href.split('#')[1] as string);
+      if (index > -1) {
+        tags.splice(index, 1);
+      } else {
+        tags.push((event.target as HTMLAnchorElement).href.split('#')[1] as string);
+      }
+      locationService.setQueryWithType('tags', tags);
+    }
     if (event.metaKey || event.ctrlKey) {
       await handleSource();
     } else if (event.shiftKey) {
@@ -141,6 +163,13 @@ export function CardComponent(props: Model.Card): React.JSX.Element {
     } else if (event.altKey) {
       await handleArchive();
     }
+  };
+
+  const handleChangeColor = async (color: string) => {
+    const card = await cardService.patchCardViaID(props.id, {
+      color: color.replace('color-', '').replace('default', ''),
+    });
+    await cardService.editCard(card);
   };
 
   const cardType = (actionProps?: ActionProps, mouseActionProps?: MouseActionProps) => {
@@ -156,6 +185,7 @@ export function CardComponent(props: Model.Card): React.JSX.Element {
       handleArchive,
       handleSource,
       handleCopy,
+      handleChangeColor,
     };
   }, [props]);
 
@@ -169,7 +199,7 @@ export function CardComponent(props: Model.Card): React.JSX.Element {
   return (
     <>
       <Card
-        className={cn(`cl-card`, `w-full h-72`, `${switchColor(color)}`)}
+        className={cn(`cl-card`, `w-full max-w-full h-72`, `${switchColor(color)}`)}
         data-card-path={type === 'text' ? path : content}
         data-card-type={type}
         data-card-id={id}
@@ -200,17 +230,96 @@ export function TextCard({
   actionProps: ActionProps;
   mouseActionProps: MouseActionProps;
 }): React.JSX.Element {
-  const { content } = card;
+  const { content, path } = card;
+  const {
+    globalState: { app, view },
+  } = useContext(AppContext);
+  const { render, ref } = useMarkdownRenderer(app, view);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadAndRenderContent = async () => {
+      try {
+        if (isMounted) {
+          await render(path, content);
+        }
+      } catch (error) {
+        console.error('Error loading markdown content:', error);
+      }
+    };
+
+    loadAndRenderContent();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [content, render]);
 
   return (
     <>
       <CardActionHeader icon={ICON_MAP[card.type]} card={card} funcProps={actionProps}></CardActionHeader>
       <CardContent
-        className="h-[calc(100%_-_4rem)] overflow-y-auto"
+        className="h-[calc(100%_-_4rem)] w-full overflow-y-auto"
         onClick={mouseActionProps.handleSingleClick}
         onDoubleClick={mouseActionProps.handleDoubleClick}
       >
-        <div className="overflow-y-auto text-xs text-muted-foreground text-ellipsis">{content}</div>
+        <div ref={ref} className=" w-full overflow-y-auto text-xs text-muted-foreground text-ellipsis"></div>
+      </CardContent>
+    </>
+  );
+}
+
+export function FileCard({
+  card,
+  actionProps,
+  mouseActionProps,
+}: {
+  card: Model.Card;
+  actionProps: ActionProps;
+  mouseActionProps: MouseActionProps;
+}): React.JSX.Element {
+  const { content: path } = card;
+  const {
+    globalState: { app, view },
+  } = useContext(AppContext);
+  const { render, ref } = useMarkdownRenderer(app, view);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadAndRenderContent = async () => {
+      try {
+        const content = await readFileContent(app, path);
+        if (isMounted) {
+          await render(path, content);
+        }
+      } catch (error) {
+        console.error('Error loading markdown content:', error);
+      }
+    };
+
+    loadAndRenderContent();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [path, render]);
+
+  return (
+    <>
+      <CardActionHeader
+        icon={ICON_MAP[card.type]}
+        card={card}
+        funcProps={actionProps}
+        title={path.split('/').pop()}
+      ></CardActionHeader>
+      <CardContent
+        className="h-[calc(100%_-_4rem)] w-full max-w-full overflow-y-auto"
+        onClick={mouseActionProps.handleSingleClick}
+        onDoubleClick={mouseActionProps.handleDoubleClick}
+      >
+        <div ref={ref} className="w-full max-w-full overflow-y-auto text-xs text-muted-foreground"></div>
       </CardContent>
     </>
   );
@@ -247,104 +356,6 @@ export function PdfCard({ card, actionProps }: { card: Model.Card; actionProps: 
       ></CardActionHeader>
       <CardContent>
         <div className="overflow-y-auto text-xs text-muted-foreground">{content}</div>
-      </CardContent>
-    </>
-  );
-}
-
-export function FileCard({
-  card,
-  actionProps,
-  mouseActionProps,
-}: {
-  card: Model.Card;
-  actionProps: ActionProps;
-  mouseActionProps: MouseActionProps;
-}): React.JSX.Element {
-  const { content: path } = card;
-  const {
-    globalState: { app, view },
-  } = useContext(AppContext);
-  const contentRef = React.useRef<HTMLDivElement>(null);
-  const [targetPath, setTargetPath] = React.useState<string>('');
-
-  useEffect(() => {
-    if (!contentRef.current || (contentRef.current.hasChildNodes() && targetPath === path)) return;
-    if (!view || !app) return;
-
-    async function renderMarkdown() {
-      if (!path) return;
-
-      let target = `![[${path}]]`;
-      switch (path.split('.').pop()) {
-        case 'canvas':
-          break;
-        case 'md':
-          if (path.endsWith('excalidraw.md')) {
-            break;
-          } else {
-            const temp = await app.vault.adapter.read(normalizePath(path));
-            target = temp;
-          }
-          break;
-        default:
-          break;
-      }
-
-      try {
-        setTargetPath(path);
-      } catch (e) {
-        console.log(e);
-      }
-
-      if (contentRef.current.hasChildNodes()) contentRef.current.empty();
-
-      await MarkdownRenderer.render(app, target, contentRef.current, path, view);
-
-      contentRef.current?.toggleClass(['markdown-rendered'], true);
-
-      const embeds = contentRef.current?.querySelectorAll('.internal-link');
-      embeds?.forEach((embed) => {
-        const el = embed as HTMLAnchorElement;
-        const href = el.getAttribute('data-href');
-        if (!href) return;
-
-        const destination = app.metadataCache.getFirstLinkpathDest(href, path);
-        if (!destination) embed.classList.add('is-unresolved');
-
-        el.addEventListener('mouseover', (e) => {
-          e.stopPropagation();
-          app.workspace.trigger('hover-link', {
-            event: e,
-            source: VIEW_TYPE,
-            hoverParent: view.containerEl,
-            targetEl: el,
-            linktext: href,
-            sourcePath: el.href,
-          });
-        });
-      });
-    }
-    renderMarkdown();
-    return () => {
-      contentRef.current?.empty();
-    };
-  }, [path, view, app]);
-
-  return (
-    <>
-      <CardActionHeader
-        icon={ICON_MAP[card.type]}
-        card={card}
-        funcProps={actionProps}
-        title={path.split('/').pop()}
-      ></CardActionHeader>
-      <CardContent
-        className="h-[calc(100%_-_4rem)] overflow-y-auto"
-        onClick={mouseActionProps.handleSingleClick}
-        onDoubleClick={mouseActionProps.handleDoubleClick}
-      >
-        <div ref={contentRef} className="text-xs text-muted-foreground"></div>
       </CardContent>
     </>
   );
