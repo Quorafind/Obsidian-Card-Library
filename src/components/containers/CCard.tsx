@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { FileTextIcon, ImageIcon, Link1Icon, ReaderIcon } from '@radix-ui/react-icons';
-import { FileType2, FilmIcon, PinIcon, PinOffIcon } from 'lucide-react';
+import { FileTextIcon, ImageIcon, Link1Icon, PlusCircledIcon, ReaderIcon } from '@radix-ui/react-icons';
+import { FileType2, FilmIcon, PinIcon, PinOffIcon, PlusIcon } from 'lucide-react';
 import AppContext from '@/stores/appContext';
 import { cn } from '@/lib/utils';
 import { ActionProps, CardActionButton } from '@/components/containers/CardActionButton';
@@ -59,7 +59,7 @@ const customFetcher = async (url: string) => {
   const metas = doc.head.getElementsByTagName('meta');
   const metaInfos = [];
 
-  for (const meta of metas) {
+  for (const meta of metas as any) {
     metaInfos.push({
       name: meta.getAttribute('name'),
       content: meta.getAttribute('content'),
@@ -90,7 +90,7 @@ const customFetcher = async (url: string) => {
 };
 
 function getPin(card: Model.Card, handlePin?: (pinned: boolean) => void) {
-  const [hoveredElement, isHovered] = useHover((hovering) => {
+  const [hoveredElement] = useHover((hovering) => {
     return (
       <Button
         onClick={() => handlePin(!card.pinned)}
@@ -241,7 +241,7 @@ export function CCard(props: Model.Card): React.JSX.Element {
   return (
     <>
       <Card
-        className={cn(`cl-card`, `w-full max-w-full h-fit`, `${switchColor(color)}`)}
+        className={cn(`cl-card`, `w-full max-w-full h-fit flex flex-col justify-center`, `${switchColor(color)}`)}
         data-card-path={type === 'text' ? path : content}
         data-card-type={type}
         data-card-id={id}
@@ -250,11 +250,25 @@ export function CCard(props: Model.Card): React.JSX.Element {
           <CardEditor
             {...props}
             onSubmit={async (content) => {
-              const card = await cardService.patchCardViaID(id, { content: content });
+              let card: Model.Card;
+              if (id === 'fake') {
+                card = await cardService.createCard({
+                  text: content,
+                  type: 'text',
+                  path: path,
+                });
+                cardService.pushCard(card);
+              } else {
+                card = await cardService.patchCardViaID(id, { content: content });
+                await cardService.editCard(card);
+              }
               globalService.setEditCardId('');
-              await cardService.editCard(card);
             }}
           />
+        ) : id === 'fake' ? (
+          <Button variant={'ghost'} size={'lg'} className="h-20" onClick={handleEdit}>
+            <PlusIcon className="h-9 w-9 text-muted-foreground dark:text-slate-500/80" />
+          </Button>
         ) : (
           cardType(actionProps, mouseActionProps)
         )}
@@ -290,6 +304,9 @@ export function FileCard({
   actionProps: ActionProps;
   mouseActionProps: MouseActionProps;
 }): React.JSX.Element {
+  const {
+    globalState: { app },
+  } = useContext(AppContext);
   const { content: path } = card;
   const [content, setContent] = useState('');
 

@@ -9,6 +9,15 @@ import { queryService } from '@/services';
 import { FIRST_TAG_REG, NOP_FIRST_TAG_REG, TAG_REG } from '@/lib/consts';
 import Masonry from 'react-masonry-css';
 
+function createFakeCard(path: string) {
+  return {
+    id: 'fake',
+    content: '',
+    path: path,
+    type: 'text' as CardSpecType,
+  };
+}
+
 const shouldShowedCards = ({ temp, query }: { temp: Model.Card[]; query: Query }) => {
   const cards = temp.filter((card) => {
     return !(card.rowStatus === 'ARCHIVED') && !(card.deletedAt !== '' && card.deletedAt);
@@ -86,7 +95,6 @@ const shouldShowedCards = ({ temp, query }: { temp: Model.Card[]; query: Query }
     }
 
     if (path && path.length > 0) {
-      console.log(path);
       if (!path.includes(card.path)) {
         shouldShow = false;
       }
@@ -129,7 +137,6 @@ export default function CardList(): React.JSX.Element {
 
   useEffect(() => {
     if (!viewStatus) return;
-    console.log(viewStatus);
     setView(viewStatus as 'sm' | 'md' | 'lg' | 'xl');
   }, [viewStatus]);
 
@@ -142,6 +149,12 @@ export default function CardList(): React.JSX.Element {
       temp: pinned,
       query,
     });
+
+    if (query.path && query.path.length === 1) {
+      filtered.unshift(createFakeCard(query.path[0] as string));
+    }
+
+    console.log(filtered);
 
     setShown(filtered);
   }, [cards, query]);

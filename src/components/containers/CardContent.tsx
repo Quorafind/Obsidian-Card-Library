@@ -61,7 +61,7 @@ export function CollapseCardContent({
         <CardContent
           className={cn(
             'h-[calc(100%_-_4rem)] w-full max-w-full overflow-y-auto',
-            isContentTooTall && !isCodeExpanded ? 'pb-1' : 'pb-16',
+            isContentTooTall ? (!isCodeExpanded ? 'pb-1' : 'pb-16') : '',
             isContentTooTall ? (isCodeExpanded ? 'grid grid-rows-1' : `grid grid-rows-[150px]`) : '',
           )}
           onClick={mouseActionProps.handleSingleClick}
@@ -77,7 +77,9 @@ export function CollapseCardContent({
         <div
           className={cn(
             'flex flex-row justify-center items-center absolute left-0 right-0 bottom-0 h-16 overflow-hidden',
-            !isCodeExpanded ? 'collapsed-block' : '',
+            !isCodeExpanded
+              ? "before:content-[''] before:pointer-events-none before:absolute before:inset-0 before:rounded-b-xl before:opacity-90 before:bg-gradient-to-b before:from-transparent before:to-gray-100/20 dark:before:to-gray-700"
+              : '',
           )}
         >
           <CollapsibleTrigger

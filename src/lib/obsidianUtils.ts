@@ -53,8 +53,7 @@ export function getColorString(color: string): string {
 export function getCurrentCanvasView(app: App): WorkspaceLeaf {
   const leaves = app.workspace.getLeavesOfType('canvas');
   if (leaves.length === 0) return undefined;
-  const leaf = leaves.sort((a, b) => a.activeTime - b.activeTime)[0];
-  return leaf;
+  return leaves.sort((a, b) => a.activeTime - b.activeTime)[0];
 }
 
 export function getCanvasFile(path: string, app: App): TFile | undefined {
@@ -182,6 +181,8 @@ export async function createCardInCanvas({
     return;
   }
 
+  console.log(json.nodes);
+
   const latestNode = json.nodes[json.nodes.length - 1];
   const posFromNewestNode = latestNode
     ? {
@@ -216,6 +217,7 @@ export async function createCardInCanvas({
 
   globalService.setChangedByMemos(true);
   const newContent = JSON.stringify(json, null, 2);
+
   await app.vault.modify(canvasFile, newContent);
 
   return card;
@@ -342,4 +344,25 @@ export function focusNodeInCanvas(nodeId: string): void {
       return;
     }
   }
+}
+
+export async function revealCanvasByPath(path: string) {
+  const app = globalService.getState().app;
+  const leaves = app.workspace.getLeavesOfType('canvas');
+  for (const leaf of leaves) {
+    const canvasView = leaf.view as any;
+    if (canvasView?.file?.path === path) {
+      app.workspace.revealLeaf(leaf);
+      return;
+    }
+  }
+
+  const file = app.metadataCache.getFirstLinkpathDest('', path);
+  if (!file) {
+    new Notice('File not found for the given card Path');
+    return;
+  }
+
+  const leaf = app.workspace.getLeaf();
+  await leaf.openFile(file);
 }

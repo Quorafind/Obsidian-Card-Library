@@ -13,7 +13,7 @@ import { COLOR_MAP } from '@/components/containers/CCard';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { FilterIcon, FilterXIcon, CrosshairIcon } from 'lucide-react';
 import { Toggle } from '../ui/toggle';
-import { getCurrentCanvasView } from '@/lib/obsidianUtils';
+import { getCurrentCanvasView, revealCanvasByPath } from '@/lib/obsidianUtils';
 import { around } from 'monkey-around';
 
 function FacetedFilterListMap(tags?: string[]) {
@@ -62,7 +62,7 @@ function MobileFacetedFilterList({ children }: { children: React.JSX.Element }):
           <FilterIcon className="h-4 w-4 text-muted-foreground" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-52" side={'bottom'}>
+      <PopoverContent className="w-52 dark:border-slate-500" side={'bottom'}>
         <div className="flex flex-col w-full gap-2">{children}</div>
       </PopoverContent>
     </Popover>
@@ -86,10 +86,9 @@ function FacetedFilterList() {
 
 function FocusAction() {
   const {
+    locationState: { query },
     globalState: { focused, app, view },
   } = useContext(AppContext);
-
-  const focusRef = React.useRef<boolean>(focused);
 
   useEffect(() => {
     if (!view) return;
@@ -115,7 +114,11 @@ function FocusAction() {
     }
   }, [focused]);
 
-  const handleFocus = () => {
+  const handleFocus = async () => {
+    if (query.path && query.path.length === 1) {
+      await revealCanvasByPath(query.path[0]);
+      return;
+    }
     const canvasView = getCurrentCanvasView(app);
     if (canvasView) {
       const path = canvasView?.view?.file?.path;

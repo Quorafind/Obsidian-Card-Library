@@ -48,6 +48,7 @@ declare module 'obsidian' {
   interface WorkspaceLeaf {
     width: number;
     height: number;
+    activeTime: number;
   }
 
   interface Editor {
