@@ -266,8 +266,8 @@ export function CCard(props: Model.Card): React.JSX.Element {
             }}
           />
         ) : id === 'fake' ? (
-          <Button variant={'ghost'} size={'lg'} className="h-20" onClick={handleEdit}>
-            <PlusIcon className="h-9 w-9 text-muted-foreground dark:text-slate-500/80" />
+          <Button variant={'ghost'} size={'lg'} className="h-20 shadow-none" onClick={handleEdit}>
+            <PlusIcon className="h-9 w-9 text-muted-foreground/50 dark:text-slate-500/80" />
           </Button>
         ) : (
           cardType(actionProps, mouseActionProps)

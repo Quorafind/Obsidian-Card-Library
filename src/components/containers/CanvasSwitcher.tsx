@@ -87,7 +87,7 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            aria-label="Select a team"
+            aria-label="Select a canvas"
             className={cn(
               'canvas-switcher w-[140px] justify-between overflow-hidden',
               className,
@@ -120,6 +120,7 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
 
                     return (
                       <CommandItem
+                        aria-label={team.label}
                         key={team.value}
                         onSelect={() => {
                           if (team.value === 'all') {
@@ -149,7 +150,7 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
             <CommandSeparator />
             <CommandList>
               <CommandGroup>
-                <DialogTrigger asChild>
+                <DialogTrigger disabled asChild>
                   <CommandItem
                     onSelect={() => {
                       setOpen(false);

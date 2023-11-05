@@ -210,6 +210,22 @@ class CardService {
     }
   }
 
+  public async deleteCardsBatch(file: TFile) {
+    const cards: Model.Card[] = [];
+    try {
+      await getCardFromCanvas(file, cards);
+      const deletedIDS = cards.map((m) => m.id);
+      appStore.dispatch({
+        type: 'DELETE_CARD_BY_ID_BATCH',
+        payload: {
+          ids: deletedIDS,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   public requestCardUpdate(card: Model.Card) {
     appStore.dispatch({
       type: 'EDIT_CARD',

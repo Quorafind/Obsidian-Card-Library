@@ -58,7 +58,7 @@ function MobileFacetedFilterList({ children }: { children: React.JSX.Element }):
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size={'icon'}>
+        <Button aria-label="Toggle filter" variant="outline" size={'icon'}>
           <FilterIcon className="h-4 w-4 text-muted-foreground" />
         </Button>
       </PopoverTrigger>
@@ -125,6 +125,8 @@ function FocusAction() {
       if (path) {
         locationService.setQueryWithType('path', [path]);
       }
+    } else {
+      globalService.setFocused(false);
     }
   };
 
@@ -132,7 +134,7 @@ function FocusAction() {
     <>
       <Toggle
         variant="outline"
-        aria-label="Toggle focus"
+        aria-label="Focus on current canvas view"
         aria-pressed={focused}
         pressed={focused}
         onPressedChange={(pressed: boolean) => {

@@ -27,6 +27,33 @@ class FileService {
     return files;
   }
 
+  public async addFile(file: TFile) {
+    const files = this.getState().files;
+    files.push(file);
+    appStore.dispatch({
+      type: 'SET_FILES',
+      payload: {
+        files,
+      },
+    });
+    return files;
+  }
+
+  public async updateFilesBasedOnOldPath(path: string) {
+    const files = this.getState().files;
+    const index = files.findIndex((f) => f.path === path);
+    if (index > -1) {
+      files[index].path = path;
+    }
+    appStore.dispatch({
+      type: 'SET_FILES',
+      payload: {
+        files,
+      },
+    });
+    return files;
+  }
+
   public async updateFilesBatch(files: TFile[]) {
     for (const file of files) {
       await this.updateFiles(file, false);

@@ -1,10 +1,10 @@
-import { debounce, ItemView, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
+import { debounce, ItemView, Menu, Notice, Plugin, TFile, TFolder, WorkspaceLeaf } from 'obsidian';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import '@/less/globals.less';
 import { CardLibrarySettingTab, DEFAULT_SETTINGS } from '@/cardLibrarySettings';
-import { cardService, globalService } from '@/services';
+import { cardService, fileService, globalService } from '@/services';
 import { CardLibrarySettings } from '@/types/settings';
 import { KeyEvent, modKeys, ribbonCommandsList, TargetLocation } from '@/types/obsidian';
 import { patchEditor } from '@/lib/patchEditor';
@@ -111,6 +111,48 @@ export class CardLibraryView extends ItemView {
     this.registerEvent(
       this.app.workspace.on('resize', () => {
         debouncedHandleResize();
+      }),
+    );
+    this.registerEvent(
+      this.app.vault.on('create', (file) => {
+        if (!(file instanceof TFile)) return;
+        if (file.extension !== 'canvas') return;
+        cardService.updateCardsBatch(file);
+        cardService.updateTagsState();
+        fileService.addFile(file);
+      }),
+    );
+    this.registerEvent(
+      this.app.vault.on('delete', (file) => {
+        if (!(file instanceof TFile)) return;
+        if (file.extension !== 'canvas') return;
+        cardService.deleteCardsBatch(file);
+        cardService.updateTagsState();
+        fileService.updateFiles(file, true);
+      }),
+    );
+    this.registerEvent(
+      this.app.vault.on('rename', (file, oldPath) => {
+        if (file instanceof TFolder) {
+          for (const child of file.children) {
+            if (child instanceof TFile && child.extension === 'canvas') {
+              cardService.updateCardsBatch(child);
+              fileService.updateFilesBasedOnOldPath(oldPath + '/' + child.basename + '.canvas');
+            }
+          }
+        } else if (file instanceof TFile) {
+          if (file.extension === 'canvas') {
+            cardService.updateCardsBatch(file);
+            fileService.updateFilesBasedOnOldPath(oldPath);
+          }
+        }
+      }),
+    );
+    this.registerEvent(
+      this.app.vault.on('modify', (file) => {
+        if (!(file instanceof TFile)) return;
+        if (file.extension !== 'canvas') return;
+        cardService.updateCardsBatch(file);
       }),
     );
 
