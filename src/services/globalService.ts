@@ -18,11 +18,20 @@ class GlobalService {
     });
   };
 
-  public setMobileView = (isMobileView: boolean) => {
+  public setFocused = (focused: boolean) => {
     appStore.dispatch({
-      type: 'SET_MOBILE_VIEW',
+      type: 'SET_FOCUSED',
       payload: {
-        isMobileView,
+        focused,
+      },
+    });
+  };
+
+  public setViewStatus = (viewStatus: string) => {
+    appStore.dispatch({
+      type: 'SET_VIEW_STATUS',
+      payload: {
+        viewStatus,
       },
     });
   };

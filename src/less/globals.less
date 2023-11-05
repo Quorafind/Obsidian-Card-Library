@@ -53,3 +53,14 @@ svg, span, div {
         color: rgb(var(--mod-facet-color-6));
     }
 }
+
+.cl-card {
+  .collapsed-block::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,transparent,rgba(255, 255, 255, 0.8) 100%);
+    opacity: .9;
+  }
+}

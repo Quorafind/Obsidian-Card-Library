@@ -1,4 +1,4 @@
-import { ItemView, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
+import { debounce, ItemView, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -7,7 +7,6 @@ import { CardLibrarySettingTab, DEFAULT_SETTINGS } from '@/cardLibrarySettings';
 import { cardService, globalService } from '@/services';
 import { CardLibrarySettings } from '@/types/settings';
 import { KeyEvent, modKeys, ribbonCommandsList, TargetLocation } from '@/types/obsidian';
-import { t } from '@/translations/helper';
 import { patchEditor } from '@/lib/patchEditor';
 
 const openCardLibraryCb = () => {
@@ -77,10 +76,11 @@ export class CardLibraryView extends ItemView {
   }
 
   async handleResize() {
+    console.log('handleResize');
     const leaf = this.leaf;
     if (leaf && leaf.height !== 0) {
-      console.log(leaf.width, leaf.height);
-      globalService.setMobileView(leaf.width < 950);
+      globalService.setViewStatus(leaf.width < 400 ? 'sm' : leaf.width < 600 ? 'md' : leaf.width < 900 ? 'lg' : 'xl');
+
       if (leaf.width > 950) {
         leaf.view.contentEl.classList.toggle('mobile-view', false);
         leaf.view.contentEl.classList.toggle('mobile-tiny-view', false);
@@ -106,9 +106,11 @@ export class CardLibraryView extends ItemView {
         this.handleResize();
       }),
     );
+    const debouncedHandleResize = debounce(this.handleResize.bind(this), 50, true);
+
     this.registerEvent(
       this.app.workspace.on('resize', () => {
-        this.handleResize();
+        debouncedHandleResize();
       }),
     );
 

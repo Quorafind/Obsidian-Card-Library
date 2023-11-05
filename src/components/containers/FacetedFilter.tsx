@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons';
 
-import { cn } from '@/lib/utils';
+import { cn, isMobileView } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -35,7 +35,7 @@ interface DataTableFacetedFilterProps {
 export function FacetedFilter({ target, facets, title, options }: DataTableFacetedFilterProps) {
   const {
     locationState: { query },
-    globalState: { view, isMobileView },
+    globalState: { view, viewStatus },
   } = useContext(AppContext);
   const selectedValues = new Set(query[target as QueryType] ?? []);
 
@@ -71,7 +71,7 @@ export function FacetedFilter({ target, facets, title, options }: DataTableFacet
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        container={isMobileView ? document.body : view.contentEl}
+        container={isMobileView(viewStatus) ? document.body : view.contentEl}
         className="w-[200px] p-0 dark:border-slate-500"
         align="start"
       >

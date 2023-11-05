@@ -86,8 +86,8 @@ class CardService {
     });
   }
 
-  public revealCard(card: Model.Card) {
-    showMemoInCanvas(card.id, card.path);
+  public async revealCard(card: Model.Card) {
+    await showMemoInCanvas(card.id, card.path);
   }
 
   public getCardById(id: string) {

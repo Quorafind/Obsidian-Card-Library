@@ -488,6 +488,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   white-space: nowrap;
   border-width: 0;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pointer-events-none {
+  pointer-events: none;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pointer-events-auto {
+  pointer-events: auto;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .fixed {
   position: fixed;
 }
@@ -500,11 +506,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .inset-0 {
   inset: 0px;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bottom-0 {
+  bottom: 0px;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .left-0 {
+  left: 0px;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .left-2 {
   left: 0.5rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .left-\[50\%\] {
   left: 50%;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .right-0 {
+  right: 0px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .right-2 {
   right: 0.5rem;
@@ -582,9 +597,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-5 {
   height: 1.25rem;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-72 {
-  height: 18rem;
-}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-8 {
   height: 2rem;
 }
@@ -600,17 +612,33 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-\[var\(--radix-select-trigger-height\)\] {
   height: var(--radix-select-trigger-height);
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-full {
   height: 100%;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-px {
   height: 1px;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-80 {
+  height: 20rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-64 {
+  height: 16rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-48 {
+  height: 12rem;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-h-\[300px\] {
   max-height: 300px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-h-\[60px\] {
   min-height: 60px;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-h-\[200px\] {
+  min-height: 200px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-1\/4 {
   width: 25%;
@@ -669,6 +697,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-full {
   width: 100%;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-w-\[140px\] {
+  min-width: 140px;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-w-\[4rem\] {
   min-width: 4rem;
 }
@@ -721,6 +752,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .resize {
   resize: both;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .grid-rows-1 {
+  grid-template-rows: repeat(1, minmax(0, 1fr));
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .grid-rows-\[150px\] {
+  grid-template-rows: 150px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .flex-row {
   flex-direction: row;
@@ -835,9 +872,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .border-transparent {
   border-color: transparent;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .border-slate-700 {
-  --tw-border-opacity: 1;
-  border-color: rgb(51 65 85 / var(--tw-border-opacity));
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .border-muted-foreground\/50 {
+  border-color: hsl(var(--muted-foreground) / 0.5);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-background {
   background-color: hsl(var(--background));
@@ -889,6 +925,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-yellow-100\/30 {
   background-color: rgb(254 249 195 / 0.3);
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-secondary\/50 {
+  background-color: hsl(var(--secondary) / 0.5);
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-secondary\/20 {
+  background-color: hsl(var(--secondary) / 0.2);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .fill-current {
   fill: currentColor;
@@ -967,6 +1009,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-1 {
+  padding-bottom: 0.25rem;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -990,6 +1035,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pt-4 {
   padding-top: 1rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-8 {
+  padding-bottom: 2rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-10 {
+  padding-bottom: 2.5rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-12 {
+  padding-bottom: 3rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-16 {
+  padding-bottom: 4rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-center {
   text-align: center;
@@ -1057,6 +1114,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-transparent {
   color: transparent;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-muted-foreground\/20 {
+  color: hsl(var(--muted-foreground) / 0.2);
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-muted-foreground\/50 {
+  color: hsl(var(--muted-foreground) / 0.5);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .underline-offset-4 {
   text-underline-offset: 4px;
@@ -1186,6 +1249,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) svg.card-color-6, :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) span.card-color-6, :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) div.card-color-6 {
   color: rgb(var(--mod-facet-color-6));
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .cl-card .collapsed-block::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.8) 100%);
+  opacity: 0.9;
+}
 .theme-light :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) {
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
@@ -1270,6 +1341,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-destructive\/90:hover {
   background-color: hsl(var(--destructive) / 0.9);
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-muted:hover {
+  background-color: hsl(var(--muted));
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-primary\/80:hover {
   background-color: hsl(var(--primary) / 0.8);
 }
@@ -1278,6 +1352,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-secondary\/80:hover {
   background-color: hsl(var(--secondary) / 0.8);
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-secondary\/90:hover {
+  background-color: hsl(var(--secondary) / 0.9);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-transparent:hover {
   background-color: transparent;
@@ -1288,6 +1365,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:text-green-600:hover {
   --tw-text-opacity: 1;
   color: rgb(22 163 74 / var(--tw-text-opacity));
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:text-muted-foreground:hover {
+  color: hsl(var(--muted-foreground));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:underline:hover {
   text-decoration-line: underline;
@@ -1383,11 +1463,17 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-translate-y: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=on\]\:bg-accent[data-state=on] {
+  background-color: hsl(var(--accent));
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=open\]\:bg-accent[data-state=open] {
   background-color: hsl(var(--accent));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=open\]\:bg-transparent[data-state=open] {
   background-color: transparent;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=on\]\:text-accent-foreground[data-state=on] {
+  color: hsl(var(--accent-foreground));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=open\]\:text-accent-foreground[data-state=open] {
   color: hsl(var(--accent-foreground));
@@ -1455,47 +1541,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-2) {
   border-width: 2px;
 }
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-4) {
-  border-width: 4px;
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-900\/80) {
-  border-color: rgb(22 78 99 / 0.8);
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-500\/80) {
+  border-color: rgb(6 182 212 / 0.8);
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-gray-700\/80) {
   border-color: rgb(55 65 81 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-900\/80) {
-  border-color: rgb(20 83 45 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-orange-900\/80) {
-  border-color: rgb(124 45 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-900\/80) {
-  border-color: rgb(127 29 29 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-900\/80) {
-  border-color: rgb(76 29 149 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-900\/80) {
-  border-color: rgb(113 63 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-700) {
-  --tw-border-opacity: 1;
-  border-color: rgb(51 65 85 / var(--tw-border-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-500) {
-  --tw-border-opacity: 1;
-  border-color: rgb(100 116 139 / var(--tw-border-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-600) {
-  --tw-border-opacity: 1;
-  border-color: rgb(71 85 105 / var(--tw-border-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-700\/80) {
-  border-color: rgb(21 128 61 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-500\/80) {
-  border-color: rgb(6 182 212 / 0.8);
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-500\/80) {
   border-color: rgb(34 197 94 / 0.8);
@@ -1506,63 +1556,46 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-500\/80) {
   border-color: rgb(239 68 68 / 0.8);
 }
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-500) {
+  --tw-border-opacity: 1;
+  border-color: rgb(100 116 139 / var(--tw-border-opacity));
+}
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-600) {
+  --tw-border-opacity: 1;
+  border-color: rgb(71 85 105 / var(--tw-border-opacity));
+}
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-500\/80) {
   border-color: rgb(139 92 246 / 0.8);
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-500\/80) {
   border-color: rgb(234 179 8 / 0.8);
 }
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-900\/80) {
-  background-color: rgb(22 78 99 / 0.8);
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-600) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-700\/80) {
   background-color: rgb(55 65 81 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-900\/80) {
-  background-color: rgb(20 83 45 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-900\/80) {
-  background-color: rgb(124 45 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-900\/80) {
-  background-color: rgb(127 29 29 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-900\/80) {
-  background-color: rgb(76 29 149 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-900\/80) {
-  background-color: rgb(113 63 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-700\/80) {
-  background-color: rgb(21 128 61 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-slate-600) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-slate-800) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-950) {
   --tw-bg-opacity: 1;
   background-color: rgb(3 7 18 / var(--tw-bg-opacity));
 }
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-slate-800) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:text-slate-200) {
   --tw-text-opacity: 1;
   color: rgb(226 232 240 / var(--tw-text-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:text-slate-100) {
-  --tw-text-opacity: 1;
-  color: rgb(241 245 249 / var(--tw-text-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:text-slate-50) {
   --tw-text-opacity: 1;
   color: rgb(248 250 252 / var(--tw-text-opacity));
 }
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:focus\:border-slate-600:focus) {
-  --tw-border-opacity: 1;
-  border-color: rgb(71 85 105 / var(--tw-border-opacity));
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:hover\:text-slate-50:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(248 250 252 / var(--tw-text-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:focus-visible\:border-slate-600:focus-visible) {
   --tw-border-opacity: 1;
@@ -2042,23 +2075,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   .card-library.view-content .markdown-embed {
   padding-left: 0px;
 }
-  :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .mobile-view .card-list-container {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
   :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .mobile-view .canvas-switcher {
   width: 3rem;
 }
   :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .mobile-view .search-bar {
   width: 10rem;
 }
-  :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .mobile-view.mobile-tiny-view .card-list-container {
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
   :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .card-list-container {
-  display: grid;
+  display: flex;
   width: 100%;
   max-width: 100%;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
   padding: 1rem;
 }
@@ -2222,6 +2248,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   white-space: nowrap;
   border-width: 0;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pointer-events-none {
+  pointer-events: none;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pointer-events-auto {
+  pointer-events: auto;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .fixed {
   position: fixed;
 }
@@ -2234,11 +2266,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .inset-0 {
   inset: 0px;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bottom-0 {
+  bottom: 0px;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .left-0 {
+  left: 0px;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .left-2 {
   left: 0.5rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .left-\[50\%\] {
   left: 50%;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .right-0 {
+  right: 0px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .right-2 {
   right: 0.5rem;
@@ -2316,9 +2357,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-5 {
   height: 1.25rem;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-72 {
-  height: 18rem;
-}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-8 {
   height: 2rem;
 }
@@ -2334,17 +2372,33 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-\[var\(--radix-select-trigger-height\)\] {
   height: var(--radix-select-trigger-height);
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-full {
   height: 100%;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-px {
   height: 1px;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-80 {
+  height: 20rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-64 {
+  height: 16rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-48 {
+  height: 12rem;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-h-\[300px\] {
   max-height: 300px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-h-\[60px\] {
   min-height: 60px;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-h-\[200px\] {
+  min-height: 200px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-1\/4 {
   width: 25%;
@@ -2376,8 +2430,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-9 {
   width: 2.25rem;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[120px\] {
-  width: 120px;
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[140px\] {
+  width: 140px;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[150px\] {
+  width: 150px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[160px\] {
   width: 160px;
@@ -2400,11 +2457,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-full {
   width: 100%;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[140px\] {
-  width: 140px;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[150px\] {
-  width: 150px;
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-w-\[140px\] {
+  min-width: 140px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-w-\[4rem\] {
   min-width: 4rem;
@@ -2418,6 +2472,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[10rem\] {
   max-width: 10rem;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[20\%\] {
+  max-width: 20%;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[90\%\] {
+  max-width: 90%;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-fit {
   max-width: -moz-fit-content;
   max-width: fit-content;
@@ -2427,21 +2487,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-lg {
   max-width: 32rem;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[20\%\] {
-  max-width: 20%;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[80\%\] {
-  max-width: 80%;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[12\%\] {
-  max-width: 12%;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[85\%\] {
-  max-width: 85%;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[90\%\] {
-  max-width: 90%;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .shrink-0 {
   flex-shrink: 0;
@@ -2467,6 +2512,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .resize {
   resize: both;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .grid-rows-1 {
+  grid-template-rows: repeat(1, minmax(0, 1fr));
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .grid-rows-\[150px\] {
+  grid-template-rows: 150px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .flex-row {
   flex-direction: row;
@@ -2581,9 +2632,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .border-transparent {
   border-color: transparent;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .border-slate-700 {
-  --tw-border-opacity: 1;
-  border-color: rgb(51 65 85 / var(--tw-border-opacity));
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .border-muted-foreground\/50 {
+  border-color: hsl(var(--muted-foreground) / 0.5);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-background {
   background-color: hsl(var(--background));
@@ -2635,6 +2685,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-yellow-100\/30 {
   background-color: rgb(254 249 195 / 0.3);
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-secondary\/50 {
+  background-color: hsl(var(--secondary) / 0.5);
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-secondary\/20 {
+  background-color: hsl(var(--secondary) / 0.2);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .fill-current {
   fill: currentColor;
@@ -2713,6 +2769,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-1 {
+  padding-bottom: 0.25rem;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -2736,6 +2795,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pt-4 {
   padding-top: 1rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-8 {
+  padding-bottom: 2rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-10 {
+  padding-bottom: 2.5rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-12 {
+  padding-bottom: 3rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-16 {
+  padding-bottom: 4rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-center {
   text-align: center;
@@ -2794,19 +2865,21 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-primary-foreground {
   color: hsl(var(--primary-foreground));
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-red-300 {
+  --tw-text-opacity: 1;
+  color: rgb(252 165 165 / var(--tw-text-opacity));
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-secondary-foreground {
   color: hsl(var(--secondary-foreground));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-transparent {
   color: transparent;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-red-100 {
-  --tw-text-opacity: 1;
-  color: rgb(254 226 226 / var(--tw-text-opacity));
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-muted-foreground\/20 {
+  color: hsl(var(--muted-foreground) / 0.2);
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-red-300 {
-  --tw-text-opacity: 1;
-  color: rgb(252 165 165 / var(--tw-text-opacity));
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-muted-foreground\/50 {
+  color: hsl(var(--muted-foreground) / 0.5);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .underline-offset-4 {
   text-underline-offset: 4px;
@@ -2936,6 +3009,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) svg.card-color-6, :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) span.card-color-6, :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) div.card-color-6 {
   color: rgb(var(--mod-facet-color-6));
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .cl-card .collapsed-block::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.8) 100%);
+  opacity: 0.9;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .\[\&_svg\]\:invisible svg.status-text-container {
   display: none;
 }
@@ -2967,6 +3048,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-destructive\/90:hover {
   background-color: hsl(var(--destructive) / 0.9);
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-muted:hover {
+  background-color: hsl(var(--muted));
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-primary\/80:hover {
   background-color: hsl(var(--primary) / 0.8);
 }
@@ -2975,6 +3059,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-secondary\/80:hover {
   background-color: hsl(var(--secondary) / 0.8);
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-secondary\/90:hover {
+  background-color: hsl(var(--secondary) / 0.9);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-transparent:hover {
   background-color: transparent;
@@ -2985,6 +3072,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:text-green-600:hover {
   --tw-text-opacity: 1;
   color: rgb(22 163 74 / var(--tw-text-opacity));
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:text-muted-foreground:hover {
+  color: hsl(var(--muted-foreground));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:underline:hover {
   text-decoration-line: underline;
@@ -3080,11 +3170,17 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-translate-y: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=on\]\:bg-accent[data-state=on] {
+  background-color: hsl(var(--accent));
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=open\]\:bg-accent[data-state=open] {
   background-color: hsl(var(--accent));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=open\]\:bg-transparent[data-state=open] {
   background-color: transparent;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=on\]\:text-accent-foreground[data-state=on] {
+  color: hsl(var(--accent-foreground));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=open\]\:text-accent-foreground[data-state=open] {
   color: hsl(var(--accent-foreground));
@@ -3152,89 +3248,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-2) {
   border-width: 2px;
 }
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-4) {
-  border-width: 4px;
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-800\/80) {
-  border-color: rgb(21 94 117 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-gray-800\/80) {
-  border-color: rgb(31 41 55 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-800\/80) {
-  border-color: rgb(22 101 52 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-orange-800\/80) {
-  border-color: rgb(154 52 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-800\/80) {
-  border-color: rgb(153 27 27 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-800\/80) {
-  border-color: rgb(91 33 182 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-800\/80) {
-  border-color: rgb(133 77 14 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-700\/80) {
-  border-color: rgb(14 116 144 / 0.8);
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-500\/80) {
+  border-color: rgb(6 182 212 / 0.8);
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-gray-700\/80) {
   border-color: rgb(55 65 81 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-700\/80) {
-  border-color: rgb(21 128 61 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-orange-700\/80) {
-  border-color: rgb(194 65 12 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-700\/80) {
-  border-color: rgb(185 28 28 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-700\/80) {
-  border-color: rgb(109 40 217 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-700\/80) {
-  border-color: rgb(161 98 7 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-500\/80) {
-  border-color: rgb(139 92 246 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-900\/80) {
-  border-color: rgb(127 29 29 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-900\/80) {
-  border-color: rgb(76 29 149 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-900\/80) {
-  border-color: rgb(22 78 99 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-gray-900\/80) {
-  border-color: rgb(17 24 39 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-900\/80) {
-  border-color: rgb(20 83 45 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-orange-900\/80) {
-  border-color: rgb(124 45 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-900\/80) {
-  border-color: rgb(113 63 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-700) {
-  --tw-border-opacity: 1;
-  border-color: rgb(51 65 85 / var(--tw-border-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-500) {
-  --tw-border-opacity: 1;
-  border-color: rgb(100 116 139 / var(--tw-border-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-600) {
-  --tw-border-opacity: 1;
-  border-color: rgb(71 85 105 / var(--tw-border-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-500\/80) {
-  border-color: rgb(6 182 212 / 0.8);
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-500\/80) {
   border-color: rgb(34 197 94 / 0.8);
@@ -3245,141 +3263,46 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-500\/80) {
   border-color: rgb(239 68 68 / 0.8);
 }
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-500) {
+  --tw-border-opacity: 1;
+  border-color: rgb(100 116 139 / var(--tw-border-opacity));
+}
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-600) {
+  --tw-border-opacity: 1;
+  border-color: rgb(71 85 105 / var(--tw-border-opacity));
+}
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-500\/80) {
+  border-color: rgb(139 92 246 / 0.8);
+}
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-500\/80) {
   border-color: rgb(234 179 8 / 0.8);
 }
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-500\/30) {
-  background-color: rgb(6 182 212 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-500\/30) {
-  background-color: rgb(34 197 94 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-500\/30) {
-  background-color: rgb(249 115 22 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-500\/30) {
-  background-color: rgb(239 68 68 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-500\/30) {
-  background-color: rgb(139 92 246 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-500\/30) {
-  background-color: rgb(234 179 8 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-400\/80) {
-  background-color: rgb(34 211 238 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-400\/80) {
-  background-color: rgb(156 163 175 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-400\/80) {
-  background-color: rgb(74 222 128 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-400\/80) {
-  background-color: rgb(251 146 60 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-400\/80) {
-  background-color: rgb(248 113 113 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-400\/80) {
-  background-color: rgb(167 139 250 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-400\/80) {
-  background-color: rgb(250 204 21 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-800\/80) {
-  background-color: rgb(21 94 117 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-800\/80) {
-  background-color: rgb(31 41 55 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-800\/80) {
-  background-color: rgb(22 101 52 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-800\/80) {
-  background-color: rgb(154 52 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-800\/80) {
-  background-color: rgb(153 27 27 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-800\/80) {
-  background-color: rgb(91 33 182 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-800\/80) {
-  background-color: rgb(133 77 14 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-700\/80) {
-  background-color: rgb(14 116 144 / 0.8);
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-600) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-700\/80) {
   background-color: rgb(55 65 81 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-700\/80) {
-  background-color: rgb(21 128 61 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-700\/80) {
-  background-color: rgb(194 65 12 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-700\/80) {
-  background-color: rgb(185 28 28 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-700\/80) {
-  background-color: rgb(109 40 217 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-700\/80) {
-  background-color: rgb(161 98 7 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-500\/80) {
-  background-color: rgb(139 92 246 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-900\/80) {
-  background-color: rgb(127 29 29 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-900\/80) {
-  background-color: rgb(76 29 149 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-900\/80) {
-  background-color: rgb(22 78 99 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-900\/80) {
-  background-color: rgb(17 24 39 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-900\/80) {
-  background-color: rgb(20 83 45 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-900\/80) {
-  background-color: rgb(124 45 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-900\/80) {
-  background-color: rgb(113 63 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-slate-600) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-slate-800) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-950) {
   --tw-bg-opacity: 1;
   background-color: rgb(3 7 18 / var(--tw-bg-opacity));
 }
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-slate-800) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:text-slate-200) {
   --tw-text-opacity: 1;
   color: rgb(226 232 240 / var(--tw-text-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:text-slate-100) {
-  --tw-text-opacity: 1;
-  color: rgb(241 245 249 / var(--tw-text-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:text-slate-50) {
   --tw-text-opacity: 1;
   color: rgb(248 250 252 / var(--tw-text-opacity));
 }
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:focus\:border-slate-600:focus) {
-  --tw-border-opacity: 1;
-  border-color: rgb(71 85 105 / var(--tw-border-opacity));
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:hover\:text-slate-50:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(248 250 252 / var(--tw-text-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:focus-visible\:border-slate-600:focus-visible) {
   --tw-border-opacity: 1;
@@ -3429,16 +3352,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     display: none;
   }
 
-  :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .lg\:w-\[200px\] {
-    width: 200px;
-  }
-
   :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .lg\:w-\[240px\] {
     width: 240px;
-  }
-
-  :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .lg\:max-w-\[600px\] {
-    max-width: 600px;
   }
 
   :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .lg\:max-w-\[520px\] {
@@ -3991,6 +3906,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   white-space: nowrap;
   border-width: 0;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pointer-events-none {
+  pointer-events: none;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pointer-events-auto {
+  pointer-events: auto;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .fixed {
   position: fixed;
 }
@@ -4003,11 +3924,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .inset-0 {
   inset: 0px;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bottom-0 {
+  bottom: 0px;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .left-0 {
+  left: 0px;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .left-2 {
   left: 0.5rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .left-\[50\%\] {
   left: 50%;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .right-0 {
+  right: 0px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .right-2 {
   right: 0.5rem;
@@ -4028,6 +3958,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-left: -0.25rem;
   margin-right: -0.25rem;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -4035,10 +3969,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .my-1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .mx-1 {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .ml-2 {
   margin-left: 0.5rem;
@@ -4051,9 +3981,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .mr-\[-0\.5rem\] {
   margin-right: -0.5rem;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .mr-1 {
-  margin-right: 0.25rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .flex {
   display: flex;
@@ -4088,9 +4015,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-5 {
   height: 1.25rem;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-72 {
-  height: 18rem;
-}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-8 {
   height: 2rem;
 }
@@ -4106,17 +4030,33 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-\[var\(--radix-select-trigger-height\)\] {
   height: var(--radix-select-trigger-height);
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-full {
   height: 100%;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-px {
   height: 1px;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-80 {
+  height: 20rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-64 {
+  height: 16rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .h-48 {
+  height: 12rem;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-h-\[300px\] {
   max-height: 300px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-h-\[60px\] {
   min-height: 60px;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-h-\[200px\] {
+  min-height: 200px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-1\/4 {
   width: 25%;
@@ -4148,6 +4088,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-9 {
   width: 2.25rem;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[140px\] {
+  width: 140px;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[150px\] {
   width: 150px;
 }
@@ -4172,11 +4115,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-full {
   width: 100%;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[120px\] {
-  width: 120px;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .w-\[140px\] {
-  width: 140px;
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-w-\[140px\] {
+  min-width: 140px;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .min-w-\[4rem\] {
   min-width: 4rem;
@@ -4190,6 +4130,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[10rem\] {
   max-width: 10rem;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[20\%\] {
+  max-width: 20%;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[90\%\] {
+  max-width: 90%;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-fit {
   max-width: -moz-fit-content;
   max-width: fit-content;
@@ -4199,24 +4145,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-lg {
   max-width: 32rem;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[20\%\] {
-  max-width: 20%;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[80\%\] {
-  max-width: 80%;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[12\%\] {
-  max-width: 12%;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[85\%\] {
-  max-width: 85%;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .max-w-\[90\%\] {
-  max-width: 90%;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .flex-1 {
-  flex: 1 1 0%;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .shrink-0 {
   flex-shrink: 0;
@@ -4243,6 +4171,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .resize {
   resize: both;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .grid-rows-1 {
+  grid-template-rows: repeat(1, minmax(0, 1fr));
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .grid-rows-\[150px\] {
+  grid-template-rows: 150px;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .flex-row {
   flex-direction: row;
 }
@@ -4254,9 +4188,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .items-center {
   align-items: center;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .justify-start {
-  justify-content: flex-start;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .justify-end {
   justify-content: flex-end;
@@ -4359,9 +4290,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .border-transparent {
   border-color: transparent;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .border-slate-700 {
-  --tw-border-opacity: 1;
-  border-color: rgb(51 65 85 / var(--tw-border-opacity));
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .border-muted-foreground\/50 {
+  border-color: hsl(var(--muted-foreground) / 0.5);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-background {
   background-color: hsl(var(--background));
@@ -4414,11 +4344,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-yellow-100\/30 {
   background-color: rgb(254 249 195 / 0.3);
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-secondary\/50 {
+  background-color: hsl(var(--secondary) / 0.5);
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .bg-secondary\/20 {
+  background-color: hsl(var(--secondary) / 0.2);
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .fill-current {
   fill: currentColor;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .p-0 {
   padding: 0px;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .p-0\.5 {
+  padding: 0.125rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .p-1 {
   padding: 0.25rem;
@@ -4431,9 +4370,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .p-6 {
   padding: 1.5rem;
-}
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .p-0\.5 {
-  padding: 0.125rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .px-1 {
   padding-left: 0.25rem;
@@ -4491,6 +4427,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-1 {
+  padding-bottom: 0.25rem;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -4514,6 +4453,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pt-4 {
   padding-top: 1rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-8 {
+  padding-bottom: 2rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-10 {
+  padding-bottom: 2.5rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-12 {
+  padding-bottom: 3rem;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .pb-16 {
+  padding-bottom: 4rem;
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-center {
   text-align: center;
@@ -4572,19 +4523,21 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-primary-foreground {
   color: hsl(var(--primary-foreground));
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-red-300 {
+  --tw-text-opacity: 1;
+  color: rgb(252 165 165 / var(--tw-text-opacity));
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-secondary-foreground {
   color: hsl(var(--secondary-foreground));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-transparent {
   color: transparent;
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-red-100 {
-  --tw-text-opacity: 1;
-  color: rgb(254 226 226 / var(--tw-text-opacity));
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-muted-foreground\/20 {
+  color: hsl(var(--muted-foreground) / 0.2);
 }
-:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-red-300 {
-  --tw-text-opacity: 1;
-  color: rgb(252 165 165 / var(--tw-text-opacity));
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .text-muted-foreground\/50 {
+  color: hsl(var(--muted-foreground) / 0.5);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .underline-offset-4 {
   text-underline-offset: 4px;
@@ -4714,6 +4667,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) svg.card-color-6, :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) span.card-color-6, :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) div.card-color-6 {
   color: rgb(var(--mod-facet-color-6));
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .cl-card .collapsed-block::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.8) 100%);
+  opacity: 0.9;
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .file\:border-0::file-selector-button {
   border-width: 0px;
 }
@@ -4742,6 +4703,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-destructive\/90:hover {
   background-color: hsl(var(--destructive) / 0.9);
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-muted:hover {
+  background-color: hsl(var(--muted));
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-primary\/80:hover {
   background-color: hsl(var(--primary) / 0.8);
 }
@@ -4750,6 +4714,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-secondary\/80:hover {
   background-color: hsl(var(--secondary) / 0.8);
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-secondary\/90:hover {
+  background-color: hsl(var(--secondary) / 0.9);
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:bg-transparent:hover {
   background-color: transparent;
@@ -4760,6 +4727,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:text-green-600:hover {
   --tw-text-opacity: 1;
   color: rgb(22 163 74 / var(--tw-text-opacity));
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:text-muted-foreground:hover {
+  color: hsl(var(--muted-foreground));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .hover\:underline:hover {
   text-decoration-line: underline;
@@ -4855,11 +4825,17 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   --tw-translate-y: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=on\]\:bg-accent[data-state=on] {
+  background-color: hsl(var(--accent));
+}
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=open\]\:bg-accent[data-state=open] {
   background-color: hsl(var(--accent));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=open\]\:bg-transparent[data-state=open] {
   background-color: transparent;
+}
+:is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=on\]\:text-accent-foreground[data-state=on] {
+  color: hsl(var(--accent-foreground));
 }
 :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .data-\[state\=open\]\:text-accent-foreground[data-state=open] {
   color: hsl(var(--accent-foreground));
@@ -4927,89 +4903,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-2) {
   border-width: 2px;
 }
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-4) {
-  border-width: 4px;
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-800\/80) {
-  border-color: rgb(21 94 117 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-gray-800\/80) {
-  border-color: rgb(31 41 55 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-800\/80) {
-  border-color: rgb(22 101 52 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-orange-800\/80) {
-  border-color: rgb(154 52 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-800\/80) {
-  border-color: rgb(153 27 27 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-800\/80) {
-  border-color: rgb(91 33 182 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-800\/80) {
-  border-color: rgb(133 77 14 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-700\/80) {
-  border-color: rgb(14 116 144 / 0.8);
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-500\/80) {
+  border-color: rgb(6 182 212 / 0.8);
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-gray-700\/80) {
   border-color: rgb(55 65 81 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-700\/80) {
-  border-color: rgb(21 128 61 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-orange-700\/80) {
-  border-color: rgb(194 65 12 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-700\/80) {
-  border-color: rgb(185 28 28 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-700\/80) {
-  border-color: rgb(109 40 217 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-700\/80) {
-  border-color: rgb(161 98 7 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-500\/80) {
-  border-color: rgb(139 92 246 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-900\/80) {
-  border-color: rgb(127 29 29 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-900\/80) {
-  border-color: rgb(76 29 149 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-900\/80) {
-  border-color: rgb(22 78 99 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-gray-900\/80) {
-  border-color: rgb(17 24 39 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-900\/80) {
-  border-color: rgb(20 83 45 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-orange-900\/80) {
-  border-color: rgb(124 45 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-900\/80) {
-  border-color: rgb(113 63 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-700) {
-  --tw-border-opacity: 1;
-  border-color: rgb(51 65 85 / var(--tw-border-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-500) {
-  --tw-border-opacity: 1;
-  border-color: rgb(100 116 139 / var(--tw-border-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-600) {
-  --tw-border-opacity: 1;
-  border-color: rgb(71 85 105 / var(--tw-border-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-cyan-500\/80) {
-  border-color: rgb(6 182 212 / 0.8);
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-green-500\/80) {
   border-color: rgb(34 197 94 / 0.8);
@@ -5020,141 +4918,46 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-red-500\/80) {
   border-color: rgb(239 68 68 / 0.8);
 }
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-500) {
+  --tw-border-opacity: 1;
+  border-color: rgb(100 116 139 / var(--tw-border-opacity));
+}
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-slate-600) {
+  --tw-border-opacity: 1;
+  border-color: rgb(71 85 105 / var(--tw-border-opacity));
+}
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-violet-500\/80) {
+  border-color: rgb(139 92 246 / 0.8);
+}
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:border-yellow-500\/80) {
   border-color: rgb(234 179 8 / 0.8);
 }
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-500\/30) {
-  background-color: rgb(6 182 212 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-500\/30) {
-  background-color: rgb(34 197 94 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-500\/30) {
-  background-color: rgb(249 115 22 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-500\/30) {
-  background-color: rgb(239 68 68 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-500\/30) {
-  background-color: rgb(139 92 246 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-500\/30) {
-  background-color: rgb(234 179 8 / 0.3);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-400\/80) {
-  background-color: rgb(34 211 238 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-400\/80) {
-  background-color: rgb(156 163 175 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-400\/80) {
-  background-color: rgb(74 222 128 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-400\/80) {
-  background-color: rgb(251 146 60 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-400\/80) {
-  background-color: rgb(248 113 113 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-400\/80) {
-  background-color: rgb(167 139 250 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-400\/80) {
-  background-color: rgb(250 204 21 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-800\/80) {
-  background-color: rgb(21 94 117 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-800\/80) {
-  background-color: rgb(31 41 55 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-800\/80) {
-  background-color: rgb(22 101 52 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-800\/80) {
-  background-color: rgb(154 52 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-800\/80) {
-  background-color: rgb(153 27 27 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-800\/80) {
-  background-color: rgb(91 33 182 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-800\/80) {
-  background-color: rgb(133 77 14 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-700\/80) {
-  background-color: rgb(14 116 144 / 0.8);
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-600) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-700\/80) {
   background-color: rgb(55 65 81 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-700\/80) {
-  background-color: rgb(21 128 61 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-700\/80) {
-  background-color: rgb(194 65 12 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-700\/80) {
-  background-color: rgb(185 28 28 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-700\/80) {
-  background-color: rgb(109 40 217 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-700\/80) {
-  background-color: rgb(161 98 7 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-500\/80) {
-  background-color: rgb(139 92 246 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-red-900\/80) {
-  background-color: rgb(127 29 29 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-violet-900\/80) {
-  background-color: rgb(76 29 149 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-cyan-900\/80) {
-  background-color: rgb(22 78 99 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-900\/80) {
-  background-color: rgb(17 24 39 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-green-900\/80) {
-  background-color: rgb(20 83 45 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-orange-900\/80) {
-  background-color: rgb(124 45 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-yellow-900\/80) {
-  background-color: rgb(113 63 18 / 0.8);
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-slate-600) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-slate-800) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-gray-950) {
   --tw-bg-opacity: 1;
   background-color: rgb(3 7 18 / var(--tw-bg-opacity));
 }
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:bg-slate-800) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:text-slate-200) {
   --tw-text-opacity: 1;
   color: rgb(226 232 240 / var(--tw-text-opacity));
-}
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:text-slate-100) {
-  --tw-text-opacity: 1;
-  color: rgb(241 245 249 / var(--tw-text-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:text-slate-50) {
   --tw-text-opacity: 1;
   color: rgb(248 250 252 / var(--tw-text-opacity));
 }
-:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:focus\:border-slate-600:focus) {
-  --tw-border-opacity: 1;
-  border-color: rgb(71 85 105 / var(--tw-border-opacity));
+:is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:hover\:text-slate-50:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(248 250 252 / var(--tw-text-opacity));
 }
 :is(.theme-dark :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .dark\:focus-visible\:border-slate-600:focus-visible) {
   --tw-border-opacity: 1;
@@ -5204,20 +5007,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     display: none;
   }
 
-  :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .lg\:w-\[250px\] {
-    width: 250px;
-  }
-
-  :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .lg\:w-\[200px\] {
-    width: 200px;
-  }
-
   :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .lg\:w-\[240px\] {
     width: 240px;
-  }
-
-  :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .lg\:max-w-\[600px\] {
-    max-width: 600px;
   }
 
   :is(div[data-type='card-library-view'], div[data-radix-popper-content-wrapper], div[role='dialog'], span[data-radix-focus-guard]) .lg\:max-w-\[520px\] {

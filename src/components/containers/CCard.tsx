@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import React, { useContext, useEffect, useMemo } from 'react';
-import { ImageIcon, Link1Icon, FileTextIcon, ReaderIcon } from '@radix-ui/react-icons';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { FileTextIcon, ImageIcon, Link1Icon, ReaderIcon } from '@radix-ui/react-icons';
 import { FileType2, FilmIcon, PinIcon, PinOffIcon } from 'lucide-react';
 import AppContext from '@/stores/appContext';
 import { cn } from '@/lib/utils';
@@ -9,9 +9,11 @@ import { cardService, globalService, locationService } from '@/services';
 import { CardEditor } from '@/components/containers/CardEditor';
 import { Button } from '@/components/ui/button';
 import useHover from '@/hooks/useHover';
-import { readFileContent } from '@/lib/obsidianUtils';
-import useMarkdownRenderer from '@/hooks/useMarkdownRenderer';
-import { TooltipTrigger, Tooltip, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
+import { focusNodeInCanvas, readFileContent } from '@/lib/obsidianUtils';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { LinkPreview } from '@dhaiwat10/react-link-preview';
+import { request } from 'obsidian';
+import { CollapseCardContent } from '@/components/containers/CardContent';
 
 interface MouseActionProps {
   handleDoubleClick: () => void;
@@ -47,6 +49,44 @@ const ICON_MAP = {
   image: <ImageIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
   link: <Link1Icon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
   media: <FilmIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
+};
+
+const customFetcher = async (url: string) => {
+  const response = (await request(url)) as any;
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(response, 'text/html');
+  const metas = doc.head.getElementsByTagName('meta');
+  const metaInfos = [];
+
+  for (const meta of metas) {
+    metaInfos.push({
+      name: meta.getAttribute('name'),
+      content: meta.getAttribute('content'),
+      property: meta.getAttribute('property'),
+    });
+  }
+
+  const metaInfo = {
+    title:
+      metaInfos.find((i) => {
+        return i.name === 'og:title' || i.property === 'og:title';
+      })?.content || null,
+    description:
+      metaInfos.find((i) => {
+        return i.name === 'og:description' || i.property === 'og:description';
+      })?.content || null,
+    image:
+      metaInfos.find((i) => {
+        return i.name === 'og:image' || i.property === 'og:image';
+      })?.content || null,
+    siteName: url,
+    hostname: url.replace('https://', '').replace('http://', '').split(/[/?#]/)[0],
+  };
+
+  console.log(metaInfo);
+
+  return metaInfo;
 };
 
 function getPin(card: Model.Card, handlePin?: (pinned: boolean) => void) {
@@ -113,12 +153,13 @@ function CardActionHeader({
 
 export function CCard(props: Model.Card): React.JSX.Element {
   const {
-    globalState: { editCardId },
+    globalState: { editCardId, focused },
   } = useContext(AppContext);
   const { type, path, content, id, color } = props;
 
   const handleEdit = async () => {
     globalService.setEditCardId(id);
+    if (focused) focusNodeInCanvas(id);
   };
   const handlePin = async (pinned: boolean) => {
     pinned ? await cardService.pinCardById(id) : await cardService.unpinCardById(id);
@@ -133,7 +174,7 @@ export function CCard(props: Model.Card): React.JSX.Element {
   };
 
   const handleSource = async () => {
-    cardService.revealCard(props);
+    await cardService.revealCard(props);
   };
 
   const handleCopy = async () => {
@@ -145,6 +186,7 @@ export function CCard(props: Model.Card): React.JSX.Element {
   };
 
   const handleSingleClick = async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (focused) focusNodeInCanvas(id);
     if ((event.target as HTMLElement).className === 'tag') {
       const currentQuery = locationService.getState().query;
       const tags = [...(currentQuery.tags || [])] as string[];
@@ -199,7 +241,7 @@ export function CCard(props: Model.Card): React.JSX.Element {
   return (
     <>
       <Card
-        className={cn(`cl-card`, `w-full max-w-full h-72`, `${switchColor(color)}`)}
+        className={cn(`cl-card`, `w-full max-w-full h-fit`, `${switchColor(color)}`)}
         data-card-path={type === 'text' ? path : content}
         data-card-type={type}
         data-card-id={id}
@@ -231,41 +273,10 @@ export function TextCard({
   mouseActionProps: MouseActionProps;
 }): React.JSX.Element {
   const { content, path } = card;
-  const {
-    globalState: { app, view },
-  } = useContext(AppContext);
-  const { render, ref } = useMarkdownRenderer(app, view);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadAndRenderContent = async () => {
-      try {
-        if (isMounted) {
-          await render(path, content);
-        }
-      } catch (error) {
-        console.error('Error loading markdown content:', error);
-      }
-    };
-
-    loadAndRenderContent();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [content, render]);
-
   return (
     <>
       <CardActionHeader icon={ICON_MAP[card.type]} card={card} funcProps={actionProps}></CardActionHeader>
-      <CardContent
-        className="h-[calc(100%_-_4rem)] w-full overflow-y-auto"
-        onClick={mouseActionProps.handleSingleClick}
-        onDoubleClick={mouseActionProps.handleDoubleClick}
-      >
-        <div ref={ref} className=" w-full overflow-y-auto text-xs text-muted-foreground text-ellipsis"></div>
-      </CardContent>
+      <CollapseCardContent content={content} path={path} mouseActionProps={mouseActionProps} />
     </>
   );
 }
@@ -280,20 +291,13 @@ export function FileCard({
   mouseActionProps: MouseActionProps;
 }): React.JSX.Element {
   const { content: path } = card;
-  const {
-    globalState: { app, view },
-  } = useContext(AppContext);
-  const { render, ref } = useMarkdownRenderer(app, view);
+  const [content, setContent] = useState('');
 
   useEffect(() => {
-    let isMounted = true;
-
     const loadAndRenderContent = async () => {
       try {
-        const content = await readFileContent(app, path);
-        if (isMounted) {
-          await render(path, content);
-        }
+        const temp = await readFileContent(app, path);
+        setContent(temp);
       } catch (error) {
         console.error('Error loading markdown content:', error);
       }
@@ -302,9 +306,9 @@ export function FileCard({
     loadAndRenderContent();
 
     return () => {
-      isMounted = false;
+      setContent('');
     };
-  }, [path, render]);
+  }, [path]);
 
   return (
     <>
@@ -314,13 +318,7 @@ export function FileCard({
         funcProps={actionProps}
         title={path.split('/').pop()}
       ></CardActionHeader>
-      <CardContent
-        className="h-[calc(100%_-_4rem)] w-full max-w-full overflow-y-auto"
-        onClick={mouseActionProps.handleSingleClick}
-        onDoubleClick={mouseActionProps.handleDoubleClick}
-      >
-        <div ref={ref} className="w-full max-w-full overflow-y-auto text-xs text-muted-foreground"></div>
-      </CardContent>
+      <CollapseCardContent content={content} path={path} mouseActionProps={mouseActionProps} />
     </>
   );
 }
@@ -391,7 +389,16 @@ export function LinkCard({ card, actionProps }: { card: Model.Card; actionProps:
         title={'Web Link'}
       ></CardActionHeader>
       <CardContent>
-        <div className="text-xs text-muted-foreground">{content}</div>
+        <div className="overflow-y-auto text-xs text-muted-foreground">
+          {/*<LinkPreview url={content} width="100%" />*/}
+          <LinkPreview
+            className="w-full h-full overflow-y-scroll"
+            descriptionLength={20}
+            url={content}
+            fetcher={customFetcher}
+            fallback={<a href={content}></a>}
+          />
+        </div>
       </CardContent>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Cross2Icon, FrameIcon } from '@radix-ui/react-icons';
 
 import { Button } from '@/components/ui/button';
@@ -6,12 +6,15 @@ import { Input } from '@/components/ui/input';
 
 import { colors, labels, types } from '@/lib/mockdata';
 import { FacetedFilter, FacetedType } from './FacetedFilter';
-import { locationService } from '@/services';
+import { globalService, locationService } from '@/services';
 import AppContext from '@/stores/appContext';
-import { countByKey, queryIsEmptyOrBlank } from '@/lib/utils';
+import { countByKey, isMobileView, queryIsEmptyOrBlank } from '@/lib/utils';
 import { COLOR_MAP } from '@/components/containers/CCard';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { FilterIcon, FilterXIcon } from 'lucide-react';
+import { FilterIcon, FilterXIcon, CrosshairIcon } from 'lucide-react';
+import { Toggle } from '../ui/toggle';
+import { getCurrentCanvasView } from '@/lib/obsidianUtils';
+import { around } from 'monkey-around';
 
 function FacetedFilterListMap(tags?: string[]) {
   return {
@@ -81,9 +84,68 @@ function FacetedFilterList() {
   );
 }
 
+function FocusAction() {
+  const {
+    globalState: { focused, app, view },
+  } = useContext(AppContext);
+
+  const focusRef = React.useRef<boolean>(focused);
+
+  useEffect(() => {
+    if (!view) return;
+    const eventRef = view.app.workspace.on('active-leaf-change', (leaf) => {
+      if (leaf.view.getViewType() != 'canvas') return;
+      if (focused) {
+        const path = leaf.view.file?.path;
+        if (path) {
+          locationService.setQueryWithType('path', [path]);
+        }
+      }
+    });
+    view.registerEvent(eventRef);
+
+    return () => {
+      view.app.workspace.offref(eventRef);
+    };
+  }, [view, focused]);
+
+  useEffect(() => {
+    if (!focused) {
+      locationService.setQueryWithType('path', []);
+    }
+  }, [focused]);
+
+  const handleFocus = () => {
+    const canvasView = getCurrentCanvasView(app);
+    if (canvasView) {
+      const path = canvasView?.view?.file?.path;
+      if (path) {
+        locationService.setQueryWithType('path', [path]);
+      }
+    }
+  };
+
+  return (
+    <>
+      <Toggle
+        variant="outline"
+        aria-label="Toggle focus"
+        aria-pressed={focused}
+        pressed={focused}
+        onPressedChange={(pressed: boolean) => {
+          globalService.setFocused(pressed);
+          pressed && handleFocus();
+        }}
+      >
+        <CrosshairIcon className="h-4 w-4 text-muted-foreground" />
+      </Toggle>
+    </>
+  );
+}
+
 export function LibraryToolbar() {
   const {
-    globalState: { isMobileView },
+    globalState: { viewStatus },
     locationState: { query },
   } = useContext(AppContext);
   const isFiltered = !queryIsEmptyOrBlank(query);
@@ -91,15 +153,20 @@ export function LibraryToolbar() {
   return (
     <div className="flex items-center justify-between max-w-[90%] w-full gap-2">
       <div className="flex items-center overflow-x-scroll space-x-2 lg:max-w-[520px]">
-        {isMobileView ? <MobileFacetedFilterList>{FacetedFilterList()}</MobileFacetedFilterList> : FacetedFilterList()}
+        {isMobileView(viewStatus) ? (
+          <MobileFacetedFilterList>{FacetedFilterList()}</MobileFacetedFilterList>
+        ) : (
+          FacetedFilterList()
+        )}
         {isFiltered && (
           <Button variant="ghost" onClick={() => locationService.clearQuery()} className="h-9 px-2 lg:px-3">
-            {isMobileView ? <FilterXIcon className="h-4 w-4 text-red-300" /> : 'Reset'}
-            {!isMobileView && <Cross2Icon className="ml-2 h-4 w-4" />}
+            {isMobileView(viewStatus) ? <FilterXIcon className="h-4 w-4 text-red-300" /> : 'Reset'}
+            {!isMobileView(viewStatus) && <Cross2Icon className="ml-2 h-4 w-4" />}
           </Button>
         )}
       </div>
       <div className="flex items-center justify-end space-x-2">
+        <FocusAction />
         <Input
           placeholder="Filter cards..."
           value={(query.text as string) ?? ''}

@@ -4,9 +4,10 @@ import { CCard } from '@/components/containers/CCard';
 import useStateRef from '@/hooks/useStateRef';
 import { debounce, Notice } from 'obsidian';
 import '@/less/card-list.less';
-import { queryIsEmptyOrBlank } from '@/lib/utils';
+import { cn, isMobileView, queryIsEmptyOrBlank } from '@/lib/utils';
 import { queryService } from '@/services';
 import { FIRST_TAG_REG, NOP_FIRST_TAG_REG, TAG_REG } from '@/lib/consts';
+import Masonry from 'react-masonry-css';
 
 const shouldShowedCards = ({ temp, query }: { temp: Model.Card[]; query: Query }) => {
   const cards = temp.filter((card) => {
@@ -110,6 +111,7 @@ export default function CardList(): React.JSX.Element {
   const {
     locationState: { query },
     cardState: { cards },
+    globalState: { viewStatus },
   } = useContext(AppContext);
 
   const [isFetching, setIsFetching] = useState<boolean>(false);
@@ -117,12 +119,19 @@ export default function CardList(): React.JSX.Element {
   const [cache, setCache, cacheRef] = useStateRef<Model.Card[]>([]);
   const [temp, setTemp] = useState<Model.Card[]>([]);
   const [shown, setShown, shownRef] = useStateRef<Model.Card[]>([]);
+  const [view, setView] = useState<'sm' | 'md' | 'lg' | 'xl'>('lg');
 
   const refreshCountRef = useRef(0);
   const throttledRef = useRef(false);
   const statusRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
   const wrapperElement = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!viewStatus) return;
+    console.log(viewStatus);
+    setView(viewStatus as 'sm' | 'md' | 'lg' | 'xl');
+  }, [viewStatus]);
 
   useEffect(() => {
     if (cards.length === 0) return;
@@ -226,11 +235,18 @@ export default function CardList(): React.JSX.Element {
 
   return (
     <div ref={wrapperElement} className="w-full flex flex-col overflow-y-scroll">
-      <div className="card-list-container">
-        {temp.map((card, index) => {
-          return <CCard {...card} key={index} />;
-        })}
+      <div className={cn('card-list-container')}>
+        <Masonry
+          breakpointCols={view === 'sm' ? 1 : view === 'md' ? 2 : view === 'lg' ? 3 : 5}
+          className={cn(isMobileView(viewStatus) ? 'mobile-list-view' : '', `flex w-full max-w-full gap-2`)}
+          columnClassName="masonry-cardlist-grid_column flex flex-col gap-2"
+        >
+          {temp.map((card, index) => {
+            return <CCard {...card} key={index} />;
+          })}
+        </Masonry>
       </div>
+
       <div ref={statusRef} className="status-text-container py-4">
         <p className="status-text">
           {isFetching ? (

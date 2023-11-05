@@ -1,5 +1,5 @@
-import { fileService, globalService } from '@/services';
-import { App, moment, normalizePath, Notice, TFile } from 'obsidian';
+import { cardService, fileService, globalService } from '@/services';
+import { App, moment, normalizePath, Notice, TFile, WorkspaceLeaf } from 'obsidian';
 import {
   CanvasData,
   CanvasEdgeData,
@@ -48,6 +48,13 @@ export async function readFileContent(app: App, path: string): Promise<string> {
 
 export function getColorString(color: string): string {
   return color ? (color.startsWith('#') ? 'color-custom' : `color-${color}`) : 'color-blank';
+}
+
+export function getCurrentCanvasView(app: App): WorkspaceLeaf {
+  const leaves = app.workspace.getLeavesOfType('canvas');
+  if (leaves.length === 0) return undefined;
+  const leaf = leaves.sort((a, b) => a.activeTime - b.activeTime)[0];
+  return leaf;
 }
 
 export function getCanvasFile(path: string, app: App): TFile | undefined {
@@ -283,9 +290,10 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
 export const showMemoInCanvas = async (memoId: string, memoPath: string): Promise<void> => {
   const app = globalService.getState().app;
 
-  const selectAndZoom = (canvas: any, nodeId: string) => {
+  const selectAndZoom = (canvas: any, nodeId: string, leaf: WorkspaceLeaf) => {
     const node = Array.from(canvas.nodes.values())?.find((node: any) => node.id === nodeId);
     if (node) {
+      app.workspace.revealLeaf(leaf);
       console.log('Found node', node);
       canvas.selectOnly(node);
       canvas.zoomToSelection();
@@ -298,7 +306,7 @@ export const showMemoInCanvas = async (memoId: string, memoPath: string): Promis
   for (const leaf of leaves) {
     const canvasView = leaf.view as any;
     if (canvasView?.file?.path === memoPath) {
-      if (selectAndZoom(canvasView.canvas, memoId)) return;
+      if (selectAndZoom(canvasView.canvas, memoId, leaf)) return;
     }
   }
 
@@ -311,6 +319,27 @@ export const showMemoInCanvas = async (memoId: string, memoPath: string): Promis
   const leaf = app.workspace.getLeaf('split');
   await leaf.openFile(file);
   setTimeout(() => {
-    selectAndZoom((leaf.view as any)?.canvas, memoId);
+    selectAndZoom((leaf.view as any)?.canvas, memoId, leaf);
   }, 10);
 };
+
+export function focusNodeInCanvas(nodeId: string): void {
+  const app = globalService.getState().app;
+  const node = cardService.getCardById(nodeId);
+  if (!node) return;
+  const path = node.path;
+  const leaves = app.workspace.getLeavesOfType('canvas');
+  for (const leaf of leaves) {
+    const canvasView = leaf.view as any;
+    if (canvasView?.file?.path === path) {
+      const canvas = canvasView.canvas;
+      const node = Array.from(canvas.nodes.values())?.find((node: any) => node.id === nodeId);
+      if (node) {
+        app.workspace.revealLeaf(leaf);
+        canvas.selectOnly(node);
+        canvas.zoomToSelection();
+      }
+      return;
+    }
+  }
+}

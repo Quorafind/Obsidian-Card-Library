@@ -3,9 +3,9 @@
 @layer base {
 
   .mobile-view {
-    .card-list-container {
-    @apply grid-cols-2;
-    }
+    //.card-list-container {
+    //@apply grid-cols-2;
+    //}
 
     .canvas-switcher {
     @apply w-12;
@@ -16,14 +16,14 @@
     }
   }
 
-  .mobile-view.mobile-tiny-view {
-    .card-list-container {
-    @apply grid-cols-1;
-    }
-  }
+  //.mobile-view.mobile-tiny-view {
+  //  .card-list-container {
+  //  @apply grid-cols-1;
+  //  }
+  //}
 
   .card-list-container {
-    @apply w-full max-w-full p-4 grid gap-4 grid-cols-5;
+    @apply w-full max-w-full p-4 flex gap-4;
 
       .cl-card {
 

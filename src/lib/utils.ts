@@ -53,3 +53,7 @@ export function queryIsEmptyOrBlank(query: Query): boolean {
 
   return !queryFilter;
 }
+
+export function isMobileView(viewStatus: string): boolean {
+  return viewStatus === 'md' || viewStatus === 'sm';
+}

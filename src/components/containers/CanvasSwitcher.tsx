@@ -1,7 +1,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import React, { useContext, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import { cn, isMobileView } from '@/lib/utils';
 import { CaretSortIcon, CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons';
 import {
   Command,
@@ -52,9 +52,11 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
   const {
     fileState: { files },
     locationState: { query },
-    globalState: { view, isMobileView },
+    globalState: { view, viewStatus },
   } = useContext(AppContext);
   const [initialied, setInitialized] = React.useState(false);
+
+  console.log(isMobileView(viewStatus) || viewStatus === 'lg');
 
   const [open, setOpen] = React.useState(false);
   const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false);
@@ -86,10 +88,14 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
             role="combobox"
             aria-expanded={open}
             aria-label="Select a team"
-            className={cn('canvas-switcher w-[140px] justify-between', className, isMobileView ? 'p-0.5' : '')}
-            size={isMobileView ? 'icon' : 'default'}
+            className={cn(
+              'canvas-switcher w-[140px] justify-between overflow-hidden',
+              className,
+              isMobileView(viewStatus) || viewStatus === 'lg' ? 'p-0.5' : 'min-w-[140px]',
+            )}
+            size={isMobileView(viewStatus) || viewStatus === 'lg' ? 'icon' : 'default'}
           >
-            {isMobileView ? (
+            {isMobileView(viewStatus) || viewStatus === 'lg' ? (
               <>
                 <LayoutDashboardIcon className="mx-1 h-4 w-4 text-muted-foreground" />
                 <CaretSortIcon className="h-4 w-4 shrink-0 opacity-50" />

@@ -88,6 +88,8 @@ declare module 'obsidian' {
 
   interface View {
     contentEl: HTMLElement;
+
+    file: TFile;
   }
 
   interface MarkdownFileInfo {
