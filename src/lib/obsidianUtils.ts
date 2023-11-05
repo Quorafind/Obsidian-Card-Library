@@ -1,5 +1,5 @@
-import { fileService, globalService } from '@/services';
-import { TFile, moment, App, Notice } from 'obsidian';
+import { cardService, fileService, globalService } from '@/services';
+import { App, moment, normalizePath, Notice, TFile, WorkspaceLeaf } from 'obsidian';
 import {
   CanvasData,
   CanvasEdgeData,
@@ -34,8 +34,26 @@ export function checkMediaExtension(path: string): boolean {
   return ['mp4', 'mov', 'avi', 'mkv', 'mp3', 'wav', 'ogg', 'flac'].includes(ext);
 }
 
-export function checkIfLinked(id: string, edges: CanvasEdgeData[]) {
+export function checkIfLinked(id: string, edges: CanvasEdgeData[]): boolean {
   return edges.some((edge) => edge.fromNode === id || edge.toNode === id);
+}
+
+export async function readFileContent(app: App, path: string): Promise<string> {
+  if (!path.endsWith('excalidraw.md')) {
+    return await app.vault.adapter.read(normalizePath(path));
+  } else {
+    return path;
+  }
+}
+
+export function getColorString(color: string): string {
+  return color ? (color.startsWith('#') ? 'color-custom' : `color-${color}`) : 'color-blank';
+}
+
+export function getCurrentCanvasView(app: App): WorkspaceLeaf {
+  const leaves = app.workspace.getLeavesOfType('canvas');
+  if (leaves.length === 0) return undefined;
+  return leaves.sort((a, b) => a.activeTime - b.activeTime)[0];
 }
 
 export function getCanvasFile(path: string, app: App): TFile | undefined {
@@ -111,7 +129,7 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
       id,
       pinned: !!node?.pinned,
       rowStatus: node?.archived ? 'ARCHIVED' : 'NORMAL',
-      color: node?.color ? (node?.color.startsWith('#') ? 'color-custom' : `color-${node?.color}`) : 'color-blank',
+      color: getColorString(node?.color),
       content,
       deletedAt: node?.deletedAt ? moment(node?.deletedAt).format('YYYY/MM/DD HH:mm:SS') : '',
       path: file.path,
@@ -163,6 +181,8 @@ export async function createCardInCanvas({
     return;
   }
 
+  console.log(json.nodes);
+
   const latestNode = json.nodes[json.nodes.length - 1];
   const posFromNewestNode = latestNode
     ? {
@@ -197,6 +217,7 @@ export async function createCardInCanvas({
 
   globalService.setChangedByMemos(true);
   const newContent = JSON.stringify(json, null, 2);
+
   await app.vault.modify(canvasFile, newContent);
 
   return card;
@@ -241,6 +262,7 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
     }
   }
 
+  if (patch.color) node.color = patch.color;
   if (patch.rowStatus) node.rowStatus = patch.rowStatus;
   if (patch.pinned !== undefined) node.pinned = patch.pinned;
   const deletedTime = moment();
@@ -256,6 +278,7 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
     content: patch.content ?? oldCard.content,
     rowStatus: patch.rowStatus ?? oldCard.rowStatus,
     pinned: patch.pinned ?? oldCard.pinned,
+    color: getColorString(patch.color ?? oldCard.color),
     deletedAt: patch.deleted
       ? deletedTime.format('YYYY/MM/DD HH:mm:ss')
       : patch.deleted === false
@@ -269,9 +292,10 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
 export const showMemoInCanvas = async (memoId: string, memoPath: string): Promise<void> => {
   const app = globalService.getState().app;
 
-  const selectAndZoom = (canvas: any, nodeId: string) => {
+  const selectAndZoom = (canvas: any, nodeId: string, leaf: WorkspaceLeaf) => {
     const node = Array.from(canvas.nodes.values())?.find((node: any) => node.id === nodeId);
     if (node) {
+      app.workspace.revealLeaf(leaf);
       console.log('Found node', node);
       canvas.selectOnly(node);
       canvas.zoomToSelection();
@@ -284,7 +308,7 @@ export const showMemoInCanvas = async (memoId: string, memoPath: string): Promis
   for (const leaf of leaves) {
     const canvasView = leaf.view as any;
     if (canvasView?.file?.path === memoPath) {
-      if (selectAndZoom(canvasView.canvas, memoId)) return;
+      if (selectAndZoom(canvasView.canvas, memoId, leaf)) return;
     }
   }
 
@@ -297,6 +321,48 @@ export const showMemoInCanvas = async (memoId: string, memoPath: string): Promis
   const leaf = app.workspace.getLeaf('split');
   await leaf.openFile(file);
   setTimeout(() => {
-    selectAndZoom((leaf.view as any)?.canvas, memoId);
+    selectAndZoom((leaf.view as any)?.canvas, memoId, leaf);
   }, 10);
 };
+
+export function focusNodeInCanvas(nodeId: string): void {
+  const app = globalService.getState().app;
+  const node = cardService.getCardById(nodeId);
+  if (!node) return;
+  const path = node.path;
+  const leaves = app.workspace.getLeavesOfType('canvas');
+  for (const leaf of leaves) {
+    const canvasView = leaf.view as any;
+    if (canvasView?.file?.path === path) {
+      const canvas = canvasView.canvas;
+      const node = Array.from(canvas.nodes.values())?.find((node: any) => node.id === nodeId);
+      if (node) {
+        app.workspace.revealLeaf(leaf);
+        canvas.selectOnly(node);
+        canvas.zoomToSelection();
+      }
+      return;
+    }
+  }
+}
+
+export async function revealCanvasByPath(path: string) {
+  const app = globalService.getState().app;
+  const leaves = app.workspace.getLeavesOfType('canvas');
+  for (const leaf of leaves) {
+    const canvasView = leaf.view as any;
+    if (canvasView?.file?.path === path) {
+      app.workspace.revealLeaf(leaf);
+      return;
+    }
+  }
+
+  const file = app.metadataCache.getFirstLinkpathDest('', path);
+  if (!file) {
+    new Notice('File not found for the given card Path');
+    return;
+  }
+
+  const leaf = app.workspace.getLeaf();
+  await leaf.openFile(file);
+}

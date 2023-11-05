@@ -3,8 +3,25 @@
 @tailwind utilities;
 
 @layer base {
-  .card-library {
-  @apply border-border bg-background text-foreground p-0;
+  .card-library.view-content {
+    @apply  !overflow-hidden border-border bg-background text-foreground p-0;
+
+
+
+    section#page-wrapper {
+      @apply flex flex-col h-full;
+
+      .content-wrapper {
+        @apply flex flex-col flex-1 h-full max-h-full;
+      }
+    }
+
+    .canvas-embed {
+      .embed-title {
+        @apply hidden;
+      }
+    }
+
     .markdown-embed {
       @apply pl-0;
     }
@@ -35,4 +52,16 @@ svg, span, div {
     &.card-color-6 {
         color: rgb(var(--mod-facet-color-6));
     }
+}
+
+.cl-card {
+  .collapsed-block::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    opacity: .9;
+  }
 }

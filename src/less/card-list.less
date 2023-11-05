@@ -1,12 +1,47 @@
 @import "globals";
 
 @layer base {
+
+  .mobile-view {
+    //.card-list-container {
+    //@apply grid-cols-2;
+    //}
+
+    .canvas-switcher {
+    @apply w-12;
+    }
+
+    .search-bar {
+      @apply w-40;
+    }
+  }
+
+  //.mobile-view.mobile-tiny-view {
+  //  .card-list-container {
+  //  @apply grid-cols-1;
+  //  }
+  //}
+
   .card-list-container {
-  @apply w-full h-full p-4 grid gap-4 md:grid-cols-2 lg:grid-cols-5;
+    @apply w-full max-w-full p-4 flex gap-4;
+
+      .cl-card {
+
+        .cm-line {
+          @apply text-xs;
+        }
+        &:hover {
+          .pin-button {
+            > * {
+              @apply text-muted-foreground transition duration-300 ease-in-out;
+            }
+          }
+        }
+      }
   }
 
   .status-text-container {
-  @apply flex flex-col items-center justify-center w-full mt-4 mb-4;
+  @apply flex flex-col items-center justify-center w-full max-w-full mt-4 mb-4;
 
     &.completed {
     @apply mb-16;

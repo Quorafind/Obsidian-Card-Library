@@ -1,5 +1,5 @@
 import appStore from '../stores/appStore';
-import { App, PluginManifest } from 'obsidian';
+import { App, MarkdownEditor, PluginManifest } from 'obsidian';
 import { CardLibraryView } from '@/cardLibraryIndex';
 import { CardLibrarySettings } from '@/types/settings';
 
@@ -18,11 +18,20 @@ class GlobalService {
     });
   };
 
-  public setMobileView = (isMobileView: boolean) => {
+  public setFocused = (focused: boolean) => {
     appStore.dispatch({
-      type: 'SET_MOBILE_VIEW',
+      type: 'SET_FOCUSED',
       payload: {
-        isMobileView,
+        focused,
+      },
+    });
+  };
+
+  public setViewStatus = (viewStatus: string) => {
+    appStore.dispatch({
+      type: 'SET_VIEW_STATUS',
+      payload: {
+        viewStatus,
       },
     });
   };
@@ -59,6 +68,15 @@ class GlobalService {
       type: 'SET_SETTING',
       payload: {
         settings,
+      },
+    });
+  };
+
+  public setEditor = (editor: MarkdownEditor) => {
+    appStore.dispatch({
+      type: 'SET_EDITOR',
+      payload: {
+        editor,
       },
     });
   };

@@ -86,8 +86,8 @@ class CardService {
     });
   }
 
-  public revealCard(card: Model.Card) {
-    showMemoInCanvas(card.id, card.path);
+  public async revealCard(card: Model.Card) {
+    await showMemoInCanvas(card.id, card.path);
   }
 
   public getCardById(id: string) {
@@ -205,6 +205,22 @@ class CardService {
           },
         });
       }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  public async deleteCardsBatch(file: TFile) {
+    const cards: Model.Card[] = [];
+    try {
+      await getCardFromCanvas(file, cards);
+      const deletedIDS = cards.map((m) => m.id);
+      appStore.dispatch({
+        type: 'DELETE_CARD_BY_ID_BATCH',
+        payload: {
+          ids: deletedIDS,
+        },
+      });
     } catch (e) {
       console.log(e);
     }
