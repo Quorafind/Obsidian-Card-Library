@@ -2,7 +2,7 @@
   "id": "card-library",
   "name": "Card Library",
   "description": "A canvas card library plugin",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": "Boninall",
   "authorUrl": "https://github.com/Quorafind/",
   "isDesktopOnly": false,
