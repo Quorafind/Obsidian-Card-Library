@@ -1,13 +1,12 @@
 import { ButtonComponent, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
 import '@/less/globals.less';
 import { CardLibrarySettingTab, DEFAULT_SETTINGS } from '@/cardLibrarySettings';
-import { cardService, globalService } from '@/services';
+import { cardService, globalService, locationService } from '@/services';
 import { CardLibrarySettings } from '@/types/settings';
 import { KeyEvent, modKeys, ribbonCommandsList, TargetLocation } from '@/types/obsidian';
 import { patchEditor } from '@/lib/patchEditor';
 import { CardLibraryView, VIEW_TYPE } from '@/cardLibraryView';
 import { around } from 'monkey-around';
-import { showLibraryCanvasMenu } from '@/lib/obsidianUtils';
 
 const openCardLibraryCb = () => {
   new Notice('Open card library successfully');
@@ -171,6 +170,13 @@ export default class CardLibrary extends Plugin {
   }
 
   patchCanvasMenu(): void {
+    const checkAndOpenCardLibrary = () => {
+      if (!this.app.workspace.getLeavesOfType(VIEW_TYPE).length) {
+        this.app.workspace.detachLeavesOfType(VIEW_TYPE);
+        this.app.workspace.getLeaf('split')?.setViewState({ type: VIEW_TYPE });
+      }
+    };
+
     const patchMenu = () => {
       const canvasView = this.app.workspace.getLeavesOfType('canvas').first()?.view;
       if (!canvasView) return false;
@@ -186,32 +192,25 @@ export default class CardLibrary extends Plugin {
           function (...args: any) {
             const result = next.call(this, ...args);
             if (this.menuEl.querySelector('.card-library-menu-item')) return result;
+            const currentSelection: Set<any> = this.canvas.selection;
+
+            if (currentSelection.size === 0) return result;
+            if (currentSelection.size > 1) return result;
+            const node = currentSelection.values().next().value;
+
             const button = new ButtonComponent(this.menuEl);
             button.buttonEl.toggleClass('card-library-menu-item', true);
             button
               .setClass('clickable-icon')
               .setIcon('library')
-              .setTooltip('Card library commands', {
+              .setTooltip('Edit In Card Library', {
                 placement: 'top',
               })
               .onClick(() => {
-                const pos = button.buttonEl.getBoundingClientRect();
-                if (!button.buttonEl.hasClass('has-active-menu')) {
-                  button.buttonEl.toggleClass('has-active-menu', true);
+                checkAndOpenCardLibrary();
 
-                  const currentSelection: Set<any> = this.canvas.selection;
-                  console.log(currentSelection.size);
-                  if (currentSelection.size === 0) return;
-                  if (currentSelection.size > 1) return;
-                  showLibraryCanvasMenu({
-                    node: currentSelection.values().next().value,
-                    target: this.menuEl,
-                    pos,
-                    cb: () => {
-                      button.buttonEl.toggleClass('has-active-menu', false);
-                    },
-                  });
-                }
+                locationService.setPathname('/editor');
+                globalService.setSidebarEditCardId(node.id);
               });
 
             return result;

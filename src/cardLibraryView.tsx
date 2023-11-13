@@ -1,6 +1,6 @@
 import { debounce, ItemView, TFile, TFolder } from 'obsidian';
 import ReactDOM from 'react-dom/client';
-import { cardService, fileService, globalService } from '@/services';
+import { cardService, fileService, globalService, locationService } from '@/services';
 import React from 'react';
 import App from '@/App';
 
@@ -121,5 +121,9 @@ export class CardLibraryView extends ItemView {
   onunload(): void {
     super.onunload();
     this.root.unmount();
+
+    globalService.setView(null);
+    globalService.setSidebarEditCardId('');
+    locationService.setPathname('/');
   }
 }

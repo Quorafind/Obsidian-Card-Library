@@ -23,7 +23,15 @@
   //}
 
   .content-wrapper {
-
+    .sidebar-cl-card {
+      &:hover {
+        .pin-button {
+          > * {
+          @apply text-muted-foreground transition duration-300 ease-in-out;
+          }
+        }
+      }
+    }
   }
 
   .card-list-container {

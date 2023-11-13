@@ -34,6 +34,7 @@ function SidebarEditor({ id, content }: { id: string; content: string }) {
     if (!id) return;
 
     set(content);
+    instance?.focus();
   }, [content, instance]);
 
   return <div className="h-full min-h-[250px] p-1 rounded-sm mod-cm6" ref={editorRef}></div>;
@@ -180,7 +181,7 @@ function SidebarView() {
   return (
     <>
       <Card
-        className={cn(`flex flex-col h-full w-full p-2 pt-1 gap-2 rounded-none`)}
+        className={cn(`sidebar-cl-card flex flex-col h-full w-full p-2 pt-1 gap-2 rounded-none`)}
         data-card-path={card?.type === 'text' ? card?.path : card?.content}
         data-card-type={card?.type}
         data-card-id={card?.id}
