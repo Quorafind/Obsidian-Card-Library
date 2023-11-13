@@ -50,8 +50,7 @@ export function CollapseCardContent({
 
   useEffect(() => {
     if (ref.current) {
-      console.log(ref.current.scrollHeight > maxHeight);
-      setIsContentTooTall(ref.current.scrollHeight > maxHeight);
+      setIsContentTooTall(ref.current.scrollHeight + 80 > maxHeight);
     }
   }, [content]);
 
@@ -77,14 +76,12 @@ export function CollapseCardContent({
         <div
           className={cn(
             'flex flex-row justify-center items-center absolute left-0 right-0 bottom-0 h-16 overflow-hidden',
-            !isCodeExpanded
-              ? "before:content-[''] before:pointer-events-none before:absolute before:inset-0 before:rounded-b-xl before:opacity-90 before:bg-gradient-to-b before:from-transparent before:to-gray-100/20 dark:before:to-gray-700"
-              : '',
+            !isCodeExpanded ? 'content-collapsed' : '',
           )}
         >
           <CollapsibleTrigger
             className={cn(
-              'p-1 bg-secondary text-secondary-foreground shadow hover:bg-secondary/90 dark:bg-gray-600',
+              'z-30 p-1 bg-secondary text-secondary-foreground shadow hover:bg-secondary/90 dark:bg-gray-600',
               isCodeExpanded
                 ? 'pointer-events-auto text-muted-foreground/50 bg-secondary/20 hover:bg-secondary/90 hover:text-muted-foreground dark:hover:text-slate-50'
                 : '',

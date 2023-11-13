@@ -20,13 +20,13 @@ import { cn } from '@/lib/utils';
 import { colors } from '@/lib/mockdata';
 
 export interface ActionProps {
-  handleEdit: () => void;
-  handleCopy: () => void;
-  handlePin: (pinned: boolean) => void;
-  handleArchive: () => void;
-  handleSource: () => void;
-  handleDelete: () => void;
-  handleChangeColor: (color: string) => void;
+  handleEdit?: () => void;
+  handleCopy?: () => void;
+  handlePin?: (pinned: boolean) => void;
+  handleArchive?: () => void;
+  handleSource?: () => void;
+  handleDelete?: () => void;
+  handleChangeColor?: (color: string) => void;
 }
 
 type Props = Model.Card & ActionProps;

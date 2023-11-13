@@ -22,11 +22,20 @@
   //  }
   //}
 
+  .content-wrapper {
+
+  }
+
   .card-list-container {
     @apply w-full max-w-full p-4 flex gap-4;
 
       .cl-card {
 
+        .content-collapsed {
+          &:before {
+            @apply z-10 content-[''] pointer-events-none absolute inset-0 rounded-b-xl opacity-90 from-transparent to-gray-200 dark:to-gray-700 bg-gradient-to-b;
+          }
+        }
         .cm-line {
           @apply text-xs;
         }

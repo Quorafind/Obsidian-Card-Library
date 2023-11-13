@@ -13,7 +13,7 @@ interface Query {
   path: string[];
 }
 
-type AppRouter = '/' | '/single';
+type AppRouter = '/' | '/editor';
 
 interface AppLocation {
   pathname: AppRouter;
