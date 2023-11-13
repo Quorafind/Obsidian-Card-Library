@@ -1,7 +1,7 @@
 import appStore from '../stores/appStore';
 import { App, MarkdownEditor, PluginManifest } from 'obsidian';
-import { CardLibraryView } from '@/cardLibraryIndex';
 import { CardLibrarySettings } from '@/types/settings';
+import { CardLibraryView } from '@/cardLibraryView';
 
 class GlobalService {
   public getState = () => {
@@ -14,6 +14,15 @@ class GlobalService {
       type: 'SET_EDIT_CARD_ID',
       payload: {
         editCardId,
+      },
+    });
+  };
+
+  public setSidebarEditCardId = (sidebarEditCardId: string) => {
+    appStore.dispatch({
+      type: 'SET_SIDEBAR_EDIT_CARD_ID',
+      payload: {
+        sidebarEditCardId,
       },
     });
   };

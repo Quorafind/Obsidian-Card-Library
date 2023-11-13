@@ -7,6 +7,7 @@ import {
   getAllCards,
   getCardFromCanvas,
   getDeletedCardsInCards,
+  getLinkedCard,
   showMemoInCanvas,
   updateCardInFile,
 } from '@/lib/obsidianUtils';
@@ -84,6 +85,10 @@ class CardService {
         },
       },
     });
+  }
+
+  public async getLinkedCard({ id, path }: { id: string; path: string }) {
+    return await getLinkedCard(path, id);
   }
 
   public async revealCard(card: Model.Card) {

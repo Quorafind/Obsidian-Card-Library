@@ -1,6 +1,6 @@
 import { MarkdownRenderer } from 'obsidian';
-import { VIEW_TYPE } from '@/cardLibraryIndex';
 import { useCallback, useEffect, useRef } from 'react';
+import { VIEW_TYPE } from '@/cardLibraryView';
 
 function useMarkdownRenderer(app, view) {
   const contentRef = useRef(null);

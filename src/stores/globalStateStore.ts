@@ -1,6 +1,6 @@
 import { App, MarkdownEditor, PluginManifest } from 'obsidian';
-import { CardLibraryView } from '@/cardLibraryIndex';
 import { CardLibrarySettings } from '@/types/settings';
+import { CardLibraryView } from '@/cardLibraryView';
 
 export type ViewStatus = 'lg' | 'md' | 'sm';
 
@@ -15,6 +15,7 @@ export interface AppSetting {
 
 export interface State extends AppSetting {
   colorScheme: string;
+  sidebarEditCardId: string;
   editCardId: string;
   viewStatus: string;
   changedBySelf: boolean;
@@ -28,6 +29,9 @@ interface Action<T extends string, P> {
 type ActionPayloads = {
   SET_EDIT_CARD_ID: {
     editCardId: string;
+  };
+  SET_SIDEBAR_EDIT_CARD_ID: {
+    sidebarEditCardId: string;
   };
   SET_VIEW_STATUS: {
     viewStatus: string;
@@ -70,6 +74,16 @@ export function reducer(state: State, action: Actions) {
       return {
         ...state,
         editCardId: action.payload.editCardId,
+      };
+    }
+    case 'SET_SIDEBAR_EDIT_CARD_ID': {
+      if (action.payload.sidebarEditCardId === state.sidebarEditCardId) {
+        return state;
+      }
+
+      return {
+        ...state,
+        sidebarEditCardId: action.payload.sidebarEditCardId,
       };
     }
     case 'SET_VIEW_STATUS': {
@@ -157,6 +171,7 @@ export const defaultState: State = {
   view: null,
   editor: null,
   editCardId: '',
+  sidebarEditCardId: '',
   focused: false,
   viewStatus: 'lg',
   changedBySelf: false,

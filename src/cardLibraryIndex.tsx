@@ -1,13 +1,12 @@
-import { debounce, ItemView, Menu, Notice, Plugin, TFile, TFolder, WorkspaceLeaf } from 'obsidian';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import { ButtonComponent, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
 import '@/less/globals.less';
 import { CardLibrarySettingTab, DEFAULT_SETTINGS } from '@/cardLibrarySettings';
-import { cardService, fileService, globalService } from '@/services';
+import { cardService, globalService, locationService } from '@/services';
 import { CardLibrarySettings } from '@/types/settings';
 import { KeyEvent, modKeys, ribbonCommandsList, TargetLocation } from '@/types/obsidian';
 import { patchEditor } from '@/lib/patchEditor';
+import { CardLibraryView, VIEW_TYPE } from '@/cardLibraryView';
+import { around } from 'monkey-around';
 
 const openCardLibraryCb = () => {
   new Notice('Open card library successfully');
@@ -58,126 +57,6 @@ const commandsList: ribbonCommandsList[] = [
   },
 ];
 
-export const VIEW_TYPE = 'card-library-view';
-
-export class CardLibraryView extends ItemView {
-  root: ReactDOM.Root;
-
-  getViewType(): string {
-    return VIEW_TYPE;
-  }
-
-  getDisplayText(): string {
-    return 'Card Library';
-  }
-
-  getIcon(): string {
-    return 'library';
-  }
-
-  async handleResize() {
-    console.log('handleResize');
-    const leaf = this.leaf;
-    if (leaf && leaf.height !== 0) {
-      globalService.setViewStatus(leaf.width < 400 ? 'sm' : leaf.width < 600 ? 'md' : leaf.width < 900 ? 'lg' : 'xl');
-
-      if (leaf.width > 950) {
-        leaf.view.contentEl.classList.toggle('mobile-view', false);
-        leaf.view.contentEl.classList.toggle('mobile-tiny-view', false);
-
-        return;
-      }
-
-      if (leaf.width > 400) {
-        leaf.view.contentEl.classList.toggle('mobile-view', true);
-        leaf.view.contentEl.classList.toggle('mobile-tiny-view', false);
-        return;
-      }
-
-      leaf.view.contentEl.classList.toggle('mobile-view', true);
-      leaf.view.contentEl.classList.toggle('mobile-tiny-view', true);
-    }
-  }
-
-  async onOpen(): Promise<void> {
-    this.registerEvent(
-      this.app.workspace.on('layout-change', () => {
-        console.log('layout-change');
-        this.handleResize();
-      }),
-    );
-    const debouncedHandleResize = debounce(this.handleResize.bind(this), 50, true);
-
-    this.registerEvent(
-      this.app.workspace.on('resize', () => {
-        debouncedHandleResize();
-      }),
-    );
-    this.registerEvent(
-      this.app.vault.on('create', (file) => {
-        if (!(file instanceof TFile)) return;
-        if (file.extension !== 'canvas') return;
-        cardService.updateCardsBatch(file);
-        cardService.updateTagsState();
-        fileService.addFile(file);
-      }),
-    );
-    this.registerEvent(
-      this.app.vault.on('delete', (file) => {
-        if (!(file instanceof TFile)) return;
-        if (file.extension !== 'canvas') return;
-        cardService.deleteCardsBatch(file);
-        cardService.updateTagsState();
-        fileService.updateFiles(file, true);
-      }),
-    );
-    this.registerEvent(
-      this.app.vault.on('rename', (file, oldPath) => {
-        if (file instanceof TFolder) {
-          for (const child of file.children) {
-            if (child instanceof TFile && child.extension === 'canvas') {
-              cardService.updateCardsBatch(child);
-              fileService.updateFilesBasedOnOldPath(oldPath + '/' + child.basename + '.canvas');
-            }
-          }
-        } else if (file instanceof TFile) {
-          if (file.extension === 'canvas') {
-            cardService.updateCardsBatch(file);
-            fileService.updateFilesBasedOnOldPath(oldPath);
-          }
-        }
-      }),
-    );
-    this.registerEvent(
-      this.app.vault.on('modify', (file) => {
-        if (!(file instanceof TFile)) return;
-        if (file.extension !== 'canvas') return;
-        cardService.updateCardsBatch(file);
-      }),
-    );
-
-    this.contentEl.toggleClass('card-library', true);
-    try {
-      globalService.setView(this);
-
-      this.root = ReactDOM.createRoot(this.contentEl);
-      this.root.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>,
-      );
-      await this.handleResize();
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  onunload(): void {
-    super.onunload();
-    this.root.unmount();
-  }
-}
-
 export default class CardLibrary extends Plugin {
   private view: CardLibraryView;
   settings: CardLibrarySettings;
@@ -189,6 +68,10 @@ export default class CardLibrary extends Plugin {
     this.initEditor();
     this.initCommands();
     this.initRibbon();
+
+    this.patchCanvasMenu();
+    this.patchCanvas();
+
     this.registerView(VIEW_TYPE, (leaf: WorkspaceLeaf) => (this.view = new CardLibraryView(leaf)));
 
     this.app.workspace.onLayoutReady(this.onLayoutReady.bind(this));
@@ -237,7 +120,7 @@ export default class CardLibrary extends Plugin {
     cb?.();
   }
 
-  initRibbon() {
+  initRibbon(): void {
     this.addRibbonIcon('library', 'Card library', async (evt) => {
       if (evt.button === 2) {
         evt.preventDefault();
@@ -284,6 +167,103 @@ export default class CardLibrary extends Plugin {
     await this.loadSettings();
     this.settingTab = new CardLibrarySettingTab(this.app, this);
     this.addSettingTab(this.settingTab);
+  }
+
+  patchCanvasMenu(): void {
+    const checkAndOpenCardLibrary = () => {
+      if (!this.app.workspace.getLeavesOfType(VIEW_TYPE).length) {
+        this.app.workspace.detachLeavesOfType(VIEW_TYPE);
+        this.app.workspace.getLeaf('split')?.setViewState({ type: VIEW_TYPE });
+      }
+    };
+
+    const patchMenu = () => {
+      const canvasView = this.app.workspace.getLeavesOfType('canvas').first()?.view;
+      if (!canvasView) return false;
+
+      const menu = (canvasView as CanvasView)?.canvas.menu;
+      if (!menu) return false;
+
+      const selection = menu.selection;
+      if (!selection) return false;
+
+      const menuUninstaller = around(menu.constructor.prototype, {
+        render: (next: any) =>
+          function (...args: any) {
+            const result = next.call(this, ...args);
+            if (this.menuEl.querySelector('.card-library-menu-item')) return result;
+            const currentSelection: Set<any> = this.canvas.selection;
+
+            if (currentSelection.size === 0) return result;
+            if (currentSelection.size > 1) return result;
+            const node = currentSelection.values().next().value;
+
+            const button = new ButtonComponent(this.menuEl);
+            button.buttonEl.toggleClass('card-library-menu-item', true);
+            button
+              .setClass('clickable-icon')
+              .setIcon('library')
+              .setTooltip('Edit In Card Library', {
+                placement: 'top',
+              })
+              .onClick(() => {
+                checkAndOpenCardLibrary();
+
+                locationService.setPathname('/editor');
+                globalService.setSidebarEditCardId(node.id);
+              });
+
+            return result;
+          },
+      });
+
+      this.register(menuUninstaller);
+
+      console.log('Obsidian-Card-Library: card patched');
+      return true;
+    };
+
+    this.app.workspace.onLayoutReady(() => {
+      if (!patchMenu()) {
+        const evt = this.app.workspace.on('layout-change', () => {
+          patchMenu() && this.app.workspace.offref(evt);
+        });
+        this.registerEvent(evt);
+      }
+    });
+  }
+
+  patchCanvas(): void {
+    const patchCanvas = () => {
+      const canvasView = this.app.workspace.getLeavesOfType('canvas').first()?.view;
+      if (!canvasView) return false;
+
+      const canvas: any = (canvasView as any)?.canvas;
+      if (!canvas) return false;
+
+      const uninstaller = around(canvas.constructor.prototype, {
+        selectOnly: (next: any) =>
+          function (args: any) {
+            if (globalService.getState().sidebarEditCardId) {
+              globalService.setSidebarEditCardId(args?.id);
+            }
+            return next.call(this, args);
+          },
+      });
+      this.register(uninstaller);
+
+      console.log('Obsidian-Card-Library: canvas patched');
+      return true;
+    };
+
+    this.app.workspace.onLayoutReady(() => {
+      if (!patchCanvas()) {
+        const evt = this.app.workspace.on('layout-change', () => {
+          patchCanvas() && this.app.workspace.offref(evt);
+        });
+        this.registerEvent(evt);
+      }
+    });
   }
 
   async onLayoutReady(): Promise<void> {

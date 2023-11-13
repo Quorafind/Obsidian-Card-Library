@@ -1,5 +1,5 @@
-import { cardService, fileService, globalService } from '@/services';
-import { App, moment, normalizePath, Notice, TFile, WorkspaceLeaf } from 'obsidian';
+import { cardService, fileService, globalService, locationService } from '@/services';
+import { App, Menu, MenuItem, moment, normalizePath, Notice, TFile, WorkspaceLeaf } from 'obsidian';
 import {
   CanvasData,
   CanvasEdgeData,
@@ -79,6 +79,33 @@ export async function getAllCards(): Promise<Model.Card[]> {
 
 export async function getDeletedCardsInCards(cards: Model.Card[]): Promise<Model.Card[]> {
   return cards.filter((c) => c.deletedAt && c.deletedAt !== '');
+}
+
+export async function getLinkedCard(
+  path: string,
+  id: string,
+): Promise<{
+  inLinked: Model.Card[];
+  outLinked: Model.Card[];
+}> {
+  const app = globalService.getState().app;
+  const file = app.vault.getAbstractFileByPath(path);
+  if (!file || !(file instanceof TFile))
+    return {
+      inLinked: [],
+      outLinked: [],
+    };
+  const content = await app.vault.read(file);
+  const edges = JSON.parse(content)?.edges as CanvasEdgeData[];
+  const inLinked = edges.filter((edge) => edge.toNode === id).map((edge) => edge.fromNode);
+  const outLinked = edges.filter((edge) => edge.fromNode === id).map((edge) => edge.toNode);
+  const cards = [];
+  await getCardFromCanvas(file, cards);
+
+  return {
+    inLinked: cards.filter((card) => inLinked.includes(card.id)),
+    outLinked: cards.filter((card) => outLinked.includes(card.id)),
+  };
 }
 
 export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promise<void> {
@@ -365,4 +392,46 @@ export async function revealCanvasByPath(path: string) {
 
   const leaf = app.workspace.getLeaf();
   await leaf.openFile(file);
+}
+
+export function showLibraryCanvasMenu({
+  node,
+  target,
+  pos,
+  cb,
+}: {
+  node: any;
+  target: HTMLElement;
+  pos: DOMRect;
+  cb: () => void;
+}) {
+  const menu = new Menu();
+  console.log(node.id);
+
+  menu
+    .addItem((item: MenuItem) => {
+      item
+        .setIcon('pencil')
+        .setTitle('Edit via card library')
+        .onClick(() => {
+          locationService.setPathname('/editor');
+          globalService.setSidebarEditCardId(node.id);
+        });
+    })
+    .addItem((item: any) => {
+      const pinned = node?.pinned;
+      item
+        .setIcon(pinned ? 'pinoff' : 'pin')
+        .setTitle(pinned ? 'Unpin' : 'Pin')
+        .onClick(() => {
+          console.log(node);
+        });
+    });
+  menu.setParentElement(target).showAtPosition({
+    x: pos.x,
+    y: pos.bottom,
+    width: pos.width,
+    overlap: true,
+  });
+  cb();
 }

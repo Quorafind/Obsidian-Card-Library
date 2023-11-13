@@ -14,6 +14,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import { request } from 'obsidian';
 import { CollapseCardContent } from '@/components/containers/CardContent';
+import appContext from '@/stores/appContext';
+import useMarkdownRenderer from '@/hooks/useMarkdownRenderer';
 
 interface MouseActionProps {
   handleDoubleClick: () => void;
@@ -42,7 +44,7 @@ const CARD_COMPONENT_MAP = {
   media: MediaCard,
 };
 
-const ICON_MAP = {
+export const ICON_MAP = {
   text: <ReaderIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
   pdf: <FileType2 className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
   file: <FileTextIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
@@ -110,42 +112,52 @@ function getPin(card: Model.Card, handlePin?: (pinned: boolean) => void) {
   return hoveredElement;
 }
 
-function CardActionHeader({
+export function CardActionHeader({
   icon,
   card,
   title,
   funcProps,
+  children,
 }: {
   icon: React.ReactNode;
   card: Model.Card;
-  funcProps: ActionProps;
+  funcProps?: ActionProps;
   title?: string;
+  children?: React.ReactNode;
 }) {
   return (
-    <CardHeader className="w-full max-w-full flex flex-row items-center justify-between space-y-0 pb-2 pt-4">
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger className="shadow-none">
-            <div
-              onClick={async () => {
-                await navigator.clipboard.writeText(card.content);
-              }}
-            >
-              {icon}
-            </div>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Copy to clipboard</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+    <CardHeader
+      className={cn(
+        'w-full max-w-full flex flex-row items-center justify-between space-y-0 pb-2 pt-4',
+        children ? 'pt-2 px-2 border-b dark:border-slate-600' : '',
+      )}
+    >
+      <div className="flex flex-row justify-center items-center">
+        {children ?? ''}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger className="shadow-none">
+              <div
+                onClick={async () => {
+                  await navigator.clipboard.writeText(card.content);
+                }}
+              >
+                {icon}
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Copy to clipboard</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
 
       <CardTitle className="max-w-[10rem] overflow-hidden text-sm font-medium text-ellipsis whitespace-nowrap">
         {title}
       </CardTitle>
       <div className="flex flex-row items-center gap-2">
         {getPin(card, funcProps.handlePin)}
-        <CardActionButton {...funcProps} {...card} />
+        {funcProps && !children && <CardActionButton {...funcProps} {...card} />}
       </div>
     </CardHeader>
   );
@@ -341,7 +353,17 @@ export function FileCard({
 }
 
 export function ImageCard({ card, actionProps }: { card: Model.Card; actionProps: ActionProps }): React.JSX.Element {
-  const { content } = card;
+  const { content, path } = card;
+  const {
+    globalState: { app, view },
+  } = useContext(appContext);
+
+  const { render, ref } = useMarkdownRenderer(app, view);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    render(path, `![[${content}]]`);
+  }, [content]);
 
   return (
     <>
@@ -352,7 +374,9 @@ export function ImageCard({ card, actionProps }: { card: Model.Card; actionProps
         title={content.split('/').pop()}
       ></CardActionHeader>
       <CardContent>
-        <div className="overflow-y-auto text-xs text-muted-foreground">{content}</div>
+        <div ref={ref} className="overflow-y-auto text-xs text-muted-foreground">
+          {content}
+        </div>
       </CardContent>
     </>
   );
@@ -377,7 +401,17 @@ export function PdfCard({ card, actionProps }: { card: Model.Card; actionProps: 
 }
 
 export function MediaCard({ card, actionProps }: { card: Model.Card; actionProps: ActionProps }): React.JSX.Element {
-  const { content } = card;
+  const { content, path } = card;
+  const {
+    globalState: { app, view },
+  } = useContext(appContext);
+
+  const { render, ref } = useMarkdownRenderer(app, view);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    render(path, `![[${content}]]`);
+  }, [content]);
 
   return (
     <>
@@ -388,7 +422,9 @@ export function MediaCard({ card, actionProps }: { card: Model.Card; actionProps
         title={content.split('/').pop()}
       ></CardActionHeader>
       <CardContent>
-        <div className="overflow-y-auto text-xs text-muted-foreground">{content}</div>
+        <div ref={ref} className="overflow-y-auto text-xs text-muted-foreground">
+          {content}
+        </div>
       </CardContent>
     </>
   );
@@ -406,15 +442,17 @@ export function LinkCard({ card, actionProps }: { card: Model.Card; actionProps:
         title={'Web Link'}
       ></CardActionHeader>
       <CardContent>
-        <div className="overflow-y-auto text-xs text-muted-foreground">
-          {/*<LinkPreview url={content} width="100%" />*/}
-          <LinkPreview
-            className="w-full h-full overflow-y-scroll"
-            descriptionLength={20}
-            url={content}
-            fetcher={customFetcher}
-            fallback={<a href={content}></a>}
-          />
+        <div className="flex justify-center items-center overflow-y-auto text-xs text-muted-foreground">
+          <Button
+            size={'default'}
+            variant={'outline'}
+            className={cn('flex justify-center items-center', 'w-full h-full')}
+            onClick={() => {
+              window.open(content);
+            }}
+          >
+            <div className="text-muted-foreground overflow-hidden text-ellipsis whitespace-nowrap">{content}</div>
+          </Button>
         </div>
       </CardContent>
     </>
