@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Cross2Icon, FrameIcon } from '@radix-ui/react-icons';
+import { CopyIcon, Cross2Icon, FrameIcon } from '@radix-ui/react-icons';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,7 +14,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { FilterIcon, FilterXIcon, CrosshairIcon } from 'lucide-react';
 import { Toggle } from '../ui/toggle';
 import { getCurrentCanvasView, revealCanvasByPath } from '@/lib/obsidianUtils';
-import { around } from 'monkey-around';
+import { debounce } from 'obsidian';
+
+const search = debounce((value: string) => locationService.setTextQuery(value), 300, true);
 
 function FacetedFilterListMap(tags?: string[]) {
   return {
@@ -155,6 +157,8 @@ export function LibraryToolbar() {
   } = useContext(AppContext);
   const isFiltered = !queryIsEmptyOrBlank(query);
 
+  const [value, setValue] = React.useState<string>((query.text as string) ?? '');
+
   return (
     <div className="flex items-center justify-between max-w-[90%] w-full gap-2">
       <div className="flex items-center overflow-x-scroll space-x-2 lg:max-w-[520px]">
@@ -164,18 +168,41 @@ export function LibraryToolbar() {
           FacetedFilterList()
         )}
         {isFiltered && (
-          <Button variant="ghost" onClick={() => locationService.clearQuery()} className="h-9 px-2 lg:px-3">
-            {isMobileView(viewStatus) ? <FilterXIcon className="h-4 w-4 text-red-300" /> : 'Reset'}
-            {!isMobileView(viewStatus) && <Cross2Icon className="ml-2 h-4 w-4" />}
-          </Button>
+          <>
+            <Button
+              aria-label="Clear filter"
+              variant="ghost"
+              onClick={() => locationService.clearQuery()}
+              className="h-9 px-2 lg:px-3"
+            >
+              {isMobileView(viewStatus) ? <FilterXIcon className="h-4 w-4 text-red-300" /> : 'Reset'}
+              {!isMobileView(viewStatus) && <Cross2Icon className="ml-2 h-4 w-4" />}
+            </Button>
+            <Button
+              aria-label="Copy cards"
+              variant="ghost"
+              size="icon"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey) {
+                } else {
+                  window.document.execCommand('copy');
+                }
+              }}
+            >
+              <CopyIcon className="h-4 w-4 text-muted-foreground" />
+            </Button>
+          </>
         )}
       </div>
       <div className="flex items-center justify-end space-x-2">
         <FocusAction />
         <Input
           placeholder="Filter cards..."
-          value={(query.text as string) ?? ''}
-          onChange={(event) => locationService.setTextQuery(event.target.value)}
+          value={value}
+          onChange={(event) => {
+            setValue(event.target.value);
+            search(event.target.value);
+          }}
           className="search-bar h-9 w-[150px] lg:w-[240px] shadow-none active:shadow-none dark:focus-visible:border-slate-800"
         />
       </div>

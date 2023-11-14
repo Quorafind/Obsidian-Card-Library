@@ -5,7 +5,7 @@ import useStateRef from '@/hooks/useStateRef';
 import { debounce, Notice } from 'obsidian';
 import '@/less/card-list.less';
 import { cn, isMobileView, queryIsEmptyOrBlank } from '@/lib/utils';
-import { queryService } from '@/services';
+import { globalService, queryService } from '@/services';
 import { FIRST_TAG_REG, NOP_FIRST_TAG_REG, TAG_REG } from '@/lib/consts';
 import Masonry from 'react-masonry-css';
 
@@ -150,8 +150,14 @@ export default function CardList(): React.JSX.Element {
       query,
     });
 
+    console.log(filtered);
+
     if (query.path && query.path.length === 1) {
       filtered.unshift(createFakeCard(query.path[0] as string));
+    }
+
+    if (!queryIsEmptyOrBlank(query)) {
+      globalService.setCopyCardId(filtered.length > 0 ? filtered.map((card) => card.id) : []);
     }
 
     console.log(filtered);

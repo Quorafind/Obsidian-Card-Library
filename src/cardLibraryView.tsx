@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { cardService, fileService, globalService, locationService } from '@/services';
 import React from 'react';
 import App from '@/App';
+import { TYPE_TO_ORIGIN } from '@/lib/obsidianUtils';
+import { CanvasNodeData } from 'obsidian/canvas';
+import { queryIsEmptyOrBlank } from '@/lib/utils';
 
 export const VIEW_TYPE = 'card-library-view';
 
@@ -20,6 +23,39 @@ export class CardLibraryView extends ItemView {
   getIcon(): string {
     return 'library';
   }
+
+  handleCopy = (e: ClipboardEvent) => {
+    console.log('handleCopy', e);
+    e.clipboardData.clearData();
+    const copyCardId = globalService.getState().copyCardIds;
+    const query = locationService.getState().query;
+    const cardList = copyCardId.map((id) => cardService.getCardById(id));
+    const cardData: CanvasNodeData[] = [];
+    for (const card of cardList) {
+      const tempcard = { ...card };
+
+      tempcard[TYPE_TO_ORIGIN[tempcard.type]] = tempcard.content;
+      tempcard.color = tempcard?.color?.split('-')[1];
+
+      delete tempcard.content;
+      cardData.push(tempcard as unknown as CanvasNodeData);
+    }
+
+    if (!cardList && cardList.length === 0) return;
+
+    const data = {
+      nodes: [...cardData],
+      edges: [],
+      center: true,
+    };
+
+    console.log(cardData, data);
+
+    e.clipboardData.setData('obsidian/canvas', JSON.stringify(data));
+    console.log(e.clipboardData.getData('obsidian/canvas'));
+    if (queryIsEmptyOrBlank(query)) globalService.setCopyCardId([]);
+    e.preventDefault();
+  };
 
   async handleResize() {
     console.log('handleResize');

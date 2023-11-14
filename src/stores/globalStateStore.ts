@@ -17,6 +17,7 @@ export interface State extends AppSetting {
   colorScheme: string;
   sidebarEditCardId: string;
   editCardId: string;
+  copyCardIds: string[];
   viewStatus: string;
   changedBySelf: boolean;
 }
@@ -32,6 +33,9 @@ type ActionPayloads = {
   };
   SET_SIDEBAR_EDIT_CARD_ID: {
     sidebarEditCardId: string;
+  };
+  SET_COPY_CARD_IDS: {
+    copyCardIds: string[];
   };
   SET_VIEW_STATUS: {
     viewStatus: string;
@@ -74,6 +78,16 @@ export function reducer(state: State, action: Actions) {
       return {
         ...state,
         editCardId: action.payload.editCardId,
+      };
+    }
+    case 'SET_COPY_CARD_IDS': {
+      if (action.payload.copyCardIds === state.copyCardIds) {
+        return state;
+      }
+
+      return {
+        ...state,
+        copyCardIds: action.payload.copyCardIds,
       };
     }
     case 'SET_SIDEBAR_EDIT_CARD_ID': {
@@ -171,6 +185,7 @@ export const defaultState: State = {
   view: null,
   editor: null,
   editCardId: '',
+  copyCardIds: [],
   sidebarEditCardId: '',
   focused: false,
   viewStatus: 'lg',

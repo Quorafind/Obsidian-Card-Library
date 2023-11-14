@@ -11,6 +11,15 @@ import {
 
 type NodeTypeSpecificProps = CanvasTextData | CanvasLinkData | CanvasFileData;
 
+export const TYPE_TO_ORIGIN = {
+  text: 'text',
+  link: 'link',
+  pdf: 'file',
+  image: 'file',
+  media: 'file',
+  file: 'file',
+};
+
 export function randomId(e: number): string {
   const t = [];
   let n = 0;
@@ -44,6 +53,14 @@ export async function readFileContent(app: App, path: string): Promise<string> {
   } else {
     return path;
   }
+}
+
+export async function updateFile(path: string, { content }) {
+  const app = globalService.getState().app;
+  const file = app.vault.getAbstractFileByPath(path) as TFile;
+  if (!file) return;
+  console.log(file, content);
+  await app.vault.modify(file, content);
 }
 
 export function getColorString(color: string): string {
@@ -118,7 +135,8 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
     content = await app.vault.cachedRead(file);
   }
   if (!content) return;
-  const canvasData = JSON.parse(content);
+  if (!content.startsWith('{')) return;
+  const canvasData = JSON.parse(content) as CanvasData;
   const nodes = canvasData?.nodes as CanvasNodeData[];
   const edges = canvasData?.edges as CanvasEdgeData[];
   if (!nodes) return;
@@ -151,7 +169,7 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
         break;
       }
     }
-    if (!content) continue;
+    // if (!content) continue;
     cards.push({
       id,
       pinned: !!node?.pinned,
@@ -162,6 +180,10 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
       path: file.path,
       linked: checkIfLinked(id, edges) ? 'linked' : 'single',
       type,
+      x: node?.x,
+      y: node?.y,
+      height: node?.height,
+      width: node?.width,
     });
   }
 }
@@ -262,6 +284,35 @@ export async function deleteCardInCanvas(card: Model.Card): Promise<Model.Card> 
   const newContent = JSON.stringify(json, null, 2);
   await app.vault.modify(canvasFile, newContent);
   return card;
+}
+
+export async function getAvailableEdges(
+  path: string,
+  id: string[],
+): Promise<{
+  edges: CanvasEdgeData[];
+  linkedNodes: CanvasNodeData[];
+}> {
+  const app = globalService.getState().app;
+  const file = app.vault.getAbstractFileByPath(path);
+  if (!file || !(file instanceof TFile))
+    return {
+      edges: [],
+      linkedNodes: [],
+    };
+  const content = await app.vault.read(file);
+  const edges = JSON.parse(content)?.edges as CanvasEdgeData[];
+  const nodes = JSON.parse(content)?.nodes as CanvasNodeData[];
+  const linkedNodes = nodes.filter((node) => {
+    if (node.type === 'group') return false;
+    if (id.includes(node.id)) return false;
+    return edges.some((edge) => edge.fromNode === node.id || edge.toNode === node.id);
+  });
+
+  return {
+    edges,
+    linkedNodes,
+  };
 }
 
 export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): Promise<Model.Card> {

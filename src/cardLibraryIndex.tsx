@@ -1,4 +1,4 @@
-import { ButtonComponent, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
+import { ButtonComponent, ItemView, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
 import '@/less/globals.less';
 import { CardLibrarySettingTab, DEFAULT_SETTINGS } from '@/cardLibrarySettings';
 import { cardService, globalService, locationService } from '@/services';
@@ -21,7 +21,7 @@ const isKeyEvent = (evt: any): evt is KeyEvent => {
 const commandsList: ribbonCommandsList[] = [
   {
     id: 'open-card-library-in-left-sidebar',
-    shortName: 'Left Sidebar',
+    shortName: 'Left sidebar',
     name: 'Open card library in left sidebar',
     icon: 'arrow-left',
     location: 'left',
@@ -30,7 +30,7 @@ const commandsList: ribbonCommandsList[] = [
   },
   {
     id: 'open-card-library-in-right-sidebar',
-    shortName: 'Right Sidebar',
+    shortName: 'Right sidebar',
     name: 'Open card library in right sidebar',
     icon: 'arrow-right',
     location: 'right',
@@ -39,7 +39,7 @@ const commandsList: ribbonCommandsList[] = [
   },
   {
     id: 'open-card-library-in-float',
-    shortName: 'Float Window',
+    shortName: 'Float window',
     name: 'Open card library in float window',
     icon: 'layout',
     location: 'float',
@@ -62,6 +62,9 @@ export default class CardLibrary extends Plugin {
   settings: CardLibrarySettings;
   settingTab: CardLibrarySettingTab;
 
+  private idSet = new Set<string>();
+  private actionEls = [];
+
   async onload(): Promise<void> {
     await this.initSettings();
 
@@ -75,6 +78,11 @@ export default class CardLibrary extends Plugin {
     this.registerView(VIEW_TYPE, (leaf: WorkspaceLeaf) => (this.view = new CardLibraryView(leaf)));
 
     this.app.workspace.onLayoutReady(this.onLayoutReady.bind(this));
+  }
+
+  onunload(): void {
+    super.onunload();
+    this.actionEls.forEach((el) => el.detach());
   }
 
   initEditor(): void {
@@ -167,6 +175,43 @@ export default class CardLibrary extends Plugin {
     await this.loadSettings();
     this.settingTab = new CardLibrarySettingTab(this.app, this);
     this.addSettingTab(this.settingTab);
+  }
+
+  patchCanvasHeader(): void {
+    const addLibraryActionToLeaf = (leaf) => {
+      if (!this.idSet.has(leaf.id)) {
+        this.idSet.add(leaf.id);
+
+        const itemView = leaf.view as ItemView;
+        const actionElement = itemView.addAction('library', 'Open card library', async () => {
+          try {
+            const newLeaf = this.app.workspace.getLeaf('split');
+            if (newLeaf) {
+              await newLeaf.setViewState({ type: VIEW_TYPE });
+              this.app.workspace.revealLeaf(newLeaf);
+              locationService.setQueryWithType('path', [leaf.view.file?.path ?? '']);
+            }
+          } catch (error) {
+            console.error('Error adding library action:', error);
+          }
+        });
+
+        this.actionEls.push(actionElement);
+      }
+    };
+
+    const leaves = this.app.workspace.getLeavesOfType('canvas');
+    if (leaves.length > 0) {
+      leaves.forEach(addLibraryActionToLeaf);
+    }
+
+    this.registerEvent(
+      this.app.workspace.on('active-leaf-change', (activeLeaf) => {
+        if (activeLeaf.view.getViewType() === 'canvas') {
+          addLibraryActionToLeaf(activeLeaf);
+        }
+      }),
+    );
   }
 
   patchCanvasMenu(): void {
@@ -267,6 +312,8 @@ export default class CardLibrary extends Plugin {
   }
 
   async onLayoutReady(): Promise<void> {
+    this.patchCanvasHeader();
+
     globalService.setApp(this.app);
     globalService.setSetting(this.settings);
     globalService.setPluginManifest(this.manifest);

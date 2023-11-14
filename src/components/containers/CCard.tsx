@@ -132,20 +132,35 @@ export function CardActionHeader({
         children ? 'pt-2 px-2 border-b dark:border-slate-600' : '',
       )}
     >
-      <div className="flex flex-row justify-center items-center">
+      <div
+        className="flex flex-row justify-center items-center"
+        draggable={true}
+        onDragStart={(event) => {
+          event.dataTransfer.setData('text/plain', card.content);
+        }}
+      >
         {children ?? ''}
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger className="shadow-none">
               <div
-                onClick={async () => {
-                  await navigator.clipboard.writeText(card.content);
+                onClick={async (event) => {
+                  if (event.ctrlKey || event.metaKey) {
+                    globalService.setCopyCardId([card.id]);
+                    // const dataTransfer = new DataTransfer();
+                    // dataTransfer.setData('obsidian/canvas', JSON.stringify(card));
+
+                    window.document.execCommand('copy');
+                  } else {
+                    await navigator.clipboard.writeText(card.content);
+                  }
                 }}
               >
                 {icon}
               </div>
             </TooltipTrigger>
             <TooltipContent>
+              <p> Drag to canvas</p>
               <p>Copy to clipboard</p>
             </TooltipContent>
           </Tooltip>
@@ -271,7 +286,13 @@ export function CCard(props: Model.Card): React.JSX.Element {
                 });
                 cardService.pushCard(card);
               } else {
-                card = await cardService.patchCardViaID(id, { content: content });
+                switch (type) {
+                  case 'text':
+                    card = await cardService.patchCardViaID(id, { content });
+                    break;
+                  case 'file':
+                    card = await cardService.patchFileCard(id, { content });
+                }
                 await cardService.editCard(card);
               }
               globalService.setEditCardId('');

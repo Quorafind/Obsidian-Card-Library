@@ -27,6 +27,15 @@ class GlobalService {
     });
   };
 
+  public setCopyCardId = (copyCardIds: string[]) => {
+    appStore.dispatch({
+      type: 'SET_COPY_CARD_IDS',
+      payload: {
+        copyCardIds,
+      },
+    });
+  };
+
   public setFocused = (focused: boolean) => {
     appStore.dispatch({
       type: 'SET_FOCUSED',

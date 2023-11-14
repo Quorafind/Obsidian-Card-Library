@@ -102,7 +102,10 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
               </>
             ) : (
               <>
-                {groups[1].teams.find((team) => team.value === Array.from(selectedValues)[0])?.label ?? 'All Canvases'}
+                <div className="max-w-[90%] overflow-hidden text-ellipsis whitespace-nowrap">
+                  {groups[1].teams.find((team) => team.value === Array.from(selectedValues)[0])?.label ??
+                    'All Canvases'}
+                </div>
                 <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
               </>
             )}
