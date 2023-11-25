@@ -5,7 +5,7 @@ import useStateRef from '@/hooks/useStateRef';
 import { debounce, Notice } from 'obsidian';
 import '@/less/card-list.less';
 import { cn, isMobileView, queryIsEmptyOrBlank } from '@/lib/utils';
-import { queryService } from '@/services';
+import { globalService, queryService } from '@/services';
 import { FIRST_TAG_REG, NOP_FIRST_TAG_REG, TAG_REG } from '@/lib/consts';
 import Masonry from 'react-masonry-css';
 
@@ -119,7 +119,7 @@ export default function CardList(): React.JSX.Element {
   const {
     locationState: { query },
     cardState: { cards },
-    globalState: { viewStatus },
+    globalState: { viewStatus, settings },
   } = useContext(AppContext);
 
   const [isFetching, setIsFetching] = useState<boolean>(false);
@@ -150,11 +150,11 @@ export default function CardList(): React.JSX.Element {
       query,
     });
 
-    if (query.path && query.path.length === 1) {
-      filtered.unshift(createFakeCard(query.path[0] as string));
-    }
+    if (query.path && query.path.length === 1) filtered.unshift(createFakeCard(query.path[0] as string));
 
-    console.log(filtered);
+    if (!queryIsEmptyOrBlank(query)) {
+      globalService.setCopyCardId(filtered.length > 0 ? filtered.map((card) => card.id) : []);
+    }
 
     setShown(filtered);
   }, [cards, query]);
@@ -182,7 +182,6 @@ export default function CardList(): React.JSX.Element {
     ) {
       setIsComplete(true);
     }
-    console.log(cache);
     setTemp(cache);
   }, [cache]);
 
@@ -251,7 +250,13 @@ export default function CardList(): React.JSX.Element {
       <div className={cn('card-list-container')}>
         <Masonry
           breakpointCols={view === 'sm' ? 1 : view === 'md' ? 2 : view === 'lg' ? 3 : 5}
-          className={cn(isMobileView(viewStatus) ? 'mobile-list-view' : '', `flex w-full max-w-full gap-2`)}
+          className={cn(
+            isMobileView(viewStatus) ? 'mobile-list-view' : '',
+            `flex w-full max-w-full gap-2`,
+            settings.theme.listStyle === 'grid' ? 'grid-card-list' : 'masonry-card-list',
+            settings.theme.actionHeaderInGrid ? 'grid-card-action-header' : '',
+            query.path && query.path.length === 1 ? 'show-new-card-button' : '',
+          )}
           columnClassName="masonry-cardlist-grid_column flex flex-col gap-2"
         >
           {temp.map((card, index) => {

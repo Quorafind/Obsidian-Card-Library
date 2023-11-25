@@ -1,4 +1,4 @@
-import { ButtonComponent, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
+import { ButtonComponent, debounce, ItemView, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
 import '@/less/globals.less';
 import { CardLibrarySettingTab, DEFAULT_SETTINGS } from '@/cardLibrarySettings';
 import { cardService, globalService, locationService } from '@/services';
@@ -21,7 +21,7 @@ const isKeyEvent = (evt: any): evt is KeyEvent => {
 const commandsList: ribbonCommandsList[] = [
   {
     id: 'open-card-library-in-left-sidebar',
-    shortName: 'Left Sidebar',
+    shortName: 'Left sidebar',
     name: 'Open card library in left sidebar',
     icon: 'arrow-left',
     location: 'left',
@@ -30,7 +30,7 @@ const commandsList: ribbonCommandsList[] = [
   },
   {
     id: 'open-card-library-in-right-sidebar',
-    shortName: 'Right Sidebar',
+    shortName: 'Right sidebar',
     name: 'Open card library in right sidebar',
     icon: 'arrow-right',
     location: 'right',
@@ -39,7 +39,7 @@ const commandsList: ribbonCommandsList[] = [
   },
   {
     id: 'open-card-library-in-float',
-    shortName: 'Float Window',
+    shortName: 'Float window',
     name: 'Open card library in float window',
     icon: 'layout',
     location: 'float',
@@ -62,6 +62,11 @@ export default class CardLibrary extends Plugin {
   settings: CardLibrarySettings;
   settingTab: CardLibrarySettingTab;
 
+  location: TargetLocation;
+
+  private idSet = new Set<string>();
+  private actionEls = [];
+
   async onload(): Promise<void> {
     await this.initSettings();
 
@@ -69,12 +74,18 @@ export default class CardLibrary extends Plugin {
     this.initCommands();
     this.initRibbon();
 
+    this.patchDocBody();
     this.patchCanvasMenu();
     this.patchCanvas();
 
     this.registerView(VIEW_TYPE, (leaf: WorkspaceLeaf) => (this.view = new CardLibraryView(leaf)));
 
     this.app.workspace.onLayoutReady(this.onLayoutReady.bind(this));
+  }
+
+  onunload(): void {
+    super.onunload();
+    this.actionEls.forEach((el) => el.detach());
   }
 
   initEditor(): void {
@@ -94,6 +105,8 @@ export default class CardLibrary extends Plugin {
 
   async openCardLibrary(location: TargetLocation = 'center', cb?: () => void) {
     const workspace = this.app.workspace;
+    if (workspace.getLeavesOfType(VIEW_TYPE).length > 0 && this.location === location) return;
+    this.location = location;
     workspace.detachLeavesOfType(VIEW_TYPE);
     let leaf: WorkspaceLeaf;
 
@@ -167,6 +180,66 @@ export default class CardLibrary extends Plugin {
     await this.loadSettings();
     this.settingTab = new CardLibrarySettingTab(this.app, this);
     this.addSettingTab(this.settingTab);
+  }
+
+  patchDocBody(): void {
+    const triggerUpdate = debounce(
+      (toggle: boolean) => {
+        this.app.workspace.trigger('show-view-header', toggle);
+      },
+      500,
+      true,
+    );
+
+    const docUninstaller = around(document.body.constructor.prototype, {
+      toggleClass: (next: any) =>
+        function (...args: any) {
+          const result = next.call(this, ...args);
+          if (args[0] === 'show-view-header') {
+            triggerUpdate(args[1]);
+          }
+          return result;
+        },
+    });
+
+    this.register(docUninstaller);
+  }
+
+  patchCanvasHeader(): void {
+    const addLibraryActionToLeaf = (leaf) => {
+      if (!this.idSet.has(leaf.id)) {
+        this.idSet.add(leaf.id);
+
+        const itemView = leaf.view as ItemView;
+        const actionElement = itemView.addAction('library', 'Open card library', async () => {
+          try {
+            const newLeaf = this.app.workspace.getLeaf('split');
+            if (newLeaf) {
+              await newLeaf.setViewState({ type: VIEW_TYPE });
+              this.app.workspace.revealLeaf(newLeaf);
+              locationService.setQueryWithType('path', [leaf.view.file?.path ?? '']);
+            }
+          } catch (error) {
+            console.error('Error adding library action:', error);
+          }
+        });
+
+        this.actionEls.push(actionElement);
+      }
+    };
+
+    const leaves = this.app.workspace.getLeavesOfType('canvas');
+    if (leaves.length > 0) {
+      leaves.forEach(addLibraryActionToLeaf);
+    }
+
+    this.registerEvent(
+      this.app.workspace.on('active-leaf-change', (activeLeaf) => {
+        if (activeLeaf.view.getViewType() === 'canvas') {
+          addLibraryActionToLeaf(activeLeaf);
+        }
+      }),
+    );
   }
 
   patchCanvasMenu(): void {
@@ -267,6 +340,8 @@ export default class CardLibrary extends Plugin {
   }
 
   async onLayoutReady(): Promise<void> {
+    this.patchCanvasHeader();
+
     globalService.setApp(this.app);
     globalService.setSetting(this.settings);
     globalService.setPluginManifest(this.manifest);
@@ -281,6 +356,7 @@ export default class CardLibrary extends Plugin {
   }
 
   async saveSettings(): Promise<void> {
+    console.log(this.settings.theme.listStyle);
     await this.saveData(this.settings);
     globalService.setSetting(this.settings);
   }

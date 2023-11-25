@@ -10,12 +10,13 @@ import { CardEditor } from '@/components/containers/CardEditor';
 import { Button } from '@/components/ui/button';
 import useHover from '@/hooks/useHover';
 import { focusNodeInCanvas, readFileContent } from '@/lib/obsidianUtils';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipPortal, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import { request } from 'obsidian';
 import { CollapseCardContent } from '@/components/containers/CardContent';
 import appContext from '@/stores/appContext';
 import useMarkdownRenderer from '@/hooks/useMarkdownRenderer';
+import { PathList } from '@/components/containers/PathList';
 
 interface MouseActionProps {
   handleDoubleClick: () => void;
@@ -23,12 +24,12 @@ interface MouseActionProps {
 }
 
 export const COLOR_MAP = {
-  'color-1': 'bg-red-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-red-500/80 dark:text-slate-200',
-  'color-2': 'bg-orange-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-orange-500/80 dark:text-slate-200',
-  'color-3': 'bg-yellow-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-yellow-500/80 dark:text-slate-200',
-  'color-4': 'bg-green-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-green-500/80 dark:text-slate-200',
-  'color-5': 'bg-cyan-100/30 dark:bg-gray-700/80 dark:border-2 dark:border-cyan-500/80 dark:text-slate-200',
-  'color-6': 'bg-violet-100/30  dark:bg-gray-700/80 dark:border-2 dark:border-violet-500/80 dark:text-slate-200',
+  'color-1': 'bg-red-100/50 dark:bg-gray-700/80 dark:border-2 dark:border-red-500/80 dark:text-slate-200',
+  'color-2': 'bg-orange-100/50 dark:bg-gray-700/80 dark:border-2 dark:border-orange-500/80 dark:text-slate-200',
+  'color-3': 'bg-yellow-100/50 dark:bg-gray-700/80 dark:border-2 dark:border-yellow-500/80 dark:text-slate-200',
+  'color-4': 'bg-green-100/50 dark:bg-gray-700/80 dark:border-2 dark:border-green-500/80 dark:text-slate-200',
+  'color-5': 'bg-cyan-100/50 dark:bg-gray-700/80 dark:border-2 dark:border-cyan-500/80 dark:text-slate-200',
+  'color-6': 'bg-violet-100/50  dark:bg-gray-700/80 dark:border-2 dark:border-violet-500/80 dark:text-slate-200',
 };
 
 function switchColor(color: string) {
@@ -45,12 +46,24 @@ const CARD_COMPONENT_MAP = {
 };
 
 export const ICON_MAP = {
-  text: <ReaderIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
-  pdf: <FileType2 className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
-  file: <FileTextIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
-  image: <ImageIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
-  link: <Link1Icon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
-  media: <FilmIcon className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-accent-foreground" />,
+  text: (
+    <ReaderIcon className="h-4 w-4 text-gray-300 dark:text-slate-500 dark:hover:text-slate-300 cursor-pointer hover:text-accent-foreground" />
+  ),
+  pdf: (
+    <FileType2 className="h-4 w-4 text-gray-300 dark:text-slate-500 dark:hover:text-slate-300 cursor-pointer hover:text-accent-foreground" />
+  ),
+  file: (
+    <FileTextIcon className="h-4 w-4 text-gray-300 dark:text-slate-500 dark:hover:text-slate-300 cursor-pointer hover:text-accent-foreground" />
+  ),
+  image: (
+    <ImageIcon className="h-4 w-4 text-gray-300 dark:text-slate-500 dark:hover:text-slate-300 cursor-pointer hover:text-accent-foreground" />
+  ),
+  link: (
+    <Link1Icon className="h-4 w-4 text-gray-300 dark:text-slate-500 dark:hover:text-slate-300 cursor-pointer hover:text-accent-foreground" />
+  ),
+  media: (
+    <FilmIcon className="h-4 w-4 text-gray-300 dark:text-slate-500 dark:hover:text-slate-300 cursor-pointer hover:text-accent-foreground" />
+  ),
 };
 
 const customFetcher = async (url: string) => {
@@ -86,8 +99,6 @@ const customFetcher = async (url: string) => {
     hostname: url.replace('https://', '').replace('http://', '').split(/[/?#]/)[0],
   };
 
-  console.log(metaInfo);
-
   return metaInfo;
 };
 
@@ -97,11 +108,11 @@ function getPin(card: Model.Card, handlePin?: (pinned: boolean) => void) {
       <Button
         onClick={() => handlePin(!card.pinned)}
         variant="ghost"
-        className={cn('hover:bg-transparent shadow-none flex h-8 w-8 mr-[-0.5rem] p-0', 'pin-button')}
+        className={cn('shadow-none flex h-8 w-8 mr-[-0.5rem] p-0 hover:bg-opacity-50', 'pin-button')}
         size="icon"
       >
         {hovering && card.pinned ? (
-          <PinOffIcon className="h-4 w-4 text-muted-foreground" />
+          <PinOffIcon className="h-4 w-4 text-gray-200 hover:text-muted-foreground dark:text-slate-500 dark:hover:text-slate-300" />
         ) : (
           <PinIcon className={cn('h-4 w-4', card.pinned || hovering ? 'text-muted-foreground' : 'text-transparent')} />
         )}
@@ -128,35 +139,65 @@ export function CardActionHeader({
   return (
     <CardHeader
       className={cn(
-        'w-full max-w-full flex flex-row items-center justify-between space-y-0 pb-2 pt-4',
+        'card-header w-full max-w-full flex flex-row items-center justify-between space-y-0 pb-1 pt-2',
         children ? 'pt-2 px-2 border-b dark:border-slate-600' : '',
       )}
     >
-      <div className="flex flex-row justify-center items-center">
-        {children ?? ''}
-        <TooltipProvider>
+      <TooltipProvider>
+        <div
+          className="flex flex-row justify-center items-center"
+          draggable={true}
+          onDragStart={(event) => {
+            event.dataTransfer.setData('text/plain', card.content);
+          }}
+        >
+          {children ?? ''}
+
           <Tooltip>
             <TooltipTrigger className="shadow-none">
-              <div
-                onClick={async () => {
-                  await navigator.clipboard.writeText(card.content);
+              <Button
+                size={'icon'}
+                variant={'blank'}
+                className={'h-8 w-8 ml-[-0.5rem]'}
+                onClick={async (event) => {
+                  if (event.ctrlKey || event.metaKey) {
+                    globalService.setCopyCardId([card.id]);
+                    // const dataTransfer = new DataTransfer();
+                    // dataTransfer.setData('obsidian/canvas', JSON.stringify(card));
+
+                    window.document.execCommand('copy');
+                  } else {
+                    await navigator.clipboard.writeText(card.content);
+                  }
                 }}
               >
                 {icon}
-              </div>
+              </Button>
             </TooltipTrigger>
-            <TooltipContent>
-              <p>Copy to clipboard</p>
-            </TooltipContent>
+            <TooltipPortal>
+              <TooltipContent>
+                <p>Click to copy Content to clipboard</p>
+                <p>⌘ + click to copy card</p>
+              </TooltipContent>
+            </TooltipPortal>
           </Tooltip>
-        </TooltipProvider>
-      </div>
-
-      <CardTitle className="max-w-[10rem] overflow-hidden text-sm font-medium text-ellipsis whitespace-nowrap">
-        {title}
-      </CardTitle>
-      <div className="flex flex-row items-center gap-2">
+        </div>
+        <Tooltip>
+          <TooltipTrigger className="shadow-none" asChild>
+            <CardTitle className="max-w-[10rem] overflow-hidden text-sm font-medium text-ellipsis whitespace-nowrap text-gray-400 dark:text-slate-500 dark:hover:text-slate-300">
+              {title}
+            </CardTitle>
+          </TooltipTrigger>
+          <TooltipPortal>
+            <TooltipContent>
+              <p>{title}</p>
+            </TooltipContent>
+          </TooltipPortal>
+        </Tooltip>
+      </TooltipProvider>
+      <div className="flex flex-row items-center gap-1">
         {getPin(card, funcProps.handlePin)}
+        {<PathList card={card} />}
         {funcProps && !children && <CardActionButton {...funcProps} {...card} />}
       </div>
     </CardHeader>
@@ -228,6 +269,7 @@ export function CCard(props: Model.Card): React.JSX.Element {
 
   const cardType = (actionProps?: ActionProps, mouseActionProps?: MouseActionProps) => {
     const SpecificCard = CARD_COMPONENT_MAP[type];
+
     return <SpecificCard card={props} actionProps={actionProps} mouseActionProps={mouseActionProps} />;
   };
 
@@ -271,7 +313,13 @@ export function CCard(props: Model.Card): React.JSX.Element {
                 });
                 cardService.pushCard(card);
               } else {
-                card = await cardService.patchCardViaID(id, { content: content });
+                switch (type) {
+                  case 'text':
+                    card = await cardService.patchCardViaID(id, { content });
+                    break;
+                  case 'file':
+                    card = await cardService.patchFileCard(id, { content });
+                }
                 await cardService.editCard(card);
               }
               globalService.setEditCardId('');
@@ -298,7 +346,7 @@ export function TextCard({
   actionProps: ActionProps;
   mouseActionProps: MouseActionProps;
 }): React.JSX.Element {
-  const { content, path } = card;
+  const { content, path, type } = card;
   return (
     <>
       <CardActionHeader icon={ICON_MAP[card.type]} card={card} funcProps={actionProps}></CardActionHeader>
@@ -319,7 +367,7 @@ export function FileCard({
   const {
     globalState: { app },
   } = useContext(AppContext);
-  const { content: path } = card;
+  const { content: path, type } = card;
   const [content, setContent] = useState('');
 
   useEffect(() => {
@@ -353,7 +401,7 @@ export function FileCard({
 }
 
 export function ImageCard({ card, actionProps }: { card: Model.Card; actionProps: ActionProps }): React.JSX.Element {
-  const { content, path } = card;
+  const { content, path, type } = card;
   const {
     globalState: { app, view },
   } = useContext(appContext);
@@ -401,7 +449,7 @@ export function PdfCard({ card, actionProps }: { card: Model.Card; actionProps: 
 }
 
 export function MediaCard({ card, actionProps }: { card: Model.Card; actionProps: ActionProps }): React.JSX.Element {
-  const { content, path } = card;
+  const { content, path, type } = card;
   const {
     globalState: { app, view },
   } = useContext(appContext);

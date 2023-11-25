@@ -102,7 +102,10 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
               </>
             ) : (
               <>
-                {groups[1].teams.find((team) => team.value === Array.from(selectedValues)[0])?.label ?? 'All Canvases'}
+                <div className="max-w-[90%] overflow-hidden text-ellipsis whitespace-nowrap">
+                  {groups[1].teams.find((team) => team.value === Array.from(selectedValues)[0])?.label ??
+                    'All Canvases'}
+                </div>
                 <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
               </>
             )}
@@ -166,7 +169,7 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
           </Command>
         </PopoverContent>
       </Popover>
-      <DialogContent container={view.containerEl} className={'dark:border-slate-500'}>
+      <DialogContent className={'dark:border-slate-500'}>
         <DialogHeader>
           <DialogTitle>Create canvas</DialogTitle>
           <DialogDescription>Add a new canvas to specific folder or default folder.</DialogDescription>

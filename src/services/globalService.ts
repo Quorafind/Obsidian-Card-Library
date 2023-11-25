@@ -27,11 +27,38 @@ class GlobalService {
     });
   };
 
+  public setCopyCardId = (copyCardIds: string[]) => {
+    appStore.dispatch({
+      type: 'SET_COPY_CARD_IDS',
+      payload: {
+        copyCardIds,
+      },
+    });
+  };
+
   public setFocused = (focused: boolean) => {
     appStore.dispatch({
       type: 'SET_FOCUSED',
       payload: {
         focused,
+      },
+    });
+  };
+
+  public setViewHeaderVisibility = (visible: boolean) => {
+    appStore.dispatch({
+      type: 'SET_VIEW_HEADER_VISIBILITY',
+      payload: {
+        visible,
+      },
+    });
+  };
+
+  public setHasCanvasViewOpened = (hasCanvasViewOpened: boolean) => {
+    appStore.dispatch({
+      type: 'SET_HAS_CANVAS_VIEW_OPENED',
+      payload: {
+        hasCanvasViewOpened,
       },
     });
   };
@@ -45,7 +72,7 @@ class GlobalService {
     });
   };
 
-  public setChangedByMemos = (changedBySelf: boolean) => {
+  public setChangedByCardLibrary = (changedBySelf: boolean) => {
     appStore.dispatch({
       type: 'SET_CHANGED_BY_SELF',
       payload: {

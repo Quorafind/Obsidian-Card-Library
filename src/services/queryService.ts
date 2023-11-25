@@ -1,6 +1,7 @@
 import appStore from '@/stores/appStore';
 import { createQuery, deleteQuery, getQuery, updateQuery } from '@/lib/queryUtils';
 import { NOP_FIRST_TAG_REG, TAG_REG } from '@/lib/consts';
+import { Model } from '@/types/models';
 
 class QueryService {
   public getState() {

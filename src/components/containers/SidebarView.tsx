@@ -10,32 +10,59 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import useMarkdownRenderer from '@/hooks/useMarkdownRenderer';
 import { CardActionHeader, CCard, ICON_MAP } from '@/components/containers/CCard';
 import Masonry from 'react-masonry-css';
+import { readFileContent } from '@/lib/obsidianUtils';
 
-function SidebarEditor({ id, content }: { id: string; content: string }) {
+function SidebarEditor({ id, content, type }: { id: string; content: string; type: string }) {
+  const {
+    globalState: { app },
+  } = useContext(appContext);
+
   const editorRef = useRef<HTMLDivElement>(null);
   const sidebarEditCardIdRef = useRef(id);
+  const [temp, setTemp] = useState(content);
+
   useEffect(() => {
     sidebarEditCardIdRef.current = id;
   }, [id]);
 
   const onContentChange = debounce(
     async (content: string) => {
-      await cardService.patchCardViaID(sidebarEditCardIdRef.current, { content });
+      switch (type) {
+        case 'text':
+          await cardService.patchCardViaID(sidebarEditCardIdRef.current, { content });
+          break;
+        case 'file':
+          await cardService.patchFileCard(sidebarEditCardIdRef.current, { content });
+      }
     },
-    1000,
+    1500,
     true,
   );
 
   const handleContentChange = useCallback(onContentChange, [id]);
 
-  const { instance, set } = useEditorInstance(editorRef.current, handleContentChange);
+  const { instance, set, focus } = useEditorInstance(editorRef.current, handleContentChange);
 
   useEffect(() => {
-    if (!id) return;
+    const loadContent = async () => {
+      if (type === 'file' && app) {
+        const tempContent = await readFileContent(app, content);
+        setTemp(tempContent);
+      } else {
+        setTemp(content);
+      }
+    };
 
-    set(content);
-    instance?.focus();
-  }, [content, instance]);
+    loadContent();
+  }, [content, type, app]);
+
+  useEffect(() => {
+    if (!id || !instance) return;
+
+    console.log(temp);
+    set(temp);
+    focus();
+  }, [temp, instance]);
 
   return <div className="h-full min-h-[250px] p-1 rounded-sm mod-cm6" ref={editorRef}></div>;
 }
@@ -138,6 +165,7 @@ function SidebarView() {
   useEffect(() => {
     if (!sidebarEditCardId) return;
     const card = cardService.getCardById(sidebarEditCardId);
+    console.log(card);
     setCard(card);
   }, [sidebarEditCardId]);
 
@@ -150,6 +178,8 @@ function SidebarView() {
     return {
       id: card?.id,
       content: card?.content,
+      type: card?.type,
+      path: card?.path,
     };
   }, [card]);
 
@@ -167,10 +197,10 @@ function SidebarView() {
   const contentRenderer = () => {
     switch (card?.type) {
       case 'text':
+      case 'file':
         return <SidebarEditor {...editorConfig} />;
       case 'link':
         return <iframe className="h-full w-full" src={card?.content}></iframe>;
-      case 'file':
       case 'image':
       case 'media':
       case 'pdf':

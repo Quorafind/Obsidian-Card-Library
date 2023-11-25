@@ -117,8 +117,10 @@ declare module 'obsidian' {
 
   interface Workspace {
     on(name: 'card-library-settings-updated', callback: (settings: CardLibrarySettings) => any, ctx?: any): EventRef;
-
-    on(name: 'fetch-memos', callback: () => any, ctx?: any): EventRef;
+    on(name: 'show-view-header', callback: (show: boolean) => any, ctx?: any): EventRef;
+    on(name: 'focus-on-search-bar', callback: (current: 'inline' | 'header') => any, ctx?: any): EventRef;
+    on(name: 'create-card-dialog', callback: () => any, ctx?: any): EventRef;
+    on(name: 'create-card-dialog-from-clipboard', callback: () => any, ctx?: any): EventRef;
   }
 
   interface CanvasView extends View {

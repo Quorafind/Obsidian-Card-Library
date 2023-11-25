@@ -491,6 +491,9 @@ div[data-type="card-library-view"] .sr-only, div[data-radix-popper-content-wrapp
 div[data-type="card-library-view"] .pointer-events-auto, div[data-radix-popper-content-wrapper] .pointer-events-auto, span[data-radix-focus-guard] .pointer-events-auto, div[role="dialog"] .pointer-events-auto, div[data-state="open"].dialog-background .pointer-events-auto, body > div[role="dialog"].pointer-events-auto, body > div[data-state="open"].dialog-background.pointer-events-auto {
   pointer-events: auto;
 }
+div[data-type="card-library-view"] .visible, div[data-radix-popper-content-wrapper] .visible, span[data-radix-focus-guard] .visible, div[role="dialog"] .visible, div[data-state="open"].dialog-background .visible, body > div[role="dialog"].visible, body > div[data-state="open"].dialog-background.visible {
+  visibility: visible;
+}
 div[data-type="card-library-view"] .fixed, div[data-radix-popper-content-wrapper] .fixed, span[data-radix-focus-guard] .fixed, div[role="dialog"] .fixed, div[data-state="open"].dialog-background .fixed, body > div[role="dialog"].fixed, body > div[data-state="open"].dialog-background.fixed {
   position: fixed;
 }
@@ -512,8 +515,8 @@ div[data-type="card-library-view"] .left-0, div[data-radix-popper-content-wrappe
 div[data-type="card-library-view"] .left-2, div[data-radix-popper-content-wrapper] .left-2, span[data-radix-focus-guard] .left-2, div[role="dialog"] .left-2, div[data-state="open"].dialog-background .left-2, body > div[role="dialog"].left-2, body > div[data-state="open"].dialog-background.left-2 {
   left: 0.5rem;
 }
-div[data-type="card-library-view"] .left-\[50\%\], div[data-radix-popper-content-wrapper] .left-\[50\%\], span[data-radix-focus-guard] .left-\[50\%\], div[role="dialog"] .left-\[50\%\], div[data-state="open"].dialog-background .left-\[50\%\], body > div[role="dialog"].left-\[50\%\], body > div[data-state="open"].dialog-background.left-\[50\%\] {
-  left: 50%;
+div[data-type="card-library-view"] .left-\[35\%\], div[data-radix-popper-content-wrapper] .left-\[35\%\], span[data-radix-focus-guard] .left-\[35\%\], div[role="dialog"] .left-\[35\%\], div[data-state="open"].dialog-background .left-\[35\%\], body > div[role="dialog"].left-\[35\%\], body > div[data-state="open"].dialog-background.left-\[35\%\] {
+  left: 35%;
 }
 div[data-type="card-library-view"] .right-0, div[data-radix-popper-content-wrapper] .right-0, span[data-radix-focus-guard] .right-0, div[role="dialog"] .right-0, div[data-state="open"].dialog-background .right-0, body > div[role="dialog"].right-0, body > div[data-state="open"].dialog-background.right-0 {
   right: 0px;
@@ -527,8 +530,8 @@ div[data-type="card-library-view"] .right-4, div[data-radix-popper-content-wrapp
 div[data-type="card-library-view"] .top-4, div[data-radix-popper-content-wrapper] .top-4, span[data-radix-focus-guard] .top-4, div[role="dialog"] .top-4, div[data-state="open"].dialog-background .top-4, body > div[role="dialog"].top-4, body > div[data-state="open"].dialog-background.top-4 {
   top: 1rem;
 }
-div[data-type="card-library-view"] .top-\[50\%\], div[data-radix-popper-content-wrapper] .top-\[50\%\], span[data-radix-focus-guard] .top-\[50\%\], div[role="dialog"] .top-\[50\%\], div[data-state="open"].dialog-background .top-\[50\%\], body > div[role="dialog"].top-\[50\%\], body > div[data-state="open"].dialog-background.top-\[50\%\] {
-  top: 50%;
+div[data-type="card-library-view"] .top-\[35\%\], div[data-radix-popper-content-wrapper] .top-\[35\%\], span[data-radix-focus-guard] .top-\[35\%\], div[role="dialog"] .top-\[35\%\], div[data-state="open"].dialog-background .top-\[35\%\], body > div[role="dialog"].top-\[35\%\], body > div[data-state="open"].dialog-background.top-\[35\%\] {
+  top: 35%;
 }
 div[data-type="card-library-view"] .z-30, div[data-radix-popper-content-wrapper] .z-30, span[data-radix-focus-guard] .z-30, div[role="dialog"] .z-30, div[data-state="open"].dialog-background .z-30, body > div[role="dialog"].z-30, body > div[data-state="open"].dialog-background.z-30 {
   z-index: 30;
@@ -555,6 +558,9 @@ div[data-type="card-library-view"] .my-1, div[data-radix-popper-content-wrapper]
 div[data-type="card-library-view"] .ml-2, div[data-radix-popper-content-wrapper] .ml-2, span[data-radix-focus-guard] .ml-2, div[role="dialog"] .ml-2, div[data-state="open"].dialog-background .ml-2, body > div[role="dialog"].ml-2, body > div[data-state="open"].dialog-background.ml-2 {
   margin-left: 0.5rem;
 }
+div[data-type="card-library-view"] .ml-\[-0\.5rem\], div[data-radix-popper-content-wrapper] .ml-\[-0\.5rem\], span[data-radix-focus-guard] .ml-\[-0\.5rem\], div[role="dialog"] .ml-\[-0\.5rem\], div[data-state="open"].dialog-background .ml-\[-0\.5rem\], body > div[role="dialog"].ml-\[-0\.5rem\], body > div[data-state="open"].dialog-background.ml-\[-0\.5rem\] {
+  margin-left: -0.5rem;
+}
 div[data-type="card-library-view"] .ml-auto, div[data-radix-popper-content-wrapper] .ml-auto, span[data-radix-focus-guard] .ml-auto, div[role="dialog"] .ml-auto, div[data-state="open"].dialog-background .ml-auto, body > div[role="dialog"].ml-auto, body > div[data-state="open"].dialog-background.ml-auto {
   margin-left: auto;
 }
@@ -564,14 +570,14 @@ div[data-type="card-library-view"] .mr-2, div[data-radix-popper-content-wrapper]
 div[data-type="card-library-view"] .mr-\[-0\.5rem\], div[data-radix-popper-content-wrapper] .mr-\[-0\.5rem\], span[data-radix-focus-guard] .mr-\[-0\.5rem\], div[role="dialog"] .mr-\[-0\.5rem\], div[data-state="open"].dialog-background .mr-\[-0\.5rem\], body > div[role="dialog"].mr-\[-0\.5rem\], body > div[data-state="open"].dialog-background.mr-\[-0\.5rem\] {
   margin-right: -0.5rem;
 }
+div[data-type="card-library-view"] .inline, div[data-radix-popper-content-wrapper] .inline, span[data-radix-focus-guard] .inline, div[role="dialog"] .inline, div[data-state="open"].dialog-background .inline, body > div[role="dialog"].inline, body > div[data-state="open"].dialog-background.inline {
+  display: inline;
+}
 div[data-type="card-library-view"] .flex, div[data-radix-popper-content-wrapper] .flex, span[data-radix-focus-guard] .flex, div[role="dialog"] .flex, div[data-state="open"].dialog-background .flex, body > div[role="dialog"].flex, body > div[data-state="open"].dialog-background.flex {
   display: flex;
 }
 div[data-type="card-library-view"] .inline-flex, div[data-radix-popper-content-wrapper] .inline-flex, span[data-radix-focus-guard] .inline-flex, div[role="dialog"] .inline-flex, div[data-state="open"].dialog-background .inline-flex, body > div[role="dialog"].inline-flex, body > div[data-state="open"].dialog-background.inline-flex {
   display: inline-flex;
-}
-div[data-type="card-library-view"] .table, div[data-radix-popper-content-wrapper] .table, span[data-radix-focus-guard] .table, div[role="dialog"] .table, div[data-state="open"].dialog-background .table, body > div[role="dialog"].table, body > div[data-state="open"].dialog-background.table {
-  display: table;
 }
 div[data-type="card-library-view"] .grid, div[data-radix-popper-content-wrapper] .grid, span[data-radix-focus-guard] .grid, div[role="dialog"] .grid, div[data-state="open"].dialog-background .grid, body > div[role="dialog"].grid, body > div[data-state="open"].dialog-background.grid {
   display: grid;
@@ -611,6 +617,9 @@ div[data-type="card-library-view"] .h-8, div[data-radix-popper-content-wrapper] 
 }
 div[data-type="card-library-view"] .h-9, div[data-radix-popper-content-wrapper] .h-9, span[data-radix-focus-guard] .h-9, div[role="dialog"] .h-9, div[data-state="open"].dialog-background .h-9, body > div[role="dialog"].h-9, body > div[data-state="open"].dialog-background.h-9 {
   height: 2.25rem;
+}
+div[data-type="card-library-view"] .h-\[150px\], div[data-radix-popper-content-wrapper] .h-\[150px\], span[data-radix-focus-guard] .h-\[150px\], div[role="dialog"] .h-\[150px\], div[data-state="open"].dialog-background .h-\[150px\], body > div[role="dialog"].h-\[150px\], body > div[data-state="open"].dialog-background.h-\[150px\] {
+  height: 150px;
 }
 div[data-type="card-library-view"] .h-\[1px\], div[data-radix-popper-content-wrapper] .h-\[1px\], span[data-radix-focus-guard] .h-\[1px\], div[role="dialog"] .h-\[1px\], div[data-state="open"].dialog-background .h-\[1px\], body > div[role="dialog"].h-\[1px\], body > div[data-state="open"].dialog-background.h-\[1px\] {
   height: 1px;
@@ -667,6 +676,9 @@ div[data-type="card-library-view"] .w-5, div[data-radix-popper-content-wrapper] 
 div[data-type="card-library-view"] .w-52, div[data-radix-popper-content-wrapper] .w-52, span[data-radix-focus-guard] .w-52, div[role="dialog"] .w-52, div[data-state="open"].dialog-background .w-52, body > div[role="dialog"].w-52, body > div[data-state="open"].dialog-background.w-52 {
   width: 13rem;
 }
+div[data-type="card-library-view"] .w-64, div[data-radix-popper-content-wrapper] .w-64, span[data-radix-focus-guard] .w-64, div[role="dialog"] .w-64, div[data-state="open"].dialog-background .w-64, body > div[role="dialog"].w-64, body > div[data-state="open"].dialog-background.w-64 {
+  width: 16rem;
+}
 div[data-type="card-library-view"] .w-72, div[data-radix-popper-content-wrapper] .w-72, span[data-radix-focus-guard] .w-72, div[role="dialog"] .w-72, div[data-state="open"].dialog-background .w-72, body > div[role="dialog"].w-72, body > div[data-state="open"].dialog-background.w-72 {
   width: 18rem;
 }
@@ -700,6 +712,9 @@ div[data-type="card-library-view"] .w-\[200px\], div[data-radix-popper-content-w
 div[data-type="card-library-view"] .w-\[240px\], div[data-radix-popper-content-wrapper] .w-\[240px\], span[data-radix-focus-guard] .w-\[240px\], div[role="dialog"] .w-\[240px\], div[data-state="open"].dialog-background .w-\[240px\], body > div[role="dialog"].w-\[240px\], body > div[data-state="open"].dialog-background.w-\[240px\] {
   width: 240px;
 }
+div[data-type="card-library-view"] .w-\[300px\], div[data-radix-popper-content-wrapper] .w-\[300px\], span[data-radix-focus-guard] .w-\[300px\], div[role="dialog"] .w-\[300px\], div[data-state="open"].dialog-background .w-\[300px\], body > div[role="dialog"].w-\[300px\], body > div[data-state="open"].dialog-background.w-\[300px\] {
+  width: 300px;
+}
 div[data-type="card-library-view"] .w-full, div[data-radix-popper-content-wrapper] .w-full, span[data-radix-focus-guard] .w-full, div[role="dialog"] .w-full, div[data-state="open"].dialog-background .w-full, body > div[role="dialog"].w-full, body > div[data-state="open"].dialog-background.w-full {
   width: 100%;
 }
@@ -709,6 +724,9 @@ div[data-type="card-library-view"] .min-w-\[140px\], div[data-radix-popper-conte
 div[data-type="card-library-view"] .min-w-\[4rem\], div[data-radix-popper-content-wrapper] .min-w-\[4rem\], span[data-radix-focus-guard] .min-w-\[4rem\], div[role="dialog"] .min-w-\[4rem\], div[data-state="open"].dialog-background .min-w-\[4rem\], body > div[role="dialog"].min-w-\[4rem\], body > div[data-state="open"].dialog-background.min-w-\[4rem\] {
   min-width: 4rem;
 }
+div[data-type="card-library-view"] .min-w-\[80px\], div[data-radix-popper-content-wrapper] .min-w-\[80px\], span[data-radix-focus-guard] .min-w-\[80px\], div[role="dialog"] .min-w-\[80px\], div[data-state="open"].dialog-background .min-w-\[80px\], body > div[role="dialog"].min-w-\[80px\], body > div[data-state="open"].dialog-background.min-w-\[80px\] {
+  min-width: 80px;
+}
 div[data-type="card-library-view"] .min-w-\[8rem\], div[data-radix-popper-content-wrapper] .min-w-\[8rem\], span[data-radix-focus-guard] .min-w-\[8rem\], div[role="dialog"] .min-w-\[8rem\], div[data-state="open"].dialog-background .min-w-\[8rem\], body > div[role="dialog"].min-w-\[8rem\], body > div[data-state="open"].dialog-background.min-w-\[8rem\] {
   min-width: 8rem;
 }
@@ -717,9 +735,6 @@ div[data-type="card-library-view"] .min-w-\[var\(--radix-select-trigger-width\)\
 }
 div[data-type="card-library-view"] .max-w-\[10rem\], div[data-radix-popper-content-wrapper] .max-w-\[10rem\], span[data-radix-focus-guard] .max-w-\[10rem\], div[role="dialog"] .max-w-\[10rem\], div[data-state="open"].dialog-background .max-w-\[10rem\], body > div[role="dialog"].max-w-\[10rem\], body > div[data-state="open"].dialog-background.max-w-\[10rem\] {
   max-width: 10rem;
-}
-div[data-type="card-library-view"] .max-w-\[20\%\], div[data-radix-popper-content-wrapper] .max-w-\[20\%\], span[data-radix-focus-guard] .max-w-\[20\%\], div[role="dialog"] .max-w-\[20\%\], div[data-state="open"].dialog-background .max-w-\[20\%\], body > div[role="dialog"].max-w-\[20\%\], body > div[data-state="open"].dialog-background.max-w-\[20\%\] {
-  max-width: 20%;
 }
 div[data-type="card-library-view"] .max-w-\[90\%\], div[data-radix-popper-content-wrapper] .max-w-\[90\%\], span[data-radix-focus-guard] .max-w-\[90\%\], div[role="dialog"] .max-w-\[90\%\], div[data-state="open"].dialog-background .max-w-\[90\%\], body > div[role="dialog"].max-w-\[90\%\], body > div[data-state="open"].dialog-background.max-w-\[90\%\] {
   max-width: 90%;
@@ -788,6 +803,9 @@ div[data-type="card-library-view"] .justify-center, div[data-radix-popper-conten
 }
 div[data-type="card-library-view"] .justify-between, div[data-radix-popper-content-wrapper] .justify-between, span[data-radix-focus-guard] .justify-between, div[role="dialog"] .justify-between, div[data-state="open"].dialog-background .justify-between, body > div[role="dialog"].justify-between, body > div[data-state="open"].dialog-background.justify-between {
   justify-content: space-between;
+}
+div[data-type="card-library-view"] .gap-1, div[data-radix-popper-content-wrapper] .gap-1, span[data-radix-focus-guard] .gap-1, div[role="dialog"] .gap-1, div[data-state="open"].dialog-background .gap-1, body > div[role="dialog"].gap-1, body > div[data-state="open"].dialog-background.gap-1 {
+  gap: 0.25rem;
 }
 div[data-type="card-library-view"] .gap-2, div[data-radix-popper-content-wrapper] .gap-2, span[data-radix-focus-guard] .gap-2, div[role="dialog"] .gap-2, div[data-state="open"].dialog-background .gap-2, body > div[role="dialog"].gap-2, body > div[data-state="open"].dialog-background.gap-2 {
   gap: 0.5rem;
@@ -866,11 +884,17 @@ div[data-type="card-library-view"] .rounded-xl, div[data-radix-popper-content-wr
 div[data-type="card-library-view"] .border, div[data-radix-popper-content-wrapper] .border, span[data-radix-focus-guard] .border, div[role="dialog"] .border, div[data-state="open"].dialog-background .border, body > div[role="dialog"].border, body > div[data-state="open"].dialog-background.border {
   border-width: 1px;
 }
+div[data-type="card-library-view"] .border-0, div[data-radix-popper-content-wrapper] .border-0, span[data-radix-focus-guard] .border-0, div[role="dialog"] .border-0, div[data-state="open"].dialog-background .border-0, body > div[role="dialog"].border-0, body > div[data-state="open"].dialog-background.border-0 {
+  border-width: 0px;
+}
 div[data-type="card-library-view"] .border-b, div[data-radix-popper-content-wrapper] .border-b, span[data-radix-focus-guard] .border-b, div[role="dialog"] .border-b, div[data-state="open"].dialog-background .border-b, body > div[role="dialog"].border-b, body > div[data-state="open"].dialog-background.border-b {
   border-bottom-width: 1px;
 }
 div[data-type="card-library-view"] .border-dashed, div[data-radix-popper-content-wrapper] .border-dashed, span[data-radix-focus-guard] .border-dashed, div[role="dialog"] .border-dashed, div[data-state="open"].dialog-background .border-dashed, body > div[role="dialog"].border-dashed, body > div[data-state="open"].dialog-background.border-dashed {
   border-style: dashed;
+}
+div[data-type="card-library-view"] .border-none, div[data-radix-popper-content-wrapper] .border-none, span[data-radix-focus-guard] .border-none, div[role="dialog"] .border-none, div[data-state="open"].dialog-background .border-none, body > div[role="dialog"].border-none, body > div[data-state="open"].dialog-background.border-none {
+  border-style: none;
 }
 div[data-type="card-library-view"] .border-input, div[data-radix-popper-content-wrapper] .border-input, span[data-radix-focus-guard] .border-input, div[role="dialog"] .border-input, div[data-state="open"].dialog-background .border-input, body > div[role="dialog"].border-input, body > div[data-state="open"].dialog-background.border-input {
   border-color: hsl(var(--input));
@@ -896,8 +920,8 @@ div[data-type="card-library-view"] .bg-border, div[data-radix-popper-content-wra
 div[data-type="card-library-view"] .bg-card, div[data-radix-popper-content-wrapper] .bg-card, span[data-radix-focus-guard] .bg-card, div[role="dialog"] .bg-card, div[data-state="open"].dialog-background .bg-card, body > div[role="dialog"].bg-card, body > div[data-state="open"].dialog-background.bg-card {
   background-color: hsl(var(--card));
 }
-div[data-type="card-library-view"] .bg-cyan-100\/30, div[data-radix-popper-content-wrapper] .bg-cyan-100\/30, span[data-radix-focus-guard] .bg-cyan-100\/30, div[role="dialog"] .bg-cyan-100\/30, div[data-state="open"].dialog-background .bg-cyan-100\/30, body > div[role="dialog"].bg-cyan-100\/30, body > div[data-state="open"].dialog-background.bg-cyan-100\/30 {
-  background-color: rgb(207 250 254 / 0.3);
+div[data-type="card-library-view"] .bg-cyan-100\/50, div[data-radix-popper-content-wrapper] .bg-cyan-100\/50, span[data-radix-focus-guard] .bg-cyan-100\/50, div[role="dialog"] .bg-cyan-100\/50, div[data-state="open"].dialog-background .bg-cyan-100\/50, body > div[role="dialog"].bg-cyan-100\/50, body > div[data-state="open"].dialog-background.bg-cyan-100\/50 {
+  background-color: rgb(207 250 254 / 0.5);
 }
 div[data-type="card-library-view"] .bg-destructive, div[data-radix-popper-content-wrapper] .bg-destructive, span[data-radix-focus-guard] .bg-destructive, div[role="dialog"] .bg-destructive, div[data-state="open"].dialog-background .bg-destructive, body > div[role="dialog"].bg-destructive, body > div[data-state="open"].dialog-background.bg-destructive {
   background-color: hsl(var(--destructive));
@@ -905,14 +929,14 @@ div[data-type="card-library-view"] .bg-destructive, div[data-radix-popper-conten
 div[data-type="card-library-view"] .bg-gray-100\/30, div[data-radix-popper-content-wrapper] .bg-gray-100\/30, span[data-radix-focus-guard] .bg-gray-100\/30, div[role="dialog"] .bg-gray-100\/30, div[data-state="open"].dialog-background .bg-gray-100\/30, body > div[role="dialog"].bg-gray-100\/30, body > div[data-state="open"].dialog-background.bg-gray-100\/30 {
   background-color: rgb(243 244 246 / 0.3);
 }
-div[data-type="card-library-view"] .bg-green-100\/30, div[data-radix-popper-content-wrapper] .bg-green-100\/30, span[data-radix-focus-guard] .bg-green-100\/30, div[role="dialog"] .bg-green-100\/30, div[data-state="open"].dialog-background .bg-green-100\/30, body > div[role="dialog"].bg-green-100\/30, body > div[data-state="open"].dialog-background.bg-green-100\/30 {
-  background-color: rgb(220 252 231 / 0.3);
+div[data-type="card-library-view"] .bg-green-100\/50, div[data-radix-popper-content-wrapper] .bg-green-100\/50, span[data-radix-focus-guard] .bg-green-100\/50, div[role="dialog"] .bg-green-100\/50, div[data-state="open"].dialog-background .bg-green-100\/50, body > div[role="dialog"].bg-green-100\/50, body > div[data-state="open"].dialog-background.bg-green-100\/50 {
+  background-color: rgb(220 252 231 / 0.5);
 }
 div[data-type="card-library-view"] .bg-muted, div[data-radix-popper-content-wrapper] .bg-muted, span[data-radix-focus-guard] .bg-muted, div[role="dialog"] .bg-muted, div[data-state="open"].dialog-background .bg-muted, body > div[role="dialog"].bg-muted, body > div[data-state="open"].dialog-background.bg-muted {
   background-color: hsl(var(--muted));
 }
-div[data-type="card-library-view"] .bg-orange-100\/30, div[data-radix-popper-content-wrapper] .bg-orange-100\/30, span[data-radix-focus-guard] .bg-orange-100\/30, div[role="dialog"] .bg-orange-100\/30, div[data-state="open"].dialog-background .bg-orange-100\/30, body > div[role="dialog"].bg-orange-100\/30, body > div[data-state="open"].dialog-background.bg-orange-100\/30 {
-  background-color: rgb(255 237 213 / 0.3);
+div[data-type="card-library-view"] .bg-orange-100\/50, div[data-radix-popper-content-wrapper] .bg-orange-100\/50, span[data-radix-focus-guard] .bg-orange-100\/50, div[role="dialog"] .bg-orange-100\/50, div[data-state="open"].dialog-background .bg-orange-100\/50, body > div[role="dialog"].bg-orange-100\/50, body > div[data-state="open"].dialog-background.bg-orange-100\/50 {
+  background-color: rgb(255 237 213 / 0.5);
 }
 div[data-type="card-library-view"] .bg-popover, div[data-radix-popper-content-wrapper] .bg-popover, span[data-radix-focus-guard] .bg-popover, div[role="dialog"] .bg-popover, div[data-state="open"].dialog-background .bg-popover, body > div[role="dialog"].bg-popover, body > div[data-state="open"].dialog-background.bg-popover {
   background-color: hsl(var(--popover));
@@ -920,8 +944,8 @@ div[data-type="card-library-view"] .bg-popover, div[data-radix-popper-content-wr
 div[data-type="card-library-view"] .bg-primary, div[data-radix-popper-content-wrapper] .bg-primary, span[data-radix-focus-guard] .bg-primary, div[role="dialog"] .bg-primary, div[data-state="open"].dialog-background .bg-primary, body > div[role="dialog"].bg-primary, body > div[data-state="open"].dialog-background.bg-primary {
   background-color: hsl(var(--primary));
 }
-div[data-type="card-library-view"] .bg-red-100\/30, div[data-radix-popper-content-wrapper] .bg-red-100\/30, span[data-radix-focus-guard] .bg-red-100\/30, div[role="dialog"] .bg-red-100\/30, div[data-state="open"].dialog-background .bg-red-100\/30, body > div[role="dialog"].bg-red-100\/30, body > div[data-state="open"].dialog-background.bg-red-100\/30 {
-  background-color: rgb(254 226 226 / 0.3);
+div[data-type="card-library-view"] .bg-red-100\/50, div[data-radix-popper-content-wrapper] .bg-red-100\/50, span[data-radix-focus-guard] .bg-red-100\/50, div[role="dialog"] .bg-red-100\/50, div[data-state="open"].dialog-background .bg-red-100\/50, body > div[role="dialog"].bg-red-100\/50, body > div[data-state="open"].dialog-background.bg-red-100\/50 {
+  background-color: rgb(254 226 226 / 0.5);
 }
 div[data-type="card-library-view"] .bg-secondary, div[data-radix-popper-content-wrapper] .bg-secondary, span[data-radix-focus-guard] .bg-secondary, div[role="dialog"] .bg-secondary, div[data-state="open"].dialog-background .bg-secondary, body > div[role="dialog"].bg-secondary, body > div[data-state="open"].dialog-background.bg-secondary {
   background-color: hsl(var(--secondary));
@@ -932,11 +956,11 @@ div[data-type="card-library-view"] .bg-secondary\/20, div[data-radix-popper-cont
 div[data-type="card-library-view"] .bg-transparent, div[data-radix-popper-content-wrapper] .bg-transparent, span[data-radix-focus-guard] .bg-transparent, div[role="dialog"] .bg-transparent, div[data-state="open"].dialog-background .bg-transparent, body > div[role="dialog"].bg-transparent, body > div[data-state="open"].dialog-background.bg-transparent {
   background-color: transparent;
 }
-div[data-type="card-library-view"] .bg-violet-100\/30, div[data-radix-popper-content-wrapper] .bg-violet-100\/30, span[data-radix-focus-guard] .bg-violet-100\/30, div[role="dialog"] .bg-violet-100\/30, div[data-state="open"].dialog-background .bg-violet-100\/30, body > div[role="dialog"].bg-violet-100\/30, body > div[data-state="open"].dialog-background.bg-violet-100\/30 {
-  background-color: rgb(237 233 254 / 0.3);
+div[data-type="card-library-view"] .bg-violet-100\/50, div[data-radix-popper-content-wrapper] .bg-violet-100\/50, span[data-radix-focus-guard] .bg-violet-100\/50, div[role="dialog"] .bg-violet-100\/50, div[data-state="open"].dialog-background .bg-violet-100\/50, body > div[role="dialog"].bg-violet-100\/50, body > div[data-state="open"].dialog-background.bg-violet-100\/50 {
+  background-color: rgb(237 233 254 / 0.5);
 }
-div[data-type="card-library-view"] .bg-yellow-100\/30, div[data-radix-popper-content-wrapper] .bg-yellow-100\/30, span[data-radix-focus-guard] .bg-yellow-100\/30, div[role="dialog"] .bg-yellow-100\/30, div[data-state="open"].dialog-background .bg-yellow-100\/30, body > div[role="dialog"].bg-yellow-100\/30, body > div[data-state="open"].dialog-background.bg-yellow-100\/30 {
-  background-color: rgb(254 249 195 / 0.3);
+div[data-type="card-library-view"] .bg-yellow-100\/50, div[data-radix-popper-content-wrapper] .bg-yellow-100\/50, span[data-radix-focus-guard] .bg-yellow-100\/50, div[role="dialog"] .bg-yellow-100\/50, div[data-state="open"].dialog-background .bg-yellow-100\/50, body > div[role="dialog"].bg-yellow-100\/50, body > div[data-state="open"].dialog-background.bg-yellow-100\/50 {
+  background-color: rgb(254 249 195 / 0.5);
 }
 div[data-type="card-library-view"] .fill-current, div[data-radix-popper-content-wrapper] .fill-current, span[data-radix-focus-guard] .fill-current, div[role="dialog"] .fill-current, div[data-state="open"].dialog-background .fill-current, body > div[role="dialog"].fill-current, body > div[data-state="open"].dialog-background.fill-current {
   fill: currentColor;
@@ -955,6 +979,9 @@ div[data-type="card-library-view"] .p-2, div[data-radix-popper-content-wrapper] 
 }
 div[data-type="card-library-view"] .p-4, div[data-radix-popper-content-wrapper] .p-4, span[data-radix-focus-guard] .p-4, div[role="dialog"] .p-4, div[data-state="open"].dialog-background .p-4, body > div[role="dialog"].p-4, body > div[data-state="open"].dialog-background.p-4 {
   padding: 1rem;
+}
+div[data-type="card-library-view"] .p-5, div[data-radix-popper-content-wrapper] .p-5, span[data-radix-focus-guard] .p-5, div[role="dialog"] .p-5, div[data-state="open"].dialog-background .p-5, body > div[role="dialog"].p-5, body > div[data-state="open"].dialog-background.p-5 {
+  padding: 1.25rem;
 }
 div[data-type="card-library-view"] .p-6, div[data-radix-popper-content-wrapper] .p-6, span[data-radix-focus-guard] .p-6, div[role="dialog"] .p-6, div[data-state="open"].dialog-background .p-6, body > div[role="dialog"].p-6, body > div[data-state="open"].dialog-background.p-6 {
   padding: 1.5rem;
@@ -1021,14 +1048,17 @@ div[data-type="card-library-view"] .pb-1, div[data-radix-popper-content-wrapper]
 div[data-type="card-library-view"] .pb-16, div[data-radix-popper-content-wrapper] .pb-16, span[data-radix-focus-guard] .pb-16, div[role="dialog"] .pb-16, div[data-state="open"].dialog-background .pb-16, body > div[role="dialog"].pb-16, body > div[data-state="open"].dialog-background.pb-16 {
   padding-bottom: 4rem;
 }
-div[data-type="card-library-view"] .pb-2, div[data-radix-popper-content-wrapper] .pb-2, span[data-radix-focus-guard] .pb-2, div[role="dialog"] .pb-2, div[data-state="open"].dialog-background .pb-2, body > div[role="dialog"].pb-2, body > div[data-state="open"].dialog-background.pb-2 {
-  padding-bottom: 0.5rem;
-}
 div[data-type="card-library-view"] .pb-4, div[data-radix-popper-content-wrapper] .pb-4, span[data-radix-focus-guard] .pb-4, div[role="dialog"] .pb-4, div[data-state="open"].dialog-background .pb-4, body > div[role="dialog"].pb-4, body > div[data-state="open"].dialog-background.pb-4 {
   padding-bottom: 1rem;
 }
+div[data-type="card-library-view"] .pl-1, div[data-radix-popper-content-wrapper] .pl-1, span[data-radix-focus-guard] .pl-1, div[role="dialog"] .pl-1, div[data-state="open"].dialog-background .pl-1, body > div[role="dialog"].pl-1, body > div[data-state="open"].dialog-background.pl-1 {
+  padding-left: 0.25rem;
+}
 div[data-type="card-library-view"] .pl-2, div[data-radix-popper-content-wrapper] .pl-2, span[data-radix-focus-guard] .pl-2, div[role="dialog"] .pl-2, div[data-state="open"].dialog-background .pl-2, body > div[role="dialog"].pl-2, body > div[data-state="open"].dialog-background.pl-2 {
   padding-left: 0.5rem;
+}
+div[data-type="card-library-view"] .pl-3, div[data-radix-popper-content-wrapper] .pl-3, span[data-radix-focus-guard] .pl-3, div[role="dialog"] .pl-3, div[data-state="open"].dialog-background .pl-3, body > div[role="dialog"].pl-3, body > div[data-state="open"].dialog-background.pl-3 {
+  padding-left: 0.75rem;
 }
 div[data-type="card-library-view"] .pl-8, div[data-radix-popper-content-wrapper] .pl-8, span[data-radix-focus-guard] .pl-8, div[role="dialog"] .pl-8, div[data-state="open"].dialog-background .pl-8, body > div[role="dialog"].pl-8, body > div[data-state="open"].dialog-background.pl-8 {
   padding-left: 2rem;
@@ -1047,9 +1077,6 @@ div[data-type="card-library-view"] .pt-1, div[data-radix-popper-content-wrapper]
 }
 div[data-type="card-library-view"] .pt-2, div[data-radix-popper-content-wrapper] .pt-2, span[data-radix-focus-guard] .pt-2, div[role="dialog"] .pt-2, div[data-state="open"].dialog-background .pt-2, body > div[role="dialog"].pt-2, body > div[data-state="open"].dialog-background.pt-2 {
   padding-top: 0.5rem;
-}
-div[data-type="card-library-view"] .pt-4, div[data-radix-popper-content-wrapper] .pt-4, span[data-radix-focus-guard] .pt-4, div[role="dialog"] .pt-4, div[data-state="open"].dialog-background .pt-4, body > div[role="dialog"].pt-4, body > div[data-state="open"].dialog-background.pt-4 {
-  padding-top: 1rem;
 }
 div[data-type="card-library-view"] .pt-6, div[data-radix-popper-content-wrapper] .pt-6, span[data-radix-focus-guard] .pt-6, div[role="dialog"] .pt-6, div[data-state="open"].dialog-background .pt-6, body > div[role="dialog"].pt-6, body > div[data-state="open"].dialog-background.pt-6 {
   padding-top: 1.5rem;
@@ -1090,6 +1117,9 @@ div[data-type="card-library-view"] .tracking-tight, div[data-radix-popper-conten
 div[data-type="card-library-view"] .tracking-widest, div[data-radix-popper-content-wrapper] .tracking-widest, span[data-radix-focus-guard] .tracking-widest, div[role="dialog"] .tracking-widest, div[data-state="open"].dialog-background .tracking-widest, body > div[role="dialog"].tracking-widest, body > div[data-state="open"].dialog-background.tracking-widest {
   letter-spacing: 0.1em;
 }
+div[data-type="card-library-view"] .text-accent-foreground, div[data-radix-popper-content-wrapper] .text-accent-foreground, span[data-radix-focus-guard] .text-accent-foreground, div[role="dialog"] .text-accent-foreground, div[data-state="open"].dialog-background .text-accent-foreground, body > div[role="dialog"].text-accent-foreground, body > div[data-state="open"].dialog-background.text-accent-foreground {
+  color: hsl(var(--accent-foreground));
+}
 div[data-type="card-library-view"] .text-card-foreground, div[data-radix-popper-content-wrapper] .text-card-foreground, span[data-radix-focus-guard] .text-card-foreground, div[role="dialog"] .text-card-foreground, div[data-state="open"].dialog-background .text-card-foreground, body > div[role="dialog"].text-card-foreground, body > div[data-state="open"].dialog-background.text-card-foreground {
   color: hsl(var(--card-foreground));
 }
@@ -1098,6 +1128,18 @@ div[data-type="card-library-view"] .text-destructive-foreground, div[data-radix-
 }
 div[data-type="card-library-view"] .text-foreground, div[data-radix-popper-content-wrapper] .text-foreground, span[data-radix-focus-guard] .text-foreground, div[role="dialog"] .text-foreground, div[data-state="open"].dialog-background .text-foreground, body > div[role="dialog"].text-foreground, body > div[data-state="open"].dialog-background.text-foreground {
   color: hsl(var(--foreground));
+}
+div[data-type="card-library-view"] .text-gray-200, div[data-radix-popper-content-wrapper] .text-gray-200, span[data-radix-focus-guard] .text-gray-200, div[role="dialog"] .text-gray-200, div[data-state="open"].dialog-background .text-gray-200, body > div[role="dialog"].text-gray-200, body > div[data-state="open"].dialog-background.text-gray-200 {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+div[data-type="card-library-view"] .text-gray-300, div[data-radix-popper-content-wrapper] .text-gray-300, span[data-radix-focus-guard] .text-gray-300, div[role="dialog"] .text-gray-300, div[data-state="open"].dialog-background .text-gray-300, body > div[role="dialog"].text-gray-300, body > div[data-state="open"].dialog-background.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+div[data-type="card-library-view"] .text-gray-400, div[data-radix-popper-content-wrapper] .text-gray-400, span[data-radix-focus-guard] .text-gray-400, div[role="dialog"] .text-gray-400, div[data-state="open"].dialog-background .text-gray-400, body > div[role="dialog"].text-gray-400, body > div[data-state="open"].dialog-background.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 div[data-type="card-library-view"] .text-muted-foreground, div[data-radix-popper-content-wrapper] .text-muted-foreground, span[data-radix-focus-guard] .text-muted-foreground, div[role="dialog"] .text-muted-foreground, div[data-state="open"].dialog-background .text-muted-foreground, body > div[role="dialog"].text-muted-foreground, body > div[data-state="open"].dialog-background.text-muted-foreground {
   color: hsl(var(--muted-foreground));
@@ -1261,6 +1303,12 @@ div[data-type="card-library-view"] .cl-card .collapsed-block::before, div[data-r
   border-bottom-right-radius: 0.75rem;
   opacity: 0.9;
 }
+div[data-type="card-library-view"] .view-header-title-container, div[data-radix-popper-content-wrapper] .view-header-title-container, span[data-radix-focus-guard] .view-header-title-container, div[role="dialog"] .view-header-title-container, div[data-state="open"].dialog-background .view-header-title-container, body > div[role="dialog"].view-header-title-container, body > div[data-state="open"].dialog-background.view-header-title-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
 div[data-type="card-library-view"] .file\:border-0::file-selector-button, div[data-radix-popper-content-wrapper] .file\:border-0::file-selector-button, span[data-radix-focus-guard] .file\:border-0::file-selector-button, div[role="dialog"] .file\:border-0::file-selector-button, div[data-state="open"].dialog-background .file\:border-0::file-selector-button, body > div[role="dialog"].file\:border-0::file-selector-button, body > div[data-state="open"].dialog-background.file\:border-0::file-selector-button {
   border-width: 0px;
 }
@@ -1307,6 +1355,9 @@ div[data-type="card-library-view"] .hover\:bg-secondary\/90:hover, div[data-radi
 div[data-type="card-library-view"] .hover\:bg-transparent:hover, div[data-radix-popper-content-wrapper] .hover\:bg-transparent:hover, span[data-radix-focus-guard] .hover\:bg-transparent:hover, div[role="dialog"] .hover\:bg-transparent:hover, div[data-state="open"].dialog-background .hover\:bg-transparent:hover, body > div[role="dialog"].hover\:bg-transparent:hover, body > div[data-state="open"].dialog-background.hover\:bg-transparent:hover {
   background-color: transparent;
 }
+div[data-type="card-library-view"] .hover\:bg-opacity-50:hover, div[data-radix-popper-content-wrapper] .hover\:bg-opacity-50:hover, span[data-radix-focus-guard] .hover\:bg-opacity-50:hover, div[role="dialog"] .hover\:bg-opacity-50:hover, div[data-state="open"].dialog-background .hover\:bg-opacity-50:hover, body > div[role="dialog"].hover\:bg-opacity-50:hover, body > div[data-state="open"].dialog-background.hover\:bg-opacity-50:hover {
+  --tw-bg-opacity: 0.5;
+}
 div[data-type="card-library-view"] .hover\:text-accent-foreground:hover, div[data-radix-popper-content-wrapper] .hover\:text-accent-foreground:hover, span[data-radix-focus-guard] .hover\:text-accent-foreground:hover, div[role="dialog"] .hover\:text-accent-foreground:hover, div[data-state="open"].dialog-background .hover\:text-accent-foreground:hover, body > div[role="dialog"].hover\:text-accent-foreground:hover, body > div[data-state="open"].dialog-background.hover\:text-accent-foreground:hover {
   color: hsl(var(--accent-foreground));
 }
@@ -1322,6 +1373,11 @@ div[data-type="card-library-view"] .hover\:underline:hover, div[data-radix-poppe
 }
 div[data-type="card-library-view"] .hover\:opacity-100:hover, div[data-radix-popper-content-wrapper] .hover\:opacity-100:hover, span[data-radix-focus-guard] .hover\:opacity-100:hover, div[role="dialog"] .hover\:opacity-100:hover, div[data-state="open"].dialog-background .hover\:opacity-100:hover, body > div[role="dialog"].hover\:opacity-100:hover, body > div[data-state="open"].dialog-background.hover\:opacity-100:hover {
   opacity: 1;
+}
+div[data-type="card-library-view"] .hover\:shadow:hover, div[data-radix-popper-content-wrapper] .hover\:shadow:hover, span[data-radix-focus-guard] .hover\:shadow:hover, div[role="dialog"] .hover\:shadow:hover, div[data-state="open"].dialog-background .hover\:shadow:hover, body > div[role="dialog"].hover\:shadow:hover, body > div[data-state="open"].dialog-background.hover\:shadow:hover {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 div[data-type="card-library-view"] .focus\:bg-accent:focus, div[data-radix-popper-content-wrapper] .focus\:bg-accent:focus, span[data-radix-focus-guard] .focus\:bg-accent:focus, div[role="dialog"] .focus\:bg-accent:focus, div[data-state="open"].dialog-background .focus\:bg-accent:focus, body > div[role="dialog"].focus\:bg-accent:focus, body > div[data-state="open"].dialog-background.focus\:bg-accent:focus {
   background-color: hsl(var(--accent));
@@ -1541,8 +1597,23 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
   --tw-text-opacity: 1;
   color: rgb(248 250 252 / var(--tw-text-opacity));
 }
+.theme-dark div[data-type="card-library-view"] :is( .dark\:text-slate-500), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:text-slate-500), .theme-dark span[data-radix-focus-guard] :is( .dark\:text-slate-500), .theme-dark div[role="dialog"] :is( .dark\:text-slate-500), .theme-dark div[data-state="open"].dialog-background :is( .dark\:text-slate-500), body.theme-dark > div[role="dialog"] :is( .dark\:text-slate-500), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:text-slate-500) {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
+}
 .theme-dark div[data-type="card-library-view"] :is( .dark\:text-slate-500\/80), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:text-slate-500\/80), .theme-dark span[data-radix-focus-guard] :is( .dark\:text-slate-500\/80), .theme-dark div[role="dialog"] :is( .dark\:text-slate-500\/80), .theme-dark div[data-state="open"].dialog-background :is( .dark\:text-slate-500\/80), body.theme-dark > div[role="dialog"] :is( .dark\:text-slate-500\/80), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:text-slate-500\/80) {
   color: rgb(100 116 139 / 0.8);
+}
+.theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:bg-slate-600:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:bg-slate-600:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:bg-slate-600:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+}
+.theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:text-accent-foreground:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:text-accent-foreground:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:text-accent-foreground:hover) {
+  color: hsl(var(--accent-foreground));
+}
+.theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:text-slate-300:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:text-slate-300:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:text-slate-300:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:text-slate-300:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-300:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:text-slate-300:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-300:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(203 213 225 / var(--tw-text-opacity));
 }
 .theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:text-slate-50:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:text-slate-50:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:text-slate-50:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:text-slate-50:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-50:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:text-slate-50:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-50:hover) {
   --tw-text-opacity: 1;
@@ -1557,6 +1628,10 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
   border-color: rgb(30 41 59 / var(--tw-border-opacity));
 }
 @media (min-width: 640px) {
+
+  div[data-type="card-library-view"] .sm\:max-w-md, div[data-radix-popper-content-wrapper] .sm\:max-w-md, span[data-radix-focus-guard] .sm\:max-w-md, div[role="dialog"] .sm\:max-w-md, div[data-state="open"].dialog-background .sm\:max-w-md, body > div[role="dialog"].sm\:max-w-md, body > div[data-state="open"].dialog-background.sm\:max-w-md {
+    max-width: 28rem;
+  }
 
   div[data-type="card-library-view"] .sm\:flex-row, div[data-radix-popper-content-wrapper] .sm\:flex-row, span[data-radix-focus-guard] .sm\:flex-row, div[role="dialog"] .sm\:flex-row, div[data-state="open"].dialog-background .sm\:flex-row, body > div[role="dialog"].sm\:flex-row, body > div[data-state="open"].dialog-background.sm\:flex-row {
     flex-direction: row;
@@ -1585,6 +1660,10 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
   div[data-type="card-library-view"] .md\:w-full, div[data-radix-popper-content-wrapper] .md\:w-full, span[data-radix-focus-guard] .md\:w-full, div[role="dialog"] .md\:w-full, div[data-state="open"].dialog-background .md\:w-full, body > div[role="dialog"].md\:w-full, body > div[data-state="open"].dialog-background.md\:w-full {
     width: 100%;
   }
+
+  div[data-type="card-library-view"] .md\:max-w-\[520px\], div[data-radix-popper-content-wrapper] .md\:max-w-\[520px\], span[data-radix-focus-guard] .md\:max-w-\[520px\], div[role="dialog"] .md\:max-w-\[520px\], div[data-state="open"].dialog-background .md\:max-w-\[520px\], body > div[role="dialog"].md\:max-w-\[520px\], body > div[data-state="open"].dialog-background.md\:max-w-\[520px\] {
+    max-width: 520px;
+  }
 }
 @media (min-width: 1024px) {
 
@@ -1600,8 +1679,8 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
     width: 240px;
   }
 
-  div[data-type="card-library-view"] .lg\:max-w-\[520px\], div[data-radix-popper-content-wrapper] .lg\:max-w-\[520px\], span[data-radix-focus-guard] .lg\:max-w-\[520px\], div[role="dialog"] .lg\:max-w-\[520px\], div[data-state="open"].dialog-background .lg\:max-w-\[520px\], body > div[role="dialog"].lg\:max-w-\[520px\], body > div[data-state="open"].dialog-background.lg\:max-w-\[520px\] {
-    max-width: 520px;
+  div[data-type="card-library-view"] .lg\:max-w-full, div[data-radix-popper-content-wrapper] .lg\:max-w-full, span[data-radix-focus-guard] .lg\:max-w-full, div[role="dialog"] .lg\:max-w-full, div[data-state="open"].dialog-background .lg\:max-w-full, body > div[role="dialog"].lg\:max-w-full, body > div[data-state="open"].dialog-background.lg\:max-w-full {
+    max-width: 100%;
   }
 
   div[data-type="card-library-view"] .lg\:px-3, div[data-radix-popper-content-wrapper] .lg\:px-3, span[data-radix-focus-guard] .lg\:px-3, div[role="dialog"] .lg\:px-3, div[data-state="open"].dialog-background .lg\:px-3, body > div[role="dialog"].lg\:px-3, body > div[data-state="open"].dialog-background.lg\:px-3 {
@@ -2241,6 +2320,9 @@ div[data-type="card-library-view"] .sr-only, div[data-radix-popper-content-wrapp
 div[data-type="card-library-view"] .pointer-events-auto, div[data-radix-popper-content-wrapper] .pointer-events-auto, span[data-radix-focus-guard] .pointer-events-auto, div[role="dialog"] .pointer-events-auto, div[data-state="open"].dialog-background .pointer-events-auto, body > div[role="dialog"].pointer-events-auto, body > div[data-state="open"].dialog-background.pointer-events-auto {
   pointer-events: auto;
 }
+div[data-type="card-library-view"] .visible, div[data-radix-popper-content-wrapper] .visible, span[data-radix-focus-guard] .visible, div[role="dialog"] .visible, div[data-state="open"].dialog-background .visible, body > div[role="dialog"].visible, body > div[data-state="open"].dialog-background.visible {
+  visibility: visible;
+}
 div[data-type="card-library-view"] .fixed, div[data-radix-popper-content-wrapper] .fixed, span[data-radix-focus-guard] .fixed, div[role="dialog"] .fixed, div[data-state="open"].dialog-background .fixed, body > div[role="dialog"].fixed, body > div[data-state="open"].dialog-background.fixed {
   position: fixed;
 }
@@ -2262,8 +2344,8 @@ div[data-type="card-library-view"] .left-0, div[data-radix-popper-content-wrappe
 div[data-type="card-library-view"] .left-2, div[data-radix-popper-content-wrapper] .left-2, span[data-radix-focus-guard] .left-2, div[role="dialog"] .left-2, div[data-state="open"].dialog-background .left-2, body > div[role="dialog"].left-2, body > div[data-state="open"].dialog-background.left-2 {
   left: 0.5rem;
 }
-div[data-type="card-library-view"] .left-\[50\%\], div[data-radix-popper-content-wrapper] .left-\[50\%\], span[data-radix-focus-guard] .left-\[50\%\], div[role="dialog"] .left-\[50\%\], div[data-state="open"].dialog-background .left-\[50\%\], body > div[role="dialog"].left-\[50\%\], body > div[data-state="open"].dialog-background.left-\[50\%\] {
-  left: 50%;
+div[data-type="card-library-view"] .left-\[35\%\], div[data-radix-popper-content-wrapper] .left-\[35\%\], span[data-radix-focus-guard] .left-\[35\%\], div[role="dialog"] .left-\[35\%\], div[data-state="open"].dialog-background .left-\[35\%\], body > div[role="dialog"].left-\[35\%\], body > div[data-state="open"].dialog-background.left-\[35\%\] {
+  left: 35%;
 }
 div[data-type="card-library-view"] .right-0, div[data-radix-popper-content-wrapper] .right-0, span[data-radix-focus-guard] .right-0, div[role="dialog"] .right-0, div[data-state="open"].dialog-background .right-0, body > div[role="dialog"].right-0, body > div[data-state="open"].dialog-background.right-0 {
   right: 0px;
@@ -2277,8 +2359,8 @@ div[data-type="card-library-view"] .right-4, div[data-radix-popper-content-wrapp
 div[data-type="card-library-view"] .top-4, div[data-radix-popper-content-wrapper] .top-4, span[data-radix-focus-guard] .top-4, div[role="dialog"] .top-4, div[data-state="open"].dialog-background .top-4, body > div[role="dialog"].top-4, body > div[data-state="open"].dialog-background.top-4 {
   top: 1rem;
 }
-div[data-type="card-library-view"] .top-\[50\%\], div[data-radix-popper-content-wrapper] .top-\[50\%\], span[data-radix-focus-guard] .top-\[50\%\], div[role="dialog"] .top-\[50\%\], div[data-state="open"].dialog-background .top-\[50\%\], body > div[role="dialog"].top-\[50\%\], body > div[data-state="open"].dialog-background.top-\[50\%\] {
-  top: 50%;
+div[data-type="card-library-view"] .top-\[35\%\], div[data-radix-popper-content-wrapper] .top-\[35\%\], span[data-radix-focus-guard] .top-\[35\%\], div[role="dialog"] .top-\[35\%\], div[data-state="open"].dialog-background .top-\[35\%\], body > div[role="dialog"].top-\[35\%\], body > div[data-state="open"].dialog-background.top-\[35\%\] {
+  top: 35%;
 }
 div[data-type="card-library-view"] .z-30, div[data-radix-popper-content-wrapper] .z-30, span[data-radix-focus-guard] .z-30, div[role="dialog"] .z-30, div[data-state="open"].dialog-background .z-30, body > div[role="dialog"].z-30, body > div[data-state="open"].dialog-background.z-30 {
   z-index: 30;
@@ -2305,6 +2387,9 @@ div[data-type="card-library-view"] .my-1, div[data-radix-popper-content-wrapper]
 div[data-type="card-library-view"] .ml-2, div[data-radix-popper-content-wrapper] .ml-2, span[data-radix-focus-guard] .ml-2, div[role="dialog"] .ml-2, div[data-state="open"].dialog-background .ml-2, body > div[role="dialog"].ml-2, body > div[data-state="open"].dialog-background.ml-2 {
   margin-left: 0.5rem;
 }
+div[data-type="card-library-view"] .ml-\[-0\.5rem\], div[data-radix-popper-content-wrapper] .ml-\[-0\.5rem\], span[data-radix-focus-guard] .ml-\[-0\.5rem\], div[role="dialog"] .ml-\[-0\.5rem\], div[data-state="open"].dialog-background .ml-\[-0\.5rem\], body > div[role="dialog"].ml-\[-0\.5rem\], body > div[data-state="open"].dialog-background.ml-\[-0\.5rem\] {
+  margin-left: -0.5rem;
+}
 div[data-type="card-library-view"] .ml-auto, div[data-radix-popper-content-wrapper] .ml-auto, span[data-radix-focus-guard] .ml-auto, div[role="dialog"] .ml-auto, div[data-state="open"].dialog-background .ml-auto, body > div[role="dialog"].ml-auto, body > div[data-state="open"].dialog-background.ml-auto {
   margin-left: auto;
 }
@@ -2314,14 +2399,14 @@ div[data-type="card-library-view"] .mr-2, div[data-radix-popper-content-wrapper]
 div[data-type="card-library-view"] .mr-\[-0\.5rem\], div[data-radix-popper-content-wrapper] .mr-\[-0\.5rem\], span[data-radix-focus-guard] .mr-\[-0\.5rem\], div[role="dialog"] .mr-\[-0\.5rem\], div[data-state="open"].dialog-background .mr-\[-0\.5rem\], body > div[role="dialog"].mr-\[-0\.5rem\], body > div[data-state="open"].dialog-background.mr-\[-0\.5rem\] {
   margin-right: -0.5rem;
 }
+div[data-type="card-library-view"] .inline, div[data-radix-popper-content-wrapper] .inline, span[data-radix-focus-guard] .inline, div[role="dialog"] .inline, div[data-state="open"].dialog-background .inline, body > div[role="dialog"].inline, body > div[data-state="open"].dialog-background.inline {
+  display: inline;
+}
 div[data-type="card-library-view"] .flex, div[data-radix-popper-content-wrapper] .flex, span[data-radix-focus-guard] .flex, div[role="dialog"] .flex, div[data-state="open"].dialog-background .flex, body > div[role="dialog"].flex, body > div[data-state="open"].dialog-background.flex {
   display: flex;
 }
 div[data-type="card-library-view"] .inline-flex, div[data-radix-popper-content-wrapper] .inline-flex, span[data-radix-focus-guard] .inline-flex, div[role="dialog"] .inline-flex, div[data-state="open"].dialog-background .inline-flex, body > div[role="dialog"].inline-flex, body > div[data-state="open"].dialog-background.inline-flex {
   display: inline-flex;
-}
-div[data-type="card-library-view"] .table, div[data-radix-popper-content-wrapper] .table, span[data-radix-focus-guard] .table, div[role="dialog"] .table, div[data-state="open"].dialog-background .table, body > div[role="dialog"].table, body > div[data-state="open"].dialog-background.table {
-  display: table;
 }
 div[data-type="card-library-view"] .grid, div[data-radix-popper-content-wrapper] .grid, span[data-radix-focus-guard] .grid, div[role="dialog"] .grid, div[data-state="open"].dialog-background .grid, body > div[role="dialog"].grid, body > div[data-state="open"].dialog-background.grid {
   display: grid;
@@ -2361,6 +2446,9 @@ div[data-type="card-library-view"] .h-8, div[data-radix-popper-content-wrapper] 
 }
 div[data-type="card-library-view"] .h-9, div[data-radix-popper-content-wrapper] .h-9, span[data-radix-focus-guard] .h-9, div[role="dialog"] .h-9, div[data-state="open"].dialog-background .h-9, body > div[role="dialog"].h-9, body > div[data-state="open"].dialog-background.h-9 {
   height: 2.25rem;
+}
+div[data-type="card-library-view"] .h-\[150px\], div[data-radix-popper-content-wrapper] .h-\[150px\], span[data-radix-focus-guard] .h-\[150px\], div[role="dialog"] .h-\[150px\], div[data-state="open"].dialog-background .h-\[150px\], body > div[role="dialog"].h-\[150px\], body > div[data-state="open"].dialog-background.h-\[150px\] {
+  height: 150px;
 }
 div[data-type="card-library-view"] .h-\[1px\], div[data-radix-popper-content-wrapper] .h-\[1px\], span[data-radix-focus-guard] .h-\[1px\], div[role="dialog"] .h-\[1px\], div[data-state="open"].dialog-background .h-\[1px\], body > div[role="dialog"].h-\[1px\], body > div[data-state="open"].dialog-background.h-\[1px\] {
   height: 1px;
@@ -2417,6 +2505,9 @@ div[data-type="card-library-view"] .w-5, div[data-radix-popper-content-wrapper] 
 div[data-type="card-library-view"] .w-52, div[data-radix-popper-content-wrapper] .w-52, span[data-radix-focus-guard] .w-52, div[role="dialog"] .w-52, div[data-state="open"].dialog-background .w-52, body > div[role="dialog"].w-52, body > div[data-state="open"].dialog-background.w-52 {
   width: 13rem;
 }
+div[data-type="card-library-view"] .w-64, div[data-radix-popper-content-wrapper] .w-64, span[data-radix-focus-guard] .w-64, div[role="dialog"] .w-64, div[data-state="open"].dialog-background .w-64, body > div[role="dialog"].w-64, body > div[data-state="open"].dialog-background.w-64 {
+  width: 16rem;
+}
 div[data-type="card-library-view"] .w-72, div[data-radix-popper-content-wrapper] .w-72, span[data-radix-focus-guard] .w-72, div[role="dialog"] .w-72, div[data-state="open"].dialog-background .w-72, body > div[role="dialog"].w-72, body > div[data-state="open"].dialog-background.w-72 {
   width: 18rem;
 }
@@ -2450,6 +2541,9 @@ div[data-type="card-library-view"] .w-\[200px\], div[data-radix-popper-content-w
 div[data-type="card-library-view"] .w-\[240px\], div[data-radix-popper-content-wrapper] .w-\[240px\], span[data-radix-focus-guard] .w-\[240px\], div[role="dialog"] .w-\[240px\], div[data-state="open"].dialog-background .w-\[240px\], body > div[role="dialog"].w-\[240px\], body > div[data-state="open"].dialog-background.w-\[240px\] {
   width: 240px;
 }
+div[data-type="card-library-view"] .w-\[300px\], div[data-radix-popper-content-wrapper] .w-\[300px\], span[data-radix-focus-guard] .w-\[300px\], div[role="dialog"] .w-\[300px\], div[data-state="open"].dialog-background .w-\[300px\], body > div[role="dialog"].w-\[300px\], body > div[data-state="open"].dialog-background.w-\[300px\] {
+  width: 300px;
+}
 div[data-type="card-library-view"] .w-full, div[data-radix-popper-content-wrapper] .w-full, span[data-radix-focus-guard] .w-full, div[role="dialog"] .w-full, div[data-state="open"].dialog-background .w-full, body > div[role="dialog"].w-full, body > div[data-state="open"].dialog-background.w-full {
   width: 100%;
 }
@@ -2459,6 +2553,9 @@ div[data-type="card-library-view"] .min-w-\[140px\], div[data-radix-popper-conte
 div[data-type="card-library-view"] .min-w-\[4rem\], div[data-radix-popper-content-wrapper] .min-w-\[4rem\], span[data-radix-focus-guard] .min-w-\[4rem\], div[role="dialog"] .min-w-\[4rem\], div[data-state="open"].dialog-background .min-w-\[4rem\], body > div[role="dialog"].min-w-\[4rem\], body > div[data-state="open"].dialog-background.min-w-\[4rem\] {
   min-width: 4rem;
 }
+div[data-type="card-library-view"] .min-w-\[80px\], div[data-radix-popper-content-wrapper] .min-w-\[80px\], span[data-radix-focus-guard] .min-w-\[80px\], div[role="dialog"] .min-w-\[80px\], div[data-state="open"].dialog-background .min-w-\[80px\], body > div[role="dialog"].min-w-\[80px\], body > div[data-state="open"].dialog-background.min-w-\[80px\] {
+  min-width: 80px;
+}
 div[data-type="card-library-view"] .min-w-\[8rem\], div[data-radix-popper-content-wrapper] .min-w-\[8rem\], span[data-radix-focus-guard] .min-w-\[8rem\], div[role="dialog"] .min-w-\[8rem\], div[data-state="open"].dialog-background .min-w-\[8rem\], body > div[role="dialog"].min-w-\[8rem\], body > div[data-state="open"].dialog-background.min-w-\[8rem\] {
   min-width: 8rem;
 }
@@ -2467,9 +2564,6 @@ div[data-type="card-library-view"] .min-w-\[var\(--radix-select-trigger-width\)\
 }
 div[data-type="card-library-view"] .max-w-\[10rem\], div[data-radix-popper-content-wrapper] .max-w-\[10rem\], span[data-radix-focus-guard] .max-w-\[10rem\], div[role="dialog"] .max-w-\[10rem\], div[data-state="open"].dialog-background .max-w-\[10rem\], body > div[role="dialog"].max-w-\[10rem\], body > div[data-state="open"].dialog-background.max-w-\[10rem\] {
   max-width: 10rem;
-}
-div[data-type="card-library-view"] .max-w-\[20\%\], div[data-radix-popper-content-wrapper] .max-w-\[20\%\], span[data-radix-focus-guard] .max-w-\[20\%\], div[role="dialog"] .max-w-\[20\%\], div[data-state="open"].dialog-background .max-w-\[20\%\], body > div[role="dialog"].max-w-\[20\%\], body > div[data-state="open"].dialog-background.max-w-\[20\%\] {
-  max-width: 20%;
 }
 div[data-type="card-library-view"] .max-w-\[90\%\], div[data-radix-popper-content-wrapper] .max-w-\[90\%\], span[data-radix-focus-guard] .max-w-\[90\%\], div[role="dialog"] .max-w-\[90\%\], div[data-state="open"].dialog-background .max-w-\[90\%\], body > div[role="dialog"].max-w-\[90\%\], body > div[data-state="open"].dialog-background.max-w-\[90\%\] {
   max-width: 90%;
@@ -2538,6 +2632,9 @@ div[data-type="card-library-view"] .justify-center, div[data-radix-popper-conten
 }
 div[data-type="card-library-view"] .justify-between, div[data-radix-popper-content-wrapper] .justify-between, span[data-radix-focus-guard] .justify-between, div[role="dialog"] .justify-between, div[data-state="open"].dialog-background .justify-between, body > div[role="dialog"].justify-between, body > div[data-state="open"].dialog-background.justify-between {
   justify-content: space-between;
+}
+div[data-type="card-library-view"] .gap-1, div[data-radix-popper-content-wrapper] .gap-1, span[data-radix-focus-guard] .gap-1, div[role="dialog"] .gap-1, div[data-state="open"].dialog-background .gap-1, body > div[role="dialog"].gap-1, body > div[data-state="open"].dialog-background.gap-1 {
+  gap: 0.25rem;
 }
 div[data-type="card-library-view"] .gap-2, div[data-radix-popper-content-wrapper] .gap-2, span[data-radix-focus-guard] .gap-2, div[role="dialog"] .gap-2, div[data-state="open"].dialog-background .gap-2, body > div[role="dialog"].gap-2, body > div[data-state="open"].dialog-background.gap-2 {
   gap: 0.5rem;
@@ -2616,11 +2713,17 @@ div[data-type="card-library-view"] .rounded-xl, div[data-radix-popper-content-wr
 div[data-type="card-library-view"] .border, div[data-radix-popper-content-wrapper] .border, span[data-radix-focus-guard] .border, div[role="dialog"] .border, div[data-state="open"].dialog-background .border, body > div[role="dialog"].border, body > div[data-state="open"].dialog-background.border {
   border-width: 1px;
 }
+div[data-type="card-library-view"] .border-0, div[data-radix-popper-content-wrapper] .border-0, span[data-radix-focus-guard] .border-0, div[role="dialog"] .border-0, div[data-state="open"].dialog-background .border-0, body > div[role="dialog"].border-0, body > div[data-state="open"].dialog-background.border-0 {
+  border-width: 0px;
+}
 div[data-type="card-library-view"] .border-b, div[data-radix-popper-content-wrapper] .border-b, span[data-radix-focus-guard] .border-b, div[role="dialog"] .border-b, div[data-state="open"].dialog-background .border-b, body > div[role="dialog"].border-b, body > div[data-state="open"].dialog-background.border-b {
   border-bottom-width: 1px;
 }
 div[data-type="card-library-view"] .border-dashed, div[data-radix-popper-content-wrapper] .border-dashed, span[data-radix-focus-guard] .border-dashed, div[role="dialog"] .border-dashed, div[data-state="open"].dialog-background .border-dashed, body > div[role="dialog"].border-dashed, body > div[data-state="open"].dialog-background.border-dashed {
   border-style: dashed;
+}
+div[data-type="card-library-view"] .border-none, div[data-radix-popper-content-wrapper] .border-none, span[data-radix-focus-guard] .border-none, div[role="dialog"] .border-none, div[data-state="open"].dialog-background .border-none, body > div[role="dialog"].border-none, body > div[data-state="open"].dialog-background.border-none {
+  border-style: none;
 }
 div[data-type="card-library-view"] .border-input, div[data-radix-popper-content-wrapper] .border-input, span[data-radix-focus-guard] .border-input, div[role="dialog"] .border-input, div[data-state="open"].dialog-background .border-input, body > div[role="dialog"].border-input, body > div[data-state="open"].dialog-background.border-input {
   border-color: hsl(var(--input));
@@ -2646,8 +2749,8 @@ div[data-type="card-library-view"] .bg-border, div[data-radix-popper-content-wra
 div[data-type="card-library-view"] .bg-card, div[data-radix-popper-content-wrapper] .bg-card, span[data-radix-focus-guard] .bg-card, div[role="dialog"] .bg-card, div[data-state="open"].dialog-background .bg-card, body > div[role="dialog"].bg-card, body > div[data-state="open"].dialog-background.bg-card {
   background-color: hsl(var(--card));
 }
-div[data-type="card-library-view"] .bg-cyan-100\/30, div[data-radix-popper-content-wrapper] .bg-cyan-100\/30, span[data-radix-focus-guard] .bg-cyan-100\/30, div[role="dialog"] .bg-cyan-100\/30, div[data-state="open"].dialog-background .bg-cyan-100\/30, body > div[role="dialog"].bg-cyan-100\/30, body > div[data-state="open"].dialog-background.bg-cyan-100\/30 {
-  background-color: rgb(207 250 254 / 0.3);
+div[data-type="card-library-view"] .bg-cyan-100\/50, div[data-radix-popper-content-wrapper] .bg-cyan-100\/50, span[data-radix-focus-guard] .bg-cyan-100\/50, div[role="dialog"] .bg-cyan-100\/50, div[data-state="open"].dialog-background .bg-cyan-100\/50, body > div[role="dialog"].bg-cyan-100\/50, body > div[data-state="open"].dialog-background.bg-cyan-100\/50 {
+  background-color: rgb(207 250 254 / 0.5);
 }
 div[data-type="card-library-view"] .bg-destructive, div[data-radix-popper-content-wrapper] .bg-destructive, span[data-radix-focus-guard] .bg-destructive, div[role="dialog"] .bg-destructive, div[data-state="open"].dialog-background .bg-destructive, body > div[role="dialog"].bg-destructive, body > div[data-state="open"].dialog-background.bg-destructive {
   background-color: hsl(var(--destructive));
@@ -2655,14 +2758,14 @@ div[data-type="card-library-view"] .bg-destructive, div[data-radix-popper-conten
 div[data-type="card-library-view"] .bg-gray-100\/30, div[data-radix-popper-content-wrapper] .bg-gray-100\/30, span[data-radix-focus-guard] .bg-gray-100\/30, div[role="dialog"] .bg-gray-100\/30, div[data-state="open"].dialog-background .bg-gray-100\/30, body > div[role="dialog"].bg-gray-100\/30, body > div[data-state="open"].dialog-background.bg-gray-100\/30 {
   background-color: rgb(243 244 246 / 0.3);
 }
-div[data-type="card-library-view"] .bg-green-100\/30, div[data-radix-popper-content-wrapper] .bg-green-100\/30, span[data-radix-focus-guard] .bg-green-100\/30, div[role="dialog"] .bg-green-100\/30, div[data-state="open"].dialog-background .bg-green-100\/30, body > div[role="dialog"].bg-green-100\/30, body > div[data-state="open"].dialog-background.bg-green-100\/30 {
-  background-color: rgb(220 252 231 / 0.3);
+div[data-type="card-library-view"] .bg-green-100\/50, div[data-radix-popper-content-wrapper] .bg-green-100\/50, span[data-radix-focus-guard] .bg-green-100\/50, div[role="dialog"] .bg-green-100\/50, div[data-state="open"].dialog-background .bg-green-100\/50, body > div[role="dialog"].bg-green-100\/50, body > div[data-state="open"].dialog-background.bg-green-100\/50 {
+  background-color: rgb(220 252 231 / 0.5);
 }
 div[data-type="card-library-view"] .bg-muted, div[data-radix-popper-content-wrapper] .bg-muted, span[data-radix-focus-guard] .bg-muted, div[role="dialog"] .bg-muted, div[data-state="open"].dialog-background .bg-muted, body > div[role="dialog"].bg-muted, body > div[data-state="open"].dialog-background.bg-muted {
   background-color: hsl(var(--muted));
 }
-div[data-type="card-library-view"] .bg-orange-100\/30, div[data-radix-popper-content-wrapper] .bg-orange-100\/30, span[data-radix-focus-guard] .bg-orange-100\/30, div[role="dialog"] .bg-orange-100\/30, div[data-state="open"].dialog-background .bg-orange-100\/30, body > div[role="dialog"].bg-orange-100\/30, body > div[data-state="open"].dialog-background.bg-orange-100\/30 {
-  background-color: rgb(255 237 213 / 0.3);
+div[data-type="card-library-view"] .bg-orange-100\/50, div[data-radix-popper-content-wrapper] .bg-orange-100\/50, span[data-radix-focus-guard] .bg-orange-100\/50, div[role="dialog"] .bg-orange-100\/50, div[data-state="open"].dialog-background .bg-orange-100\/50, body > div[role="dialog"].bg-orange-100\/50, body > div[data-state="open"].dialog-background.bg-orange-100\/50 {
+  background-color: rgb(255 237 213 / 0.5);
 }
 div[data-type="card-library-view"] .bg-popover, div[data-radix-popper-content-wrapper] .bg-popover, span[data-radix-focus-guard] .bg-popover, div[role="dialog"] .bg-popover, div[data-state="open"].dialog-background .bg-popover, body > div[role="dialog"].bg-popover, body > div[data-state="open"].dialog-background.bg-popover {
   background-color: hsl(var(--popover));
@@ -2670,8 +2773,8 @@ div[data-type="card-library-view"] .bg-popover, div[data-radix-popper-content-wr
 div[data-type="card-library-view"] .bg-primary, div[data-radix-popper-content-wrapper] .bg-primary, span[data-radix-focus-guard] .bg-primary, div[role="dialog"] .bg-primary, div[data-state="open"].dialog-background .bg-primary, body > div[role="dialog"].bg-primary, body > div[data-state="open"].dialog-background.bg-primary {
   background-color: hsl(var(--primary));
 }
-div[data-type="card-library-view"] .bg-red-100\/30, div[data-radix-popper-content-wrapper] .bg-red-100\/30, span[data-radix-focus-guard] .bg-red-100\/30, div[role="dialog"] .bg-red-100\/30, div[data-state="open"].dialog-background .bg-red-100\/30, body > div[role="dialog"].bg-red-100\/30, body > div[data-state="open"].dialog-background.bg-red-100\/30 {
-  background-color: rgb(254 226 226 / 0.3);
+div[data-type="card-library-view"] .bg-red-100\/50, div[data-radix-popper-content-wrapper] .bg-red-100\/50, span[data-radix-focus-guard] .bg-red-100\/50, div[role="dialog"] .bg-red-100\/50, div[data-state="open"].dialog-background .bg-red-100\/50, body > div[role="dialog"].bg-red-100\/50, body > div[data-state="open"].dialog-background.bg-red-100\/50 {
+  background-color: rgb(254 226 226 / 0.5);
 }
 div[data-type="card-library-view"] .bg-secondary, div[data-radix-popper-content-wrapper] .bg-secondary, span[data-radix-focus-guard] .bg-secondary, div[role="dialog"] .bg-secondary, div[data-state="open"].dialog-background .bg-secondary, body > div[role="dialog"].bg-secondary, body > div[data-state="open"].dialog-background.bg-secondary {
   background-color: hsl(var(--secondary));
@@ -2682,11 +2785,11 @@ div[data-type="card-library-view"] .bg-secondary\/20, div[data-radix-popper-cont
 div[data-type="card-library-view"] .bg-transparent, div[data-radix-popper-content-wrapper] .bg-transparent, span[data-radix-focus-guard] .bg-transparent, div[role="dialog"] .bg-transparent, div[data-state="open"].dialog-background .bg-transparent, body > div[role="dialog"].bg-transparent, body > div[data-state="open"].dialog-background.bg-transparent {
   background-color: transparent;
 }
-div[data-type="card-library-view"] .bg-violet-100\/30, div[data-radix-popper-content-wrapper] .bg-violet-100\/30, span[data-radix-focus-guard] .bg-violet-100\/30, div[role="dialog"] .bg-violet-100\/30, div[data-state="open"].dialog-background .bg-violet-100\/30, body > div[role="dialog"].bg-violet-100\/30, body > div[data-state="open"].dialog-background.bg-violet-100\/30 {
-  background-color: rgb(237 233 254 / 0.3);
+div[data-type="card-library-view"] .bg-violet-100\/50, div[data-radix-popper-content-wrapper] .bg-violet-100\/50, span[data-radix-focus-guard] .bg-violet-100\/50, div[role="dialog"] .bg-violet-100\/50, div[data-state="open"].dialog-background .bg-violet-100\/50, body > div[role="dialog"].bg-violet-100\/50, body > div[data-state="open"].dialog-background.bg-violet-100\/50 {
+  background-color: rgb(237 233 254 / 0.5);
 }
-div[data-type="card-library-view"] .bg-yellow-100\/30, div[data-radix-popper-content-wrapper] .bg-yellow-100\/30, span[data-radix-focus-guard] .bg-yellow-100\/30, div[role="dialog"] .bg-yellow-100\/30, div[data-state="open"].dialog-background .bg-yellow-100\/30, body > div[role="dialog"].bg-yellow-100\/30, body > div[data-state="open"].dialog-background.bg-yellow-100\/30 {
-  background-color: rgb(254 249 195 / 0.3);
+div[data-type="card-library-view"] .bg-yellow-100\/50, div[data-radix-popper-content-wrapper] .bg-yellow-100\/50, span[data-radix-focus-guard] .bg-yellow-100\/50, div[role="dialog"] .bg-yellow-100\/50, div[data-state="open"].dialog-background .bg-yellow-100\/50, body > div[role="dialog"].bg-yellow-100\/50, body > div[data-state="open"].dialog-background.bg-yellow-100\/50 {
+  background-color: rgb(254 249 195 / 0.5);
 }
 div[data-type="card-library-view"] .fill-current, div[data-radix-popper-content-wrapper] .fill-current, span[data-radix-focus-guard] .fill-current, div[role="dialog"] .fill-current, div[data-state="open"].dialog-background .fill-current, body > div[role="dialog"].fill-current, body > div[data-state="open"].dialog-background.fill-current {
   fill: currentColor;
@@ -2705,6 +2808,9 @@ div[data-type="card-library-view"] .p-2, div[data-radix-popper-content-wrapper] 
 }
 div[data-type="card-library-view"] .p-4, div[data-radix-popper-content-wrapper] .p-4, span[data-radix-focus-guard] .p-4, div[role="dialog"] .p-4, div[data-state="open"].dialog-background .p-4, body > div[role="dialog"].p-4, body > div[data-state="open"].dialog-background.p-4 {
   padding: 1rem;
+}
+div[data-type="card-library-view"] .p-5, div[data-radix-popper-content-wrapper] .p-5, span[data-radix-focus-guard] .p-5, div[role="dialog"] .p-5, div[data-state="open"].dialog-background .p-5, body > div[role="dialog"].p-5, body > div[data-state="open"].dialog-background.p-5 {
+  padding: 1.25rem;
 }
 div[data-type="card-library-view"] .p-6, div[data-radix-popper-content-wrapper] .p-6, span[data-radix-focus-guard] .p-6, div[role="dialog"] .p-6, div[data-state="open"].dialog-background .p-6, body > div[role="dialog"].p-6, body > div[data-state="open"].dialog-background.p-6 {
   padding: 1.5rem;
@@ -2771,14 +2877,17 @@ div[data-type="card-library-view"] .pb-1, div[data-radix-popper-content-wrapper]
 div[data-type="card-library-view"] .pb-16, div[data-radix-popper-content-wrapper] .pb-16, span[data-radix-focus-guard] .pb-16, div[role="dialog"] .pb-16, div[data-state="open"].dialog-background .pb-16, body > div[role="dialog"].pb-16, body > div[data-state="open"].dialog-background.pb-16 {
   padding-bottom: 4rem;
 }
-div[data-type="card-library-view"] .pb-2, div[data-radix-popper-content-wrapper] .pb-2, span[data-radix-focus-guard] .pb-2, div[role="dialog"] .pb-2, div[data-state="open"].dialog-background .pb-2, body > div[role="dialog"].pb-2, body > div[data-state="open"].dialog-background.pb-2 {
-  padding-bottom: 0.5rem;
-}
 div[data-type="card-library-view"] .pb-4, div[data-radix-popper-content-wrapper] .pb-4, span[data-radix-focus-guard] .pb-4, div[role="dialog"] .pb-4, div[data-state="open"].dialog-background .pb-4, body > div[role="dialog"].pb-4, body > div[data-state="open"].dialog-background.pb-4 {
   padding-bottom: 1rem;
 }
+div[data-type="card-library-view"] .pl-1, div[data-radix-popper-content-wrapper] .pl-1, span[data-radix-focus-guard] .pl-1, div[role="dialog"] .pl-1, div[data-state="open"].dialog-background .pl-1, body > div[role="dialog"].pl-1, body > div[data-state="open"].dialog-background.pl-1 {
+  padding-left: 0.25rem;
+}
 div[data-type="card-library-view"] .pl-2, div[data-radix-popper-content-wrapper] .pl-2, span[data-radix-focus-guard] .pl-2, div[role="dialog"] .pl-2, div[data-state="open"].dialog-background .pl-2, body > div[role="dialog"].pl-2, body > div[data-state="open"].dialog-background.pl-2 {
   padding-left: 0.5rem;
+}
+div[data-type="card-library-view"] .pl-3, div[data-radix-popper-content-wrapper] .pl-3, span[data-radix-focus-guard] .pl-3, div[role="dialog"] .pl-3, div[data-state="open"].dialog-background .pl-3, body > div[role="dialog"].pl-3, body > div[data-state="open"].dialog-background.pl-3 {
+  padding-left: 0.75rem;
 }
 div[data-type="card-library-view"] .pl-8, div[data-radix-popper-content-wrapper] .pl-8, span[data-radix-focus-guard] .pl-8, div[role="dialog"] .pl-8, div[data-state="open"].dialog-background .pl-8, body > div[role="dialog"].pl-8, body > div[data-state="open"].dialog-background.pl-8 {
   padding-left: 2rem;
@@ -2797,9 +2906,6 @@ div[data-type="card-library-view"] .pt-1, div[data-radix-popper-content-wrapper]
 }
 div[data-type="card-library-view"] .pt-2, div[data-radix-popper-content-wrapper] .pt-2, span[data-radix-focus-guard] .pt-2, div[role="dialog"] .pt-2, div[data-state="open"].dialog-background .pt-2, body > div[role="dialog"].pt-2, body > div[data-state="open"].dialog-background.pt-2 {
   padding-top: 0.5rem;
-}
-div[data-type="card-library-view"] .pt-4, div[data-radix-popper-content-wrapper] .pt-4, span[data-radix-focus-guard] .pt-4, div[role="dialog"] .pt-4, div[data-state="open"].dialog-background .pt-4, body > div[role="dialog"].pt-4, body > div[data-state="open"].dialog-background.pt-4 {
-  padding-top: 1rem;
 }
 div[data-type="card-library-view"] .pt-6, div[data-radix-popper-content-wrapper] .pt-6, span[data-radix-focus-guard] .pt-6, div[role="dialog"] .pt-6, div[data-state="open"].dialog-background .pt-6, body > div[role="dialog"].pt-6, body > div[data-state="open"].dialog-background.pt-6 {
   padding-top: 1.5rem;
@@ -2840,6 +2946,9 @@ div[data-type="card-library-view"] .tracking-tight, div[data-radix-popper-conten
 div[data-type="card-library-view"] .tracking-widest, div[data-radix-popper-content-wrapper] .tracking-widest, span[data-radix-focus-guard] .tracking-widest, div[role="dialog"] .tracking-widest, div[data-state="open"].dialog-background .tracking-widest, body > div[role="dialog"].tracking-widest, body > div[data-state="open"].dialog-background.tracking-widest {
   letter-spacing: 0.1em;
 }
+div[data-type="card-library-view"] .text-accent-foreground, div[data-radix-popper-content-wrapper] .text-accent-foreground, span[data-radix-focus-guard] .text-accent-foreground, div[role="dialog"] .text-accent-foreground, div[data-state="open"].dialog-background .text-accent-foreground, body > div[role="dialog"].text-accent-foreground, body > div[data-state="open"].dialog-background.text-accent-foreground {
+  color: hsl(var(--accent-foreground));
+}
 div[data-type="card-library-view"] .text-card-foreground, div[data-radix-popper-content-wrapper] .text-card-foreground, span[data-radix-focus-guard] .text-card-foreground, div[role="dialog"] .text-card-foreground, div[data-state="open"].dialog-background .text-card-foreground, body > div[role="dialog"].text-card-foreground, body > div[data-state="open"].dialog-background.text-card-foreground {
   color: hsl(var(--card-foreground));
 }
@@ -2848,6 +2957,18 @@ div[data-type="card-library-view"] .text-destructive-foreground, div[data-radix-
 }
 div[data-type="card-library-view"] .text-foreground, div[data-radix-popper-content-wrapper] .text-foreground, span[data-radix-focus-guard] .text-foreground, div[role="dialog"] .text-foreground, div[data-state="open"].dialog-background .text-foreground, body > div[role="dialog"].text-foreground, body > div[data-state="open"].dialog-background.text-foreground {
   color: hsl(var(--foreground));
+}
+div[data-type="card-library-view"] .text-gray-200, div[data-radix-popper-content-wrapper] .text-gray-200, span[data-radix-focus-guard] .text-gray-200, div[role="dialog"] .text-gray-200, div[data-state="open"].dialog-background .text-gray-200, body > div[role="dialog"].text-gray-200, body > div[data-state="open"].dialog-background.text-gray-200 {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+div[data-type="card-library-view"] .text-gray-300, div[data-radix-popper-content-wrapper] .text-gray-300, span[data-radix-focus-guard] .text-gray-300, div[role="dialog"] .text-gray-300, div[data-state="open"].dialog-background .text-gray-300, body > div[role="dialog"].text-gray-300, body > div[data-state="open"].dialog-background.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+div[data-type="card-library-view"] .text-gray-400, div[data-radix-popper-content-wrapper] .text-gray-400, span[data-radix-focus-guard] .text-gray-400, div[role="dialog"] .text-gray-400, div[data-state="open"].dialog-background .text-gray-400, body > div[role="dialog"].text-gray-400, body > div[data-state="open"].dialog-background.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 div[data-type="card-library-view"] .text-muted-foreground, div[data-radix-popper-content-wrapper] .text-muted-foreground, span[data-radix-focus-guard] .text-muted-foreground, div[role="dialog"] .text-muted-foreground, div[data-state="open"].dialog-background .text-muted-foreground, body > div[role="dialog"].text-muted-foreground, body > div[data-state="open"].dialog-background.text-muted-foreground {
   color: hsl(var(--muted-foreground));
@@ -3011,6 +3132,12 @@ div[data-type="card-library-view"] .cl-card .collapsed-block::before, div[data-r
   border-bottom-right-radius: 0.75rem;
   opacity: 0.9;
 }
+div[data-type="card-library-view"] .view-header-title-container, div[data-radix-popper-content-wrapper] .view-header-title-container, span[data-radix-focus-guard] .view-header-title-container, div[role="dialog"] .view-header-title-container, div[data-state="open"].dialog-background .view-header-title-container, body > div[role="dialog"].view-header-title-container, body > div[data-state="open"].dialog-background.view-header-title-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
 .theme-light div[data-type="card-library-view"], .theme-light div[data-radix-popper-content-wrapper], .theme-light span[data-radix-focus-guard], .theme-light div[role="dialog"], .theme-light div[data-state="open"].dialog-background, body.theme-light > div[role="dialog"], body.theme-light > div[data-state="open"].dialog-background {
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
@@ -3113,6 +3240,9 @@ div[data-type="card-library-view"] .hover\:bg-secondary\/90:hover, div[data-radi
 div[data-type="card-library-view"] .hover\:bg-transparent:hover, div[data-radix-popper-content-wrapper] .hover\:bg-transparent:hover, span[data-radix-focus-guard] .hover\:bg-transparent:hover, div[role="dialog"] .hover\:bg-transparent:hover, div[data-state="open"].dialog-background .hover\:bg-transparent:hover, body > div[role="dialog"].hover\:bg-transparent:hover, body > div[data-state="open"].dialog-background.hover\:bg-transparent:hover {
   background-color: transparent;
 }
+div[data-type="card-library-view"] .hover\:bg-opacity-50:hover, div[data-radix-popper-content-wrapper] .hover\:bg-opacity-50:hover, span[data-radix-focus-guard] .hover\:bg-opacity-50:hover, div[role="dialog"] .hover\:bg-opacity-50:hover, div[data-state="open"].dialog-background .hover\:bg-opacity-50:hover, body > div[role="dialog"].hover\:bg-opacity-50:hover, body > div[data-state="open"].dialog-background.hover\:bg-opacity-50:hover {
+  --tw-bg-opacity: 0.5;
+}
 div[data-type="card-library-view"] .hover\:text-accent-foreground:hover, div[data-radix-popper-content-wrapper] .hover\:text-accent-foreground:hover, span[data-radix-focus-guard] .hover\:text-accent-foreground:hover, div[role="dialog"] .hover\:text-accent-foreground:hover, div[data-state="open"].dialog-background .hover\:text-accent-foreground:hover, body > div[role="dialog"].hover\:text-accent-foreground:hover, body > div[data-state="open"].dialog-background.hover\:text-accent-foreground:hover {
   color: hsl(var(--accent-foreground));
 }
@@ -3128,6 +3258,11 @@ div[data-type="card-library-view"] .hover\:underline:hover, div[data-radix-poppe
 }
 div[data-type="card-library-view"] .hover\:opacity-100:hover, div[data-radix-popper-content-wrapper] .hover\:opacity-100:hover, span[data-radix-focus-guard] .hover\:opacity-100:hover, div[role="dialog"] .hover\:opacity-100:hover, div[data-state="open"].dialog-background .hover\:opacity-100:hover, body > div[role="dialog"].hover\:opacity-100:hover, body > div[data-state="open"].dialog-background.hover\:opacity-100:hover {
   opacity: 1;
+}
+div[data-type="card-library-view"] .hover\:shadow:hover, div[data-radix-popper-content-wrapper] .hover\:shadow:hover, span[data-radix-focus-guard] .hover\:shadow:hover, div[role="dialog"] .hover\:shadow:hover, div[data-state="open"].dialog-background .hover\:shadow:hover, body > div[role="dialog"].hover\:shadow:hover, body > div[data-state="open"].dialog-background.hover\:shadow:hover {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 div[data-type="card-library-view"] .focus\:bg-accent:focus, div[data-radix-popper-content-wrapper] .focus\:bg-accent:focus, span[data-radix-focus-guard] .focus\:bg-accent:focus, div[role="dialog"] .focus\:bg-accent:focus, div[data-state="open"].dialog-background .focus\:bg-accent:focus, body > div[role="dialog"].focus\:bg-accent:focus, body > div[data-state="open"].dialog-background.focus\:bg-accent:focus {
   background-color: hsl(var(--accent));
@@ -3347,8 +3482,23 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
   --tw-text-opacity: 1;
   color: rgb(248 250 252 / var(--tw-text-opacity));
 }
+.theme-dark div[data-type="card-library-view"] :is( .dark\:text-slate-500), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:text-slate-500), .theme-dark span[data-radix-focus-guard] :is( .dark\:text-slate-500), .theme-dark div[role="dialog"] :is( .dark\:text-slate-500), .theme-dark div[data-state="open"].dialog-background :is( .dark\:text-slate-500), body.theme-dark > div[role="dialog"] :is( .dark\:text-slate-500), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:text-slate-500) {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
+}
 .theme-dark div[data-type="card-library-view"] :is( .dark\:text-slate-500\/80), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:text-slate-500\/80), .theme-dark span[data-radix-focus-guard] :is( .dark\:text-slate-500\/80), .theme-dark div[role="dialog"] :is( .dark\:text-slate-500\/80), .theme-dark div[data-state="open"].dialog-background :is( .dark\:text-slate-500\/80), body.theme-dark > div[role="dialog"] :is( .dark\:text-slate-500\/80), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:text-slate-500\/80) {
   color: rgb(100 116 139 / 0.8);
+}
+.theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:bg-slate-600:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:bg-slate-600:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:bg-slate-600:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+}
+.theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:text-accent-foreground:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:text-accent-foreground:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:text-accent-foreground:hover) {
+  color: hsl(var(--accent-foreground));
+}
+.theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:text-slate-300:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:text-slate-300:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:text-slate-300:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:text-slate-300:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-300:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:text-slate-300:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-300:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(203 213 225 / var(--tw-text-opacity));
 }
 .theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:text-slate-50:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:text-slate-50:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:text-slate-50:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:text-slate-50:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-50:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:text-slate-50:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-50:hover) {
   --tw-text-opacity: 1;
@@ -3363,6 +3513,10 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
   border-color: rgb(30 41 59 / var(--tw-border-opacity));
 }
 @media (min-width: 640px) {
+
+  div[data-type="card-library-view"] .sm\:max-w-md, div[data-radix-popper-content-wrapper] .sm\:max-w-md, span[data-radix-focus-guard] .sm\:max-w-md, div[role="dialog"] .sm\:max-w-md, div[data-state="open"].dialog-background .sm\:max-w-md, body > div[role="dialog"].sm\:max-w-md, body > div[data-state="open"].dialog-background.sm\:max-w-md {
+    max-width: 28rem;
+  }
 
   div[data-type="card-library-view"] .sm\:flex-row, div[data-radix-popper-content-wrapper] .sm\:flex-row, span[data-radix-focus-guard] .sm\:flex-row, div[role="dialog"] .sm\:flex-row, div[data-state="open"].dialog-background .sm\:flex-row, body > div[role="dialog"].sm\:flex-row, body > div[data-state="open"].dialog-background.sm\:flex-row {
     flex-direction: row;
@@ -3391,6 +3545,10 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
   div[data-type="card-library-view"] .md\:w-full, div[data-radix-popper-content-wrapper] .md\:w-full, span[data-radix-focus-guard] .md\:w-full, div[role="dialog"] .md\:w-full, div[data-state="open"].dialog-background .md\:w-full, body > div[role="dialog"].md\:w-full, body > div[data-state="open"].dialog-background.md\:w-full {
     width: 100%;
   }
+
+  div[data-type="card-library-view"] .md\:max-w-\[520px\], div[data-radix-popper-content-wrapper] .md\:max-w-\[520px\], span[data-radix-focus-guard] .md\:max-w-\[520px\], div[role="dialog"] .md\:max-w-\[520px\], div[data-state="open"].dialog-background .md\:max-w-\[520px\], body > div[role="dialog"].md\:max-w-\[520px\], body > div[data-state="open"].dialog-background.md\:max-w-\[520px\] {
+    max-width: 520px;
+  }
 }
 @media (min-width: 1024px) {
 
@@ -3406,8 +3564,8 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
     width: 240px;
   }
 
-  div[data-type="card-library-view"] .lg\:max-w-\[520px\], div[data-radix-popper-content-wrapper] .lg\:max-w-\[520px\], span[data-radix-focus-guard] .lg\:max-w-\[520px\], div[role="dialog"] .lg\:max-w-\[520px\], div[data-state="open"].dialog-background .lg\:max-w-\[520px\], body > div[role="dialog"].lg\:max-w-\[520px\], body > div[data-state="open"].dialog-background.lg\:max-w-\[520px\] {
-    max-width: 520px;
+  div[data-type="card-library-view"] .lg\:max-w-full, div[data-radix-popper-content-wrapper] .lg\:max-w-full, span[data-radix-focus-guard] .lg\:max-w-full, div[role="dialog"] .lg\:max-w-full, div[data-state="open"].dialog-background .lg\:max-w-full, body > div[role="dialog"].lg\:max-w-full, body > div[data-state="open"].dialog-background.lg\:max-w-full {
+    max-width: 100%;
   }
 
   div[data-type="card-library-view"] .lg\:px-3, div[data-radix-popper-content-wrapper] .lg\:px-3, span[data-radix-focus-guard] .lg\:px-3, div[role="dialog"] .lg\:px-3, div[data-state="open"].dialog-background .lg\:px-3, body > div[role="dialog"].lg\:px-3, body > div[data-state="open"].dialog-background.lg\:px-3 {
@@ -3838,6 +3996,9 @@ div[data-type="card-library-view"] [hidden], div[data-radix-popper-content-wrapp
   div[data-type="card-library-view"] .mobile-view .search-bar, div[data-radix-popper-content-wrapper] .mobile-view .search-bar, span[data-radix-focus-guard] .mobile-view .search-bar, div[role="dialog"] .mobile-view .search-bar, div[data-state="open"].dialog-background .mobile-view .search-bar, body > div[role="dialog"].mobile-view .search-bar, body > div[data-state="open"].dialog-background.mobile-view .search-bar {
   width: 10rem;
 }
+  div[data-type="card-library-view"] .content-wrapper .sidebar-cl-card .cm-content, div[data-radix-popper-content-wrapper] .content-wrapper .sidebar-cl-card .cm-content, span[data-radix-focus-guard] .content-wrapper .sidebar-cl-card .cm-content, div[role="dialog"] .content-wrapper .sidebar-cl-card .cm-content, div[data-state="open"].dialog-background .content-wrapper .sidebar-cl-card .cm-content, body > div[role="dialog"].content-wrapper .sidebar-cl-card .cm-content, body > div[data-state="open"].dialog-background.content-wrapper .sidebar-cl-card .cm-content {
+  padding-bottom: 0px !important;
+}
   div[data-type="card-library-view"] .content-wrapper .sidebar-cl-card:hover .pin-button > *, div[data-radix-popper-content-wrapper] .content-wrapper .sidebar-cl-card:hover .pin-button > *, span[data-radix-focus-guard] .content-wrapper .sidebar-cl-card:hover .pin-button > *, div[role="dialog"] .content-wrapper .sidebar-cl-card:hover .pin-button > *, div[data-state="open"].dialog-background .content-wrapper .sidebar-cl-card:hover .pin-button > *, body > div[role="dialog"].content-wrapper .sidebar-cl-card:hover .pin-button > *, body > div[data-state="open"].dialog-background.content-wrapper .sidebar-cl-card:hover .pin-button > * {
   color: hsl(var(--muted-foreground));
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
@@ -3853,7 +4014,42 @@ div[data-type="card-library-view"] [hidden], div[data-radix-popper-content-wrapp
   width: 100%;
   max-width: 100%;
   gap: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
+}
+  div[data-type="card-library-view"] .card-list-container .grid-card-list .cl-card, div[data-radix-popper-content-wrapper] .card-list-container .grid-card-list .cl-card, span[data-radix-focus-guard] .card-list-container .grid-card-list .cl-card, div[role="dialog"] .card-list-container .grid-card-list .cl-card, div[data-state="open"].dialog-background .card-list-container .grid-card-list .cl-card, body > div[role="dialog"].card-list-container .grid-card-list .cl-card, body > div[data-state="open"].dialog-background.card-list-container .grid-card-list .cl-card {
+  height: 12rem;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+  div[data-type="card-library-view"] .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card, div[data-radix-popper-content-wrapper] .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card, span[data-radix-focus-guard] .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card, div[role="dialog"] .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card, div[data-state="open"].dialog-background .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card, body > div[role="dialog"].card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card, body > div[data-state="open"].dialog-background.card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card {
+  padding-top: 1rem;
+}
+  div[data-type="card-library-view"] .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card .card-header, div[data-radix-popper-content-wrapper] .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card .card-header, span[data-radix-focus-guard] .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card .card-header, div[role="dialog"] .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card .card-header, div[data-state="open"].dialog-background .card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card .card-header, body > div[role="dialog"].card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card .card-header, body > div[data-state="open"].dialog-background.card-list-container .grid-card-list:not(.grid-card-action-header) .cl-card .card-header {
+  display: flex;
+}
+  div[data-type="card-library-view"] .card-list-container .grid-card-list:not(.show-new-card-button) div[data-card-id^="fake"].cl-card, div[data-radix-popper-content-wrapper] .card-list-container .grid-card-list:not(.show-new-card-button) div[data-card-id^="fake"].cl-card, span[data-radix-focus-guard] .card-list-container .grid-card-list:not(.show-new-card-button) div[data-card-id^="fake"].cl-card, div[role="dialog"] .card-list-container .grid-card-list:not(.show-new-card-button) div[data-card-id^="fake"].cl-card, div[data-state="open"].dialog-background .card-list-container .grid-card-list:not(.show-new-card-button) div[data-card-id^="fake"].cl-card, body > div[role="dialog"].card-list-container .grid-card-list:not(.show-new-card-button) div[data-card-id^="fake"].cl-card, body > div[data-state="open"].dialog-background.card-list-container .grid-card-list:not(.show-new-card-button) div[data-card-id^="fake"].cl-card {
+  display: none;
+}
+  div[data-type="card-library-view"] .card-list-container .masonry-card-list, div[data-radix-popper-content-wrapper] .card-list-container .masonry-card-list, span[data-radix-focus-guard] .card-list-container .masonry-card-list, div[role="dialog"] .card-list-container .masonry-card-list, div[data-state="open"].dialog-background .card-list-container .masonry-card-list, body > div[role="dialog"].card-list-container .masonry-card-list, body > div[data-state="open"].dialog-background.card-list-container .masonry-card-list {
+  padding: 0.5rem;
+}
+  div[data-type="card-library-view"] .card-list-container .masonry-card-list .card-header, div[data-radix-popper-content-wrapper] .card-list-container .masonry-card-list .card-header, span[data-radix-focus-guard] .card-list-container .masonry-card-list .card-header, div[role="dialog"] .card-list-container .masonry-card-list .card-header, div[data-state="open"].dialog-background .card-list-container .masonry-card-list .card-header, body > div[role="dialog"].card-list-container .masonry-card-list .card-header, body > div[data-state="open"].dialog-background.card-list-container .masonry-card-list .card-header {
+  display: flex;
+}
+  div[data-type="card-library-view"] .card-list-container .cl-card .canvas-minimap rect, div[data-radix-popper-content-wrapper] .card-list-container .cl-card .canvas-minimap rect, span[data-radix-focus-guard] .card-list-container .cl-card .canvas-minimap rect, div[role="dialog"] .card-list-container .cl-card .canvas-minimap rect, div[data-state="open"].dialog-background .card-list-container .cl-card .canvas-minimap rect, body > div[role="dialog"].card-list-container .cl-card .canvas-minimap rect, body > div[data-state="open"].dialog-background.card-list-container .cl-card .canvas-minimap rect {
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+  fill: #9ca3af;
+  stroke: #9ca3af;
+}
+  .theme-dark div[data-type="card-library-view"] :is( .card-list-container .cl-card .canvas-minimap rect), .theme-dark div[data-radix-popper-content-wrapper] :is( .card-list-container .cl-card .canvas-minimap rect), .theme-dark span[data-radix-focus-guard] :is( .card-list-container .cl-card .canvas-minimap rect), .theme-dark div[role="dialog"] :is( .card-list-container .cl-card .canvas-minimap rect), .theme-dark div[data-state="open"].dialog-background :is( .card-list-container .cl-card .canvas-minimap rect), body.theme-dark > div[role="dialog"] :is( .card-list-container .cl-card .canvas-minimap rect), body.theme-dark > div[data-state="open"].dialog-background :is( .card-list-container .cl-card .canvas-minimap rect) {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  fill: #4b5563;
+  stroke: #4b5563;
 }
   div[data-type="card-library-view"] .card-list-container .cl-card .content-collapsed:before, div[data-radix-popper-content-wrapper] .card-list-container .cl-card .content-collapsed:before, span[data-radix-focus-guard] .card-list-container .cl-card .content-collapsed:before, div[role="dialog"] .card-list-container .cl-card .content-collapsed:before, div[data-state="open"].dialog-background .card-list-container .cl-card .content-collapsed:before, body > div[role="dialog"].card-list-container .cl-card .content-collapsed:before, body > div[data-state="open"].dialog-background.card-list-container .cl-card .content-collapsed:before {
   pointer-events: none;
@@ -4037,6 +4233,9 @@ div[data-type="card-library-view"] .sr-only, div[data-radix-popper-content-wrapp
 div[data-type="card-library-view"] .pointer-events-auto, div[data-radix-popper-content-wrapper] .pointer-events-auto, span[data-radix-focus-guard] .pointer-events-auto, div[role="dialog"] .pointer-events-auto, div[data-state="open"].dialog-background .pointer-events-auto, body > div[role="dialog"].pointer-events-auto, body > div[data-state="open"].dialog-background.pointer-events-auto {
   pointer-events: auto;
 }
+div[data-type="card-library-view"] .visible, div[data-radix-popper-content-wrapper] .visible, span[data-radix-focus-guard] .visible, div[role="dialog"] .visible, div[data-state="open"].dialog-background .visible, body > div[role="dialog"].visible, body > div[data-state="open"].dialog-background.visible {
+  visibility: visible;
+}
 div[data-type="card-library-view"] .fixed, div[data-radix-popper-content-wrapper] .fixed, span[data-radix-focus-guard] .fixed, div[role="dialog"] .fixed, div[data-state="open"].dialog-background .fixed, body > div[role="dialog"].fixed, body > div[data-state="open"].dialog-background.fixed {
   position: fixed;
 }
@@ -4058,8 +4257,8 @@ div[data-type="card-library-view"] .left-0, div[data-radix-popper-content-wrappe
 div[data-type="card-library-view"] .left-2, div[data-radix-popper-content-wrapper] .left-2, span[data-radix-focus-guard] .left-2, div[role="dialog"] .left-2, div[data-state="open"].dialog-background .left-2, body > div[role="dialog"].left-2, body > div[data-state="open"].dialog-background.left-2 {
   left: 0.5rem;
 }
-div[data-type="card-library-view"] .left-\[50\%\], div[data-radix-popper-content-wrapper] .left-\[50\%\], span[data-radix-focus-guard] .left-\[50\%\], div[role="dialog"] .left-\[50\%\], div[data-state="open"].dialog-background .left-\[50\%\], body > div[role="dialog"].left-\[50\%\], body > div[data-state="open"].dialog-background.left-\[50\%\] {
-  left: 50%;
+div[data-type="card-library-view"] .left-\[35\%\], div[data-radix-popper-content-wrapper] .left-\[35\%\], span[data-radix-focus-guard] .left-\[35\%\], div[role="dialog"] .left-\[35\%\], div[data-state="open"].dialog-background .left-\[35\%\], body > div[role="dialog"].left-\[35\%\], body > div[data-state="open"].dialog-background.left-\[35\%\] {
+  left: 35%;
 }
 div[data-type="card-library-view"] .right-0, div[data-radix-popper-content-wrapper] .right-0, span[data-radix-focus-guard] .right-0, div[role="dialog"] .right-0, div[data-state="open"].dialog-background .right-0, body > div[role="dialog"].right-0, body > div[data-state="open"].dialog-background.right-0 {
   right: 0px;
@@ -4073,8 +4272,8 @@ div[data-type="card-library-view"] .right-4, div[data-radix-popper-content-wrapp
 div[data-type="card-library-view"] .top-4, div[data-radix-popper-content-wrapper] .top-4, span[data-radix-focus-guard] .top-4, div[role="dialog"] .top-4, div[data-state="open"].dialog-background .top-4, body > div[role="dialog"].top-4, body > div[data-state="open"].dialog-background.top-4 {
   top: 1rem;
 }
-div[data-type="card-library-view"] .top-\[50\%\], div[data-radix-popper-content-wrapper] .top-\[50\%\], span[data-radix-focus-guard] .top-\[50\%\], div[role="dialog"] .top-\[50\%\], div[data-state="open"].dialog-background .top-\[50\%\], body > div[role="dialog"].top-\[50\%\], body > div[data-state="open"].dialog-background.top-\[50\%\] {
-  top: 50%;
+div[data-type="card-library-view"] .top-\[35\%\], div[data-radix-popper-content-wrapper] .top-\[35\%\], span[data-radix-focus-guard] .top-\[35\%\], div[role="dialog"] .top-\[35\%\], div[data-state="open"].dialog-background .top-\[35\%\], body > div[role="dialog"].top-\[35\%\], body > div[data-state="open"].dialog-background.top-\[35\%\] {
+  top: 35%;
 }
 div[data-type="card-library-view"] .z-30, div[data-radix-popper-content-wrapper] .z-30, span[data-radix-focus-guard] .z-30, div[role="dialog"] .z-30, div[data-state="open"].dialog-background .z-30, body > div[role="dialog"].z-30, body > div[data-state="open"].dialog-background.z-30 {
   z-index: 30;
@@ -4101,6 +4300,9 @@ div[data-type="card-library-view"] .my-1, div[data-radix-popper-content-wrapper]
 div[data-type="card-library-view"] .ml-2, div[data-radix-popper-content-wrapper] .ml-2, span[data-radix-focus-guard] .ml-2, div[role="dialog"] .ml-2, div[data-state="open"].dialog-background .ml-2, body > div[role="dialog"].ml-2, body > div[data-state="open"].dialog-background.ml-2 {
   margin-left: 0.5rem;
 }
+div[data-type="card-library-view"] .ml-\[-0\.5rem\], div[data-radix-popper-content-wrapper] .ml-\[-0\.5rem\], span[data-radix-focus-guard] .ml-\[-0\.5rem\], div[role="dialog"] .ml-\[-0\.5rem\], div[data-state="open"].dialog-background .ml-\[-0\.5rem\], body > div[role="dialog"].ml-\[-0\.5rem\], body > div[data-state="open"].dialog-background.ml-\[-0\.5rem\] {
+  margin-left: -0.5rem;
+}
 div[data-type="card-library-view"] .ml-auto, div[data-radix-popper-content-wrapper] .ml-auto, span[data-radix-focus-guard] .ml-auto, div[role="dialog"] .ml-auto, div[data-state="open"].dialog-background .ml-auto, body > div[role="dialog"].ml-auto, body > div[data-state="open"].dialog-background.ml-auto {
   margin-left: auto;
 }
@@ -4110,14 +4312,14 @@ div[data-type="card-library-view"] .mr-2, div[data-radix-popper-content-wrapper]
 div[data-type="card-library-view"] .mr-\[-0\.5rem\], div[data-radix-popper-content-wrapper] .mr-\[-0\.5rem\], span[data-radix-focus-guard] .mr-\[-0\.5rem\], div[role="dialog"] .mr-\[-0\.5rem\], div[data-state="open"].dialog-background .mr-\[-0\.5rem\], body > div[role="dialog"].mr-\[-0\.5rem\], body > div[data-state="open"].dialog-background.mr-\[-0\.5rem\] {
   margin-right: -0.5rem;
 }
+div[data-type="card-library-view"] .inline, div[data-radix-popper-content-wrapper] .inline, span[data-radix-focus-guard] .inline, div[role="dialog"] .inline, div[data-state="open"].dialog-background .inline, body > div[role="dialog"].inline, body > div[data-state="open"].dialog-background.inline {
+  display: inline;
+}
 div[data-type="card-library-view"] .flex, div[data-radix-popper-content-wrapper] .flex, span[data-radix-focus-guard] .flex, div[role="dialog"] .flex, div[data-state="open"].dialog-background .flex, body > div[role="dialog"].flex, body > div[data-state="open"].dialog-background.flex {
   display: flex;
 }
 div[data-type="card-library-view"] .inline-flex, div[data-radix-popper-content-wrapper] .inline-flex, span[data-radix-focus-guard] .inline-flex, div[role="dialog"] .inline-flex, div[data-state="open"].dialog-background .inline-flex, body > div[role="dialog"].inline-flex, body > div[data-state="open"].dialog-background.inline-flex {
   display: inline-flex;
-}
-div[data-type="card-library-view"] .table, div[data-radix-popper-content-wrapper] .table, span[data-radix-focus-guard] .table, div[role="dialog"] .table, div[data-state="open"].dialog-background .table, body > div[role="dialog"].table, body > div[data-state="open"].dialog-background.table {
-  display: table;
 }
 div[data-type="card-library-view"] .grid, div[data-radix-popper-content-wrapper] .grid, span[data-radix-focus-guard] .grid, div[role="dialog"] .grid, div[data-state="open"].dialog-background .grid, body > div[role="dialog"].grid, body > div[data-state="open"].dialog-background.grid {
   display: grid;
@@ -4157,6 +4359,9 @@ div[data-type="card-library-view"] .h-8, div[data-radix-popper-content-wrapper] 
 }
 div[data-type="card-library-view"] .h-9, div[data-radix-popper-content-wrapper] .h-9, span[data-radix-focus-guard] .h-9, div[role="dialog"] .h-9, div[data-state="open"].dialog-background .h-9, body > div[role="dialog"].h-9, body > div[data-state="open"].dialog-background.h-9 {
   height: 2.25rem;
+}
+div[data-type="card-library-view"] .h-\[150px\], div[data-radix-popper-content-wrapper] .h-\[150px\], span[data-radix-focus-guard] .h-\[150px\], div[role="dialog"] .h-\[150px\], div[data-state="open"].dialog-background .h-\[150px\], body > div[role="dialog"].h-\[150px\], body > div[data-state="open"].dialog-background.h-\[150px\] {
+  height: 150px;
 }
 div[data-type="card-library-view"] .h-\[1px\], div[data-radix-popper-content-wrapper] .h-\[1px\], span[data-radix-focus-guard] .h-\[1px\], div[role="dialog"] .h-\[1px\], div[data-state="open"].dialog-background .h-\[1px\], body > div[role="dialog"].h-\[1px\], body > div[data-state="open"].dialog-background.h-\[1px\] {
   height: 1px;
@@ -4213,6 +4418,9 @@ div[data-type="card-library-view"] .w-5, div[data-radix-popper-content-wrapper] 
 div[data-type="card-library-view"] .w-52, div[data-radix-popper-content-wrapper] .w-52, span[data-radix-focus-guard] .w-52, div[role="dialog"] .w-52, div[data-state="open"].dialog-background .w-52, body > div[role="dialog"].w-52, body > div[data-state="open"].dialog-background.w-52 {
   width: 13rem;
 }
+div[data-type="card-library-view"] .w-64, div[data-radix-popper-content-wrapper] .w-64, span[data-radix-focus-guard] .w-64, div[role="dialog"] .w-64, div[data-state="open"].dialog-background .w-64, body > div[role="dialog"].w-64, body > div[data-state="open"].dialog-background.w-64 {
+  width: 16rem;
+}
 div[data-type="card-library-view"] .w-72, div[data-radix-popper-content-wrapper] .w-72, span[data-radix-focus-guard] .w-72, div[role="dialog"] .w-72, div[data-state="open"].dialog-background .w-72, body > div[role="dialog"].w-72, body > div[data-state="open"].dialog-background.w-72 {
   width: 18rem;
 }
@@ -4246,6 +4454,9 @@ div[data-type="card-library-view"] .w-\[200px\], div[data-radix-popper-content-w
 div[data-type="card-library-view"] .w-\[240px\], div[data-radix-popper-content-wrapper] .w-\[240px\], span[data-radix-focus-guard] .w-\[240px\], div[role="dialog"] .w-\[240px\], div[data-state="open"].dialog-background .w-\[240px\], body > div[role="dialog"].w-\[240px\], body > div[data-state="open"].dialog-background.w-\[240px\] {
   width: 240px;
 }
+div[data-type="card-library-view"] .w-\[300px\], div[data-radix-popper-content-wrapper] .w-\[300px\], span[data-radix-focus-guard] .w-\[300px\], div[role="dialog"] .w-\[300px\], div[data-state="open"].dialog-background .w-\[300px\], body > div[role="dialog"].w-\[300px\], body > div[data-state="open"].dialog-background.w-\[300px\] {
+  width: 300px;
+}
 div[data-type="card-library-view"] .w-full, div[data-radix-popper-content-wrapper] .w-full, span[data-radix-focus-guard] .w-full, div[role="dialog"] .w-full, div[data-state="open"].dialog-background .w-full, body > div[role="dialog"].w-full, body > div[data-state="open"].dialog-background.w-full {
   width: 100%;
 }
@@ -4255,6 +4466,9 @@ div[data-type="card-library-view"] .min-w-\[140px\], div[data-radix-popper-conte
 div[data-type="card-library-view"] .min-w-\[4rem\], div[data-radix-popper-content-wrapper] .min-w-\[4rem\], span[data-radix-focus-guard] .min-w-\[4rem\], div[role="dialog"] .min-w-\[4rem\], div[data-state="open"].dialog-background .min-w-\[4rem\], body > div[role="dialog"].min-w-\[4rem\], body > div[data-state="open"].dialog-background.min-w-\[4rem\] {
   min-width: 4rem;
 }
+div[data-type="card-library-view"] .min-w-\[80px\], div[data-radix-popper-content-wrapper] .min-w-\[80px\], span[data-radix-focus-guard] .min-w-\[80px\], div[role="dialog"] .min-w-\[80px\], div[data-state="open"].dialog-background .min-w-\[80px\], body > div[role="dialog"].min-w-\[80px\], body > div[data-state="open"].dialog-background.min-w-\[80px\] {
+  min-width: 80px;
+}
 div[data-type="card-library-view"] .min-w-\[8rem\], div[data-radix-popper-content-wrapper] .min-w-\[8rem\], span[data-radix-focus-guard] .min-w-\[8rem\], div[role="dialog"] .min-w-\[8rem\], div[data-state="open"].dialog-background .min-w-\[8rem\], body > div[role="dialog"].min-w-\[8rem\], body > div[data-state="open"].dialog-background.min-w-\[8rem\] {
   min-width: 8rem;
 }
@@ -4263,9 +4477,6 @@ div[data-type="card-library-view"] .min-w-\[var\(--radix-select-trigger-width\)\
 }
 div[data-type="card-library-view"] .max-w-\[10rem\], div[data-radix-popper-content-wrapper] .max-w-\[10rem\], span[data-radix-focus-guard] .max-w-\[10rem\], div[role="dialog"] .max-w-\[10rem\], div[data-state="open"].dialog-background .max-w-\[10rem\], body > div[role="dialog"].max-w-\[10rem\], body > div[data-state="open"].dialog-background.max-w-\[10rem\] {
   max-width: 10rem;
-}
-div[data-type="card-library-view"] .max-w-\[20\%\], div[data-radix-popper-content-wrapper] .max-w-\[20\%\], span[data-radix-focus-guard] .max-w-\[20\%\], div[role="dialog"] .max-w-\[20\%\], div[data-state="open"].dialog-background .max-w-\[20\%\], body > div[role="dialog"].max-w-\[20\%\], body > div[data-state="open"].dialog-background.max-w-\[20\%\] {
-  max-width: 20%;
 }
 div[data-type="card-library-view"] .max-w-\[90\%\], div[data-radix-popper-content-wrapper] .max-w-\[90\%\], span[data-radix-focus-guard] .max-w-\[90\%\], div[role="dialog"] .max-w-\[90\%\], div[data-state="open"].dialog-background .max-w-\[90\%\], body > div[role="dialog"].max-w-\[90\%\], body > div[data-state="open"].dialog-background.max-w-\[90\%\] {
   max-width: 90%;
@@ -4334,6 +4545,9 @@ div[data-type="card-library-view"] .justify-center, div[data-radix-popper-conten
 }
 div[data-type="card-library-view"] .justify-between, div[data-radix-popper-content-wrapper] .justify-between, span[data-radix-focus-guard] .justify-between, div[role="dialog"] .justify-between, div[data-state="open"].dialog-background .justify-between, body > div[role="dialog"].justify-between, body > div[data-state="open"].dialog-background.justify-between {
   justify-content: space-between;
+}
+div[data-type="card-library-view"] .gap-1, div[data-radix-popper-content-wrapper] .gap-1, span[data-radix-focus-guard] .gap-1, div[role="dialog"] .gap-1, div[data-state="open"].dialog-background .gap-1, body > div[role="dialog"].gap-1, body > div[data-state="open"].dialog-background.gap-1 {
+  gap: 0.25rem;
 }
 div[data-type="card-library-view"] .gap-2, div[data-radix-popper-content-wrapper] .gap-2, span[data-radix-focus-guard] .gap-2, div[role="dialog"] .gap-2, div[data-state="open"].dialog-background .gap-2, body > div[role="dialog"].gap-2, body > div[data-state="open"].dialog-background.gap-2 {
   gap: 0.5rem;
@@ -4412,11 +4626,17 @@ div[data-type="card-library-view"] .rounded-xl, div[data-radix-popper-content-wr
 div[data-type="card-library-view"] .border, div[data-radix-popper-content-wrapper] .border, span[data-radix-focus-guard] .border, div[role="dialog"] .border, div[data-state="open"].dialog-background .border, body > div[role="dialog"].border, body > div[data-state="open"].dialog-background.border {
   border-width: 1px;
 }
+div[data-type="card-library-view"] .border-0, div[data-radix-popper-content-wrapper] .border-0, span[data-radix-focus-guard] .border-0, div[role="dialog"] .border-0, div[data-state="open"].dialog-background .border-0, body > div[role="dialog"].border-0, body > div[data-state="open"].dialog-background.border-0 {
+  border-width: 0px;
+}
 div[data-type="card-library-view"] .border-b, div[data-radix-popper-content-wrapper] .border-b, span[data-radix-focus-guard] .border-b, div[role="dialog"] .border-b, div[data-state="open"].dialog-background .border-b, body > div[role="dialog"].border-b, body > div[data-state="open"].dialog-background.border-b {
   border-bottom-width: 1px;
 }
 div[data-type="card-library-view"] .border-dashed, div[data-radix-popper-content-wrapper] .border-dashed, span[data-radix-focus-guard] .border-dashed, div[role="dialog"] .border-dashed, div[data-state="open"].dialog-background .border-dashed, body > div[role="dialog"].border-dashed, body > div[data-state="open"].dialog-background.border-dashed {
   border-style: dashed;
+}
+div[data-type="card-library-view"] .border-none, div[data-radix-popper-content-wrapper] .border-none, span[data-radix-focus-guard] .border-none, div[role="dialog"] .border-none, div[data-state="open"].dialog-background .border-none, body > div[role="dialog"].border-none, body > div[data-state="open"].dialog-background.border-none {
+  border-style: none;
 }
 div[data-type="card-library-view"] .border-input, div[data-radix-popper-content-wrapper] .border-input, span[data-radix-focus-guard] .border-input, div[role="dialog"] .border-input, div[data-state="open"].dialog-background .border-input, body > div[role="dialog"].border-input, body > div[data-state="open"].dialog-background.border-input {
   border-color: hsl(var(--input));
@@ -4442,8 +4662,8 @@ div[data-type="card-library-view"] .bg-border, div[data-radix-popper-content-wra
 div[data-type="card-library-view"] .bg-card, div[data-radix-popper-content-wrapper] .bg-card, span[data-radix-focus-guard] .bg-card, div[role="dialog"] .bg-card, div[data-state="open"].dialog-background .bg-card, body > div[role="dialog"].bg-card, body > div[data-state="open"].dialog-background.bg-card {
   background-color: hsl(var(--card));
 }
-div[data-type="card-library-view"] .bg-cyan-100\/30, div[data-radix-popper-content-wrapper] .bg-cyan-100\/30, span[data-radix-focus-guard] .bg-cyan-100\/30, div[role="dialog"] .bg-cyan-100\/30, div[data-state="open"].dialog-background .bg-cyan-100\/30, body > div[role="dialog"].bg-cyan-100\/30, body > div[data-state="open"].dialog-background.bg-cyan-100\/30 {
-  background-color: rgb(207 250 254 / 0.3);
+div[data-type="card-library-view"] .bg-cyan-100\/50, div[data-radix-popper-content-wrapper] .bg-cyan-100\/50, span[data-radix-focus-guard] .bg-cyan-100\/50, div[role="dialog"] .bg-cyan-100\/50, div[data-state="open"].dialog-background .bg-cyan-100\/50, body > div[role="dialog"].bg-cyan-100\/50, body > div[data-state="open"].dialog-background.bg-cyan-100\/50 {
+  background-color: rgb(207 250 254 / 0.5);
 }
 div[data-type="card-library-view"] .bg-destructive, div[data-radix-popper-content-wrapper] .bg-destructive, span[data-radix-focus-guard] .bg-destructive, div[role="dialog"] .bg-destructive, div[data-state="open"].dialog-background .bg-destructive, body > div[role="dialog"].bg-destructive, body > div[data-state="open"].dialog-background.bg-destructive {
   background-color: hsl(var(--destructive));
@@ -4451,14 +4671,14 @@ div[data-type="card-library-view"] .bg-destructive, div[data-radix-popper-conten
 div[data-type="card-library-view"] .bg-gray-100\/30, div[data-radix-popper-content-wrapper] .bg-gray-100\/30, span[data-radix-focus-guard] .bg-gray-100\/30, div[role="dialog"] .bg-gray-100\/30, div[data-state="open"].dialog-background .bg-gray-100\/30, body > div[role="dialog"].bg-gray-100\/30, body > div[data-state="open"].dialog-background.bg-gray-100\/30 {
   background-color: rgb(243 244 246 / 0.3);
 }
-div[data-type="card-library-view"] .bg-green-100\/30, div[data-radix-popper-content-wrapper] .bg-green-100\/30, span[data-radix-focus-guard] .bg-green-100\/30, div[role="dialog"] .bg-green-100\/30, div[data-state="open"].dialog-background .bg-green-100\/30, body > div[role="dialog"].bg-green-100\/30, body > div[data-state="open"].dialog-background.bg-green-100\/30 {
-  background-color: rgb(220 252 231 / 0.3);
+div[data-type="card-library-view"] .bg-green-100\/50, div[data-radix-popper-content-wrapper] .bg-green-100\/50, span[data-radix-focus-guard] .bg-green-100\/50, div[role="dialog"] .bg-green-100\/50, div[data-state="open"].dialog-background .bg-green-100\/50, body > div[role="dialog"].bg-green-100\/50, body > div[data-state="open"].dialog-background.bg-green-100\/50 {
+  background-color: rgb(220 252 231 / 0.5);
 }
 div[data-type="card-library-view"] .bg-muted, div[data-radix-popper-content-wrapper] .bg-muted, span[data-radix-focus-guard] .bg-muted, div[role="dialog"] .bg-muted, div[data-state="open"].dialog-background .bg-muted, body > div[role="dialog"].bg-muted, body > div[data-state="open"].dialog-background.bg-muted {
   background-color: hsl(var(--muted));
 }
-div[data-type="card-library-view"] .bg-orange-100\/30, div[data-radix-popper-content-wrapper] .bg-orange-100\/30, span[data-radix-focus-guard] .bg-orange-100\/30, div[role="dialog"] .bg-orange-100\/30, div[data-state="open"].dialog-background .bg-orange-100\/30, body > div[role="dialog"].bg-orange-100\/30, body > div[data-state="open"].dialog-background.bg-orange-100\/30 {
-  background-color: rgb(255 237 213 / 0.3);
+div[data-type="card-library-view"] .bg-orange-100\/50, div[data-radix-popper-content-wrapper] .bg-orange-100\/50, span[data-radix-focus-guard] .bg-orange-100\/50, div[role="dialog"] .bg-orange-100\/50, div[data-state="open"].dialog-background .bg-orange-100\/50, body > div[role="dialog"].bg-orange-100\/50, body > div[data-state="open"].dialog-background.bg-orange-100\/50 {
+  background-color: rgb(255 237 213 / 0.5);
 }
 div[data-type="card-library-view"] .bg-popover, div[data-radix-popper-content-wrapper] .bg-popover, span[data-radix-focus-guard] .bg-popover, div[role="dialog"] .bg-popover, div[data-state="open"].dialog-background .bg-popover, body > div[role="dialog"].bg-popover, body > div[data-state="open"].dialog-background.bg-popover {
   background-color: hsl(var(--popover));
@@ -4466,8 +4686,8 @@ div[data-type="card-library-view"] .bg-popover, div[data-radix-popper-content-wr
 div[data-type="card-library-view"] .bg-primary, div[data-radix-popper-content-wrapper] .bg-primary, span[data-radix-focus-guard] .bg-primary, div[role="dialog"] .bg-primary, div[data-state="open"].dialog-background .bg-primary, body > div[role="dialog"].bg-primary, body > div[data-state="open"].dialog-background.bg-primary {
   background-color: hsl(var(--primary));
 }
-div[data-type="card-library-view"] .bg-red-100\/30, div[data-radix-popper-content-wrapper] .bg-red-100\/30, span[data-radix-focus-guard] .bg-red-100\/30, div[role="dialog"] .bg-red-100\/30, div[data-state="open"].dialog-background .bg-red-100\/30, body > div[role="dialog"].bg-red-100\/30, body > div[data-state="open"].dialog-background.bg-red-100\/30 {
-  background-color: rgb(254 226 226 / 0.3);
+div[data-type="card-library-view"] .bg-red-100\/50, div[data-radix-popper-content-wrapper] .bg-red-100\/50, span[data-radix-focus-guard] .bg-red-100\/50, div[role="dialog"] .bg-red-100\/50, div[data-state="open"].dialog-background .bg-red-100\/50, body > div[role="dialog"].bg-red-100\/50, body > div[data-state="open"].dialog-background.bg-red-100\/50 {
+  background-color: rgb(254 226 226 / 0.5);
 }
 div[data-type="card-library-view"] .bg-secondary, div[data-radix-popper-content-wrapper] .bg-secondary, span[data-radix-focus-guard] .bg-secondary, div[role="dialog"] .bg-secondary, div[data-state="open"].dialog-background .bg-secondary, body > div[role="dialog"].bg-secondary, body > div[data-state="open"].dialog-background.bg-secondary {
   background-color: hsl(var(--secondary));
@@ -4478,11 +4698,11 @@ div[data-type="card-library-view"] .bg-secondary\/20, div[data-radix-popper-cont
 div[data-type="card-library-view"] .bg-transparent, div[data-radix-popper-content-wrapper] .bg-transparent, span[data-radix-focus-guard] .bg-transparent, div[role="dialog"] .bg-transparent, div[data-state="open"].dialog-background .bg-transparent, body > div[role="dialog"].bg-transparent, body > div[data-state="open"].dialog-background.bg-transparent {
   background-color: transparent;
 }
-div[data-type="card-library-view"] .bg-violet-100\/30, div[data-radix-popper-content-wrapper] .bg-violet-100\/30, span[data-radix-focus-guard] .bg-violet-100\/30, div[role="dialog"] .bg-violet-100\/30, div[data-state="open"].dialog-background .bg-violet-100\/30, body > div[role="dialog"].bg-violet-100\/30, body > div[data-state="open"].dialog-background.bg-violet-100\/30 {
-  background-color: rgb(237 233 254 / 0.3);
+div[data-type="card-library-view"] .bg-violet-100\/50, div[data-radix-popper-content-wrapper] .bg-violet-100\/50, span[data-radix-focus-guard] .bg-violet-100\/50, div[role="dialog"] .bg-violet-100\/50, div[data-state="open"].dialog-background .bg-violet-100\/50, body > div[role="dialog"].bg-violet-100\/50, body > div[data-state="open"].dialog-background.bg-violet-100\/50 {
+  background-color: rgb(237 233 254 / 0.5);
 }
-div[data-type="card-library-view"] .bg-yellow-100\/30, div[data-radix-popper-content-wrapper] .bg-yellow-100\/30, span[data-radix-focus-guard] .bg-yellow-100\/30, div[role="dialog"] .bg-yellow-100\/30, div[data-state="open"].dialog-background .bg-yellow-100\/30, body > div[role="dialog"].bg-yellow-100\/30, body > div[data-state="open"].dialog-background.bg-yellow-100\/30 {
-  background-color: rgb(254 249 195 / 0.3);
+div[data-type="card-library-view"] .bg-yellow-100\/50, div[data-radix-popper-content-wrapper] .bg-yellow-100\/50, span[data-radix-focus-guard] .bg-yellow-100\/50, div[role="dialog"] .bg-yellow-100\/50, div[data-state="open"].dialog-background .bg-yellow-100\/50, body > div[role="dialog"].bg-yellow-100\/50, body > div[data-state="open"].dialog-background.bg-yellow-100\/50 {
+  background-color: rgb(254 249 195 / 0.5);
 }
 div[data-type="card-library-view"] .fill-current, div[data-radix-popper-content-wrapper] .fill-current, span[data-radix-focus-guard] .fill-current, div[role="dialog"] .fill-current, div[data-state="open"].dialog-background .fill-current, body > div[role="dialog"].fill-current, body > div[data-state="open"].dialog-background.fill-current {
   fill: currentColor;
@@ -4501,6 +4721,9 @@ div[data-type="card-library-view"] .p-2, div[data-radix-popper-content-wrapper] 
 }
 div[data-type="card-library-view"] .p-4, div[data-radix-popper-content-wrapper] .p-4, span[data-radix-focus-guard] .p-4, div[role="dialog"] .p-4, div[data-state="open"].dialog-background .p-4, body > div[role="dialog"].p-4, body > div[data-state="open"].dialog-background.p-4 {
   padding: 1rem;
+}
+div[data-type="card-library-view"] .p-5, div[data-radix-popper-content-wrapper] .p-5, span[data-radix-focus-guard] .p-5, div[role="dialog"] .p-5, div[data-state="open"].dialog-background .p-5, body > div[role="dialog"].p-5, body > div[data-state="open"].dialog-background.p-5 {
+  padding: 1.25rem;
 }
 div[data-type="card-library-view"] .p-6, div[data-radix-popper-content-wrapper] .p-6, span[data-radix-focus-guard] .p-6, div[role="dialog"] .p-6, div[data-state="open"].dialog-background .p-6, body > div[role="dialog"].p-6, body > div[data-state="open"].dialog-background.p-6 {
   padding: 1.5rem;
@@ -4567,14 +4790,17 @@ div[data-type="card-library-view"] .pb-1, div[data-radix-popper-content-wrapper]
 div[data-type="card-library-view"] .pb-16, div[data-radix-popper-content-wrapper] .pb-16, span[data-radix-focus-guard] .pb-16, div[role="dialog"] .pb-16, div[data-state="open"].dialog-background .pb-16, body > div[role="dialog"].pb-16, body > div[data-state="open"].dialog-background.pb-16 {
   padding-bottom: 4rem;
 }
-div[data-type="card-library-view"] .pb-2, div[data-radix-popper-content-wrapper] .pb-2, span[data-radix-focus-guard] .pb-2, div[role="dialog"] .pb-2, div[data-state="open"].dialog-background .pb-2, body > div[role="dialog"].pb-2, body > div[data-state="open"].dialog-background.pb-2 {
-  padding-bottom: 0.5rem;
-}
 div[data-type="card-library-view"] .pb-4, div[data-radix-popper-content-wrapper] .pb-4, span[data-radix-focus-guard] .pb-4, div[role="dialog"] .pb-4, div[data-state="open"].dialog-background .pb-4, body > div[role="dialog"].pb-4, body > div[data-state="open"].dialog-background.pb-4 {
   padding-bottom: 1rem;
 }
+div[data-type="card-library-view"] .pl-1, div[data-radix-popper-content-wrapper] .pl-1, span[data-radix-focus-guard] .pl-1, div[role="dialog"] .pl-1, div[data-state="open"].dialog-background .pl-1, body > div[role="dialog"].pl-1, body > div[data-state="open"].dialog-background.pl-1 {
+  padding-left: 0.25rem;
+}
 div[data-type="card-library-view"] .pl-2, div[data-radix-popper-content-wrapper] .pl-2, span[data-radix-focus-guard] .pl-2, div[role="dialog"] .pl-2, div[data-state="open"].dialog-background .pl-2, body > div[role="dialog"].pl-2, body > div[data-state="open"].dialog-background.pl-2 {
   padding-left: 0.5rem;
+}
+div[data-type="card-library-view"] .pl-3, div[data-radix-popper-content-wrapper] .pl-3, span[data-radix-focus-guard] .pl-3, div[role="dialog"] .pl-3, div[data-state="open"].dialog-background .pl-3, body > div[role="dialog"].pl-3, body > div[data-state="open"].dialog-background.pl-3 {
+  padding-left: 0.75rem;
 }
 div[data-type="card-library-view"] .pl-8, div[data-radix-popper-content-wrapper] .pl-8, span[data-radix-focus-guard] .pl-8, div[role="dialog"] .pl-8, div[data-state="open"].dialog-background .pl-8, body > div[role="dialog"].pl-8, body > div[data-state="open"].dialog-background.pl-8 {
   padding-left: 2rem;
@@ -4593,9 +4819,6 @@ div[data-type="card-library-view"] .pt-1, div[data-radix-popper-content-wrapper]
 }
 div[data-type="card-library-view"] .pt-2, div[data-radix-popper-content-wrapper] .pt-2, span[data-radix-focus-guard] .pt-2, div[role="dialog"] .pt-2, div[data-state="open"].dialog-background .pt-2, body > div[role="dialog"].pt-2, body > div[data-state="open"].dialog-background.pt-2 {
   padding-top: 0.5rem;
-}
-div[data-type="card-library-view"] .pt-4, div[data-radix-popper-content-wrapper] .pt-4, span[data-radix-focus-guard] .pt-4, div[role="dialog"] .pt-4, div[data-state="open"].dialog-background .pt-4, body > div[role="dialog"].pt-4, body > div[data-state="open"].dialog-background.pt-4 {
-  padding-top: 1rem;
 }
 div[data-type="card-library-view"] .pt-6, div[data-radix-popper-content-wrapper] .pt-6, span[data-radix-focus-guard] .pt-6, div[role="dialog"] .pt-6, div[data-state="open"].dialog-background .pt-6, body > div[role="dialog"].pt-6, body > div[data-state="open"].dialog-background.pt-6 {
   padding-top: 1.5rem;
@@ -4636,6 +4859,9 @@ div[data-type="card-library-view"] .tracking-tight, div[data-radix-popper-conten
 div[data-type="card-library-view"] .tracking-widest, div[data-radix-popper-content-wrapper] .tracking-widest, span[data-radix-focus-guard] .tracking-widest, div[role="dialog"] .tracking-widest, div[data-state="open"].dialog-background .tracking-widest, body > div[role="dialog"].tracking-widest, body > div[data-state="open"].dialog-background.tracking-widest {
   letter-spacing: 0.1em;
 }
+div[data-type="card-library-view"] .text-accent-foreground, div[data-radix-popper-content-wrapper] .text-accent-foreground, span[data-radix-focus-guard] .text-accent-foreground, div[role="dialog"] .text-accent-foreground, div[data-state="open"].dialog-background .text-accent-foreground, body > div[role="dialog"].text-accent-foreground, body > div[data-state="open"].dialog-background.text-accent-foreground {
+  color: hsl(var(--accent-foreground));
+}
 div[data-type="card-library-view"] .text-card-foreground, div[data-radix-popper-content-wrapper] .text-card-foreground, span[data-radix-focus-guard] .text-card-foreground, div[role="dialog"] .text-card-foreground, div[data-state="open"].dialog-background .text-card-foreground, body > div[role="dialog"].text-card-foreground, body > div[data-state="open"].dialog-background.text-card-foreground {
   color: hsl(var(--card-foreground));
 }
@@ -4644,6 +4870,18 @@ div[data-type="card-library-view"] .text-destructive-foreground, div[data-radix-
 }
 div[data-type="card-library-view"] .text-foreground, div[data-radix-popper-content-wrapper] .text-foreground, span[data-radix-focus-guard] .text-foreground, div[role="dialog"] .text-foreground, div[data-state="open"].dialog-background .text-foreground, body > div[role="dialog"].text-foreground, body > div[data-state="open"].dialog-background.text-foreground {
   color: hsl(var(--foreground));
+}
+div[data-type="card-library-view"] .text-gray-200, div[data-radix-popper-content-wrapper] .text-gray-200, span[data-radix-focus-guard] .text-gray-200, div[role="dialog"] .text-gray-200, div[data-state="open"].dialog-background .text-gray-200, body > div[role="dialog"].text-gray-200, body > div[data-state="open"].dialog-background.text-gray-200 {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+div[data-type="card-library-view"] .text-gray-300, div[data-radix-popper-content-wrapper] .text-gray-300, span[data-radix-focus-guard] .text-gray-300, div[role="dialog"] .text-gray-300, div[data-state="open"].dialog-background .text-gray-300, body > div[role="dialog"].text-gray-300, body > div[data-state="open"].dialog-background.text-gray-300 {
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
+div[data-type="card-library-view"] .text-gray-400, div[data-radix-popper-content-wrapper] .text-gray-400, span[data-radix-focus-guard] .text-gray-400, div[role="dialog"] .text-gray-400, div[data-state="open"].dialog-background .text-gray-400, body > div[role="dialog"].text-gray-400, body > div[data-state="open"].dialog-background.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 div[data-type="card-library-view"] .text-muted-foreground, div[data-radix-popper-content-wrapper] .text-muted-foreground, span[data-radix-focus-guard] .text-muted-foreground, div[role="dialog"] .text-muted-foreground, div[data-state="open"].dialog-background .text-muted-foreground, body > div[role="dialog"].text-muted-foreground, body > div[data-state="open"].dialog-background.text-muted-foreground {
   color: hsl(var(--muted-foreground));
@@ -4807,6 +5045,12 @@ div[data-type="card-library-view"] .cl-card .collapsed-block::before, div[data-r
   border-bottom-right-radius: 0.75rem;
   opacity: 0.9;
 }
+div[data-type="card-library-view"] .view-header-title-container, div[data-radix-popper-content-wrapper] .view-header-title-container, span[data-radix-focus-guard] .view-header-title-container, div[role="dialog"] .view-header-title-container, div[data-state="open"].dialog-background .view-header-title-container, body > div[role="dialog"].view-header-title-container, body > div[data-state="open"].dialog-background.view-header-title-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
 div[data-type="card-library-view"] .\[\&_svg\]\:invisible svg.status-text-container, div[data-radix-popper-content-wrapper] .\[\&_svg\]\:invisible svg.status-text-container, span[data-radix-focus-guard] .\[\&_svg\]\:invisible svg.status-text-container, div[role="dialog"] .\[\&_svg\]\:invisible svg.status-text-container, div[data-state="open"].dialog-background .\[\&_svg\]\:invisible svg.status-text-container, body > div[role="dialog"].\[\&_svg\]\:invisible svg.status-text-container, body > div[data-state="open"].dialog-background.\[\&_svg\]\:invisible svg.status-text-container {
   display: none;
 }
@@ -4856,6 +5100,9 @@ div[data-type="card-library-view"] .hover\:bg-secondary\/90:hover, div[data-radi
 div[data-type="card-library-view"] .hover\:bg-transparent:hover, div[data-radix-popper-content-wrapper] .hover\:bg-transparent:hover, span[data-radix-focus-guard] .hover\:bg-transparent:hover, div[role="dialog"] .hover\:bg-transparent:hover, div[data-state="open"].dialog-background .hover\:bg-transparent:hover, body > div[role="dialog"].hover\:bg-transparent:hover, body > div[data-state="open"].dialog-background.hover\:bg-transparent:hover {
   background-color: transparent;
 }
+div[data-type="card-library-view"] .hover\:bg-opacity-50:hover, div[data-radix-popper-content-wrapper] .hover\:bg-opacity-50:hover, span[data-radix-focus-guard] .hover\:bg-opacity-50:hover, div[role="dialog"] .hover\:bg-opacity-50:hover, div[data-state="open"].dialog-background .hover\:bg-opacity-50:hover, body > div[role="dialog"].hover\:bg-opacity-50:hover, body > div[data-state="open"].dialog-background.hover\:bg-opacity-50:hover {
+  --tw-bg-opacity: 0.5;
+}
 div[data-type="card-library-view"] .hover\:text-accent-foreground:hover, div[data-radix-popper-content-wrapper] .hover\:text-accent-foreground:hover, span[data-radix-focus-guard] .hover\:text-accent-foreground:hover, div[role="dialog"] .hover\:text-accent-foreground:hover, div[data-state="open"].dialog-background .hover\:text-accent-foreground:hover, body > div[role="dialog"].hover\:text-accent-foreground:hover, body > div[data-state="open"].dialog-background.hover\:text-accent-foreground:hover {
   color: hsl(var(--accent-foreground));
 }
@@ -4871,6 +5118,11 @@ div[data-type="card-library-view"] .hover\:underline:hover, div[data-radix-poppe
 }
 div[data-type="card-library-view"] .hover\:opacity-100:hover, div[data-radix-popper-content-wrapper] .hover\:opacity-100:hover, span[data-radix-focus-guard] .hover\:opacity-100:hover, div[role="dialog"] .hover\:opacity-100:hover, div[data-state="open"].dialog-background .hover\:opacity-100:hover, body > div[role="dialog"].hover\:opacity-100:hover, body > div[data-state="open"].dialog-background.hover\:opacity-100:hover {
   opacity: 1;
+}
+div[data-type="card-library-view"] .hover\:shadow:hover, div[data-radix-popper-content-wrapper] .hover\:shadow:hover, span[data-radix-focus-guard] .hover\:shadow:hover, div[role="dialog"] .hover\:shadow:hover, div[data-state="open"].dialog-background .hover\:shadow:hover, body > div[role="dialog"].hover\:shadow:hover, body > div[data-state="open"].dialog-background.hover\:shadow:hover {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 div[data-type="card-library-view"] .focus\:bg-accent:focus, div[data-radix-popper-content-wrapper] .focus\:bg-accent:focus, span[data-radix-focus-guard] .focus\:bg-accent:focus, div[role="dialog"] .focus\:bg-accent:focus, div[data-state="open"].dialog-background .focus\:bg-accent:focus, body > div[role="dialog"].focus\:bg-accent:focus, body > div[data-state="open"].dialog-background.focus\:bg-accent:focus {
   background-color: hsl(var(--accent));
@@ -5090,8 +5342,23 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
   --tw-text-opacity: 1;
   color: rgb(248 250 252 / var(--tw-text-opacity));
 }
+.theme-dark div[data-type="card-library-view"] :is( .dark\:text-slate-500), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:text-slate-500), .theme-dark span[data-radix-focus-guard] :is( .dark\:text-slate-500), .theme-dark div[role="dialog"] :is( .dark\:text-slate-500), .theme-dark div[data-state="open"].dialog-background :is( .dark\:text-slate-500), body.theme-dark > div[role="dialog"] :is( .dark\:text-slate-500), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:text-slate-500) {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
+}
 .theme-dark div[data-type="card-library-view"] :is( .dark\:text-slate-500\/80), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:text-slate-500\/80), .theme-dark span[data-radix-focus-guard] :is( .dark\:text-slate-500\/80), .theme-dark div[role="dialog"] :is( .dark\:text-slate-500\/80), .theme-dark div[data-state="open"].dialog-background :is( .dark\:text-slate-500\/80), body.theme-dark > div[role="dialog"] :is( .dark\:text-slate-500\/80), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:text-slate-500\/80) {
   color: rgb(100 116 139 / 0.8);
+}
+.theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:bg-slate-600:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:bg-slate-600:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:bg-slate-600:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:bg-slate-600:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+}
+.theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:text-accent-foreground:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:text-accent-foreground:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:text-accent-foreground:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:text-accent-foreground:hover) {
+  color: hsl(var(--accent-foreground));
+}
+.theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:text-slate-300:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:text-slate-300:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:text-slate-300:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:text-slate-300:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-300:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:text-slate-300:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-300:hover) {
+  --tw-text-opacity: 1;
+  color: rgb(203 213 225 / var(--tw-text-opacity));
 }
 .theme-dark div[data-type="card-library-view"] :is( .dark\:hover\:text-slate-50:hover), .theme-dark div[data-radix-popper-content-wrapper] :is( .dark\:hover\:text-slate-50:hover), .theme-dark span[data-radix-focus-guard] :is( .dark\:hover\:text-slate-50:hover), .theme-dark div[role="dialog"] :is( .dark\:hover\:text-slate-50:hover), .theme-dark div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-50:hover), body.theme-dark > div[role="dialog"] :is( .dark\:hover\:text-slate-50:hover), body.theme-dark > div[data-state="open"].dialog-background :is( .dark\:hover\:text-slate-50:hover) {
   --tw-text-opacity: 1;
@@ -5106,6 +5373,10 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
   border-color: rgb(30 41 59 / var(--tw-border-opacity));
 }
 @media (min-width: 640px) {
+
+  div[data-type="card-library-view"] .sm\:max-w-md, div[data-radix-popper-content-wrapper] .sm\:max-w-md, span[data-radix-focus-guard] .sm\:max-w-md, div[role="dialog"] .sm\:max-w-md, div[data-state="open"].dialog-background .sm\:max-w-md, body > div[role="dialog"].sm\:max-w-md, body > div[data-state="open"].dialog-background.sm\:max-w-md {
+    max-width: 28rem;
+  }
 
   div[data-type="card-library-view"] .sm\:flex-row, div[data-radix-popper-content-wrapper] .sm\:flex-row, span[data-radix-focus-guard] .sm\:flex-row, div[role="dialog"] .sm\:flex-row, div[data-state="open"].dialog-background .sm\:flex-row, body > div[role="dialog"].sm\:flex-row, body > div[data-state="open"].dialog-background.sm\:flex-row {
     flex-direction: row;
@@ -5134,6 +5405,10 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
   div[data-type="card-library-view"] .md\:w-full, div[data-radix-popper-content-wrapper] .md\:w-full, span[data-radix-focus-guard] .md\:w-full, div[role="dialog"] .md\:w-full, div[data-state="open"].dialog-background .md\:w-full, body > div[role="dialog"].md\:w-full, body > div[data-state="open"].dialog-background.md\:w-full {
     width: 100%;
   }
+
+  div[data-type="card-library-view"] .md\:max-w-\[520px\], div[data-radix-popper-content-wrapper] .md\:max-w-\[520px\], span[data-radix-focus-guard] .md\:max-w-\[520px\], div[role="dialog"] .md\:max-w-\[520px\], div[data-state="open"].dialog-background .md\:max-w-\[520px\], body > div[role="dialog"].md\:max-w-\[520px\], body > div[data-state="open"].dialog-background.md\:max-w-\[520px\] {
+    max-width: 520px;
+  }
 }
 @media (min-width: 1024px) {
 
@@ -5149,8 +5424,8 @@ div[data-type="card-library-view"] .data-\[state\=open\]\:slide-in-from-top-\[48
     width: 240px;
   }
 
-  div[data-type="card-library-view"] .lg\:max-w-\[520px\], div[data-radix-popper-content-wrapper] .lg\:max-w-\[520px\], span[data-radix-focus-guard] .lg\:max-w-\[520px\], div[role="dialog"] .lg\:max-w-\[520px\], div[data-state="open"].dialog-background .lg\:max-w-\[520px\], body > div[role="dialog"].lg\:max-w-\[520px\], body > div[data-state="open"].dialog-background.lg\:max-w-\[520px\] {
-    max-width: 520px;
+  div[data-type="card-library-view"] .lg\:max-w-full, div[data-radix-popper-content-wrapper] .lg\:max-w-full, span[data-radix-focus-guard] .lg\:max-w-full, div[role="dialog"] .lg\:max-w-full, div[data-state="open"].dialog-background .lg\:max-w-full, body > div[role="dialog"].lg\:max-w-full, body > div[data-state="open"].dialog-background.lg\:max-w-full {
+    max-width: 100%;
   }
 
   div[data-type="card-library-view"] .lg\:px-3, div[data-radix-popper-content-wrapper] .lg\:px-3, span[data-radix-focus-guard] .lg\:px-3, div[role="dialog"] .lg\:px-3, div[data-state="open"].dialog-background .lg\:px-3, body > div[role="dialog"].lg\:px-3, body > div[data-state="open"].dialog-background.lg\:px-3 {
