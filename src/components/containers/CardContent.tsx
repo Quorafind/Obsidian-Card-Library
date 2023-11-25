@@ -1,9 +1,10 @@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import useMarkdownRenderer from '@/hooks/useMarkdownRenderer';
 import AppContext from '@/stores/appContext';
 import { CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 interface MouseActionProps {
   handleDoubleClick: () => void;
@@ -20,8 +21,12 @@ export function CollapseCardContent({
   mouseActionProps: MouseActionProps;
 }) {
   const {
-    globalState: { app, view },
+    globalState: { app, view, settings },
   } = useContext(AppContext);
+
+  const collapsible = useMemo(() => {
+    return settings?.theme.listStyle === 'masonry';
+  }, [settings?.theme.listStyle]);
 
   const { render, ref } = useMarkdownRenderer(app, view);
   const [isContentTooTall, setIsContentTooTall] = useState(false);
@@ -60,19 +65,31 @@ export function CollapseCardContent({
         <CardContent
           className={cn(
             'h-[calc(100%_-_4rem)] w-full max-w-full overflow-y-auto',
-            isContentTooTall ? (!isCodeExpanded ? 'pb-1' : 'pb-16') : '',
-            isContentTooTall ? (isCodeExpanded ? 'grid grid-rows-1' : `grid grid-rows-[150px]`) : '',
+            collapsible && isContentTooTall ? (collapsible && !isCodeExpanded ? 'pb-1' : 'pb-16') : '',
+            collapsible && isContentTooTall
+              ? collapsible && isCodeExpanded
+                ? 'grid grid-rows-1'
+                : `grid grid-rows-[150px]`
+              : '',
           )}
           onClick={mouseActionProps.handleSingleClick}
           onDoubleClick={mouseActionProps.handleDoubleClick}
         >
-          <div
-            ref={ref}
-            className={cn('w-full max-w-full text-xs text-muted-foreground text-ellipsis', 'overflow-hidden')}
-          ></div>
+          {content.trim().length === 0 ? (
+            <div className={cn('w-full max-w-full text-xs text-accent-foreground text-ellipsis', 'overflow-hidden')}>
+              <Button variant="outline" className="w-full h-full" onClick={mouseActionProps.handleDoubleClick}>
+                Add content
+              </Button>
+            </div>
+          ) : (
+            <div
+              ref={ref}
+              className={cn('w-full max-w-full text-xs text-accent-foreground text-ellipsis', 'overflow-hidden')}
+            ></div>
+          )}
         </CardContent>
       </CollapsibleContent>
-      {isContentTooTall && (
+      {collapsible && isContentTooTall && (
         <div
           className={cn(
             'flex flex-row justify-center items-center absolute left-0 right-0 bottom-0 h-16 overflow-hidden',

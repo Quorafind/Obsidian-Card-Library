@@ -1,4 +1,4 @@
-import { ButtonComponent, ItemView, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
+import { ButtonComponent, debounce, ItemView, Menu, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
 import '@/less/globals.less';
 import { CardLibrarySettingTab, DEFAULT_SETTINGS } from '@/cardLibrarySettings';
 import { cardService, globalService, locationService } from '@/services';
@@ -62,6 +62,8 @@ export default class CardLibrary extends Plugin {
   settings: CardLibrarySettings;
   settingTab: CardLibrarySettingTab;
 
+  location: TargetLocation;
+
   private idSet = new Set<string>();
   private actionEls = [];
 
@@ -72,6 +74,7 @@ export default class CardLibrary extends Plugin {
     this.initCommands();
     this.initRibbon();
 
+    this.patchDocBody();
     this.patchCanvasMenu();
     this.patchCanvas();
 
@@ -102,6 +105,8 @@ export default class CardLibrary extends Plugin {
 
   async openCardLibrary(location: TargetLocation = 'center', cb?: () => void) {
     const workspace = this.app.workspace;
+    if (workspace.getLeavesOfType(VIEW_TYPE).length > 0 && this.location === location) return;
+    this.location = location;
     workspace.detachLeavesOfType(VIEW_TYPE);
     let leaf: WorkspaceLeaf;
 
@@ -175,6 +180,29 @@ export default class CardLibrary extends Plugin {
     await this.loadSettings();
     this.settingTab = new CardLibrarySettingTab(this.app, this);
     this.addSettingTab(this.settingTab);
+  }
+
+  patchDocBody(): void {
+    const triggerUpdate = debounce(
+      (toggle: boolean) => {
+        this.app.workspace.trigger('show-view-header', toggle);
+      },
+      500,
+      true,
+    );
+
+    const docUninstaller = around(document.body.constructor.prototype, {
+      toggleClass: (next: any) =>
+        function (...args: any) {
+          const result = next.call(this, ...args);
+          if (args[0] === 'show-view-header') {
+            triggerUpdate(args[1]);
+          }
+          return result;
+        },
+    });
+
+    this.register(docUninstaller);
   }
 
   patchCanvasHeader(): void {
@@ -328,6 +356,7 @@ export default class CardLibrary extends Plugin {
   }
 
   async saveSettings(): Promise<void> {
+    console.log(this.settings.theme.listStyle);
     await this.saveData(this.settings);
     globalService.setSetting(this.settings);
   }

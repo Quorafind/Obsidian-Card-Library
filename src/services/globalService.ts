@@ -45,6 +45,24 @@ class GlobalService {
     });
   };
 
+  public setViewHeaderVisibility = (visible: boolean) => {
+    appStore.dispatch({
+      type: 'SET_VIEW_HEADER_VISIBILITY',
+      payload: {
+        visible,
+      },
+    });
+  };
+
+  public setHasCanvasViewOpened = (hasCanvasViewOpened: boolean) => {
+    appStore.dispatch({
+      type: 'SET_HAS_CANVAS_VIEW_OPENED',
+      payload: {
+        hasCanvasViewOpened,
+      },
+    });
+  };
+
   public setViewStatus = (viewStatus: string) => {
     appStore.dispatch({
       type: 'SET_VIEW_STATUS',
@@ -54,7 +72,7 @@ class GlobalService {
     });
   };
 
-  public setChangedByMemos = (changedBySelf: boolean) => {
+  public setChangedByCardLibrary = (changedBySelf: boolean) => {
     appStore.dispatch({
       type: 'SET_CHANGED_BY_SELF',
       payload: {

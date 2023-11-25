@@ -37,7 +37,7 @@ export function CardActionButton(props: Props) {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="hover:bg-transparent shadow-none flex h-8 w-8 mr-[-0.5rem] p-0 data-[state=open]:bg-transparent"
+          className="text-gray-400 dark:text-slate-500 dark:hover:text-slate-300 hover:bg-transparent shadow-none flex h-8 w-8 mr-[-0.5rem] p-0 data-[state=open]:bg-transparent"
         >
           <DotsHorizontalIcon className="h-4 w-4" />
           <span className="sr-only">Open menu</span>

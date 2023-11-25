@@ -169,7 +169,7 @@ export default function CanvasSwitcher({ className }: TeamSwitcherProps) {
           </Command>
         </PopoverContent>
       </Popover>
-      <DialogContent container={view.containerEl} className={'dark:border-slate-500'}>
+      <DialogContent className={'dark:border-slate-500'}>
         <DialogHeader>
           <DialogTitle>Create canvas</DialogTitle>
           <DialogDescription>Add a new canvas to specific folder or default folder.</DialogDescription>

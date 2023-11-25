@@ -40,7 +40,7 @@ export function checkImageExtension(path: string): boolean {
 
 export function checkMediaExtension(path: string): boolean {
   const ext = getExtension(path);
-  return ['mp4', 'mov', 'avi', 'mkv', 'mp3', 'wav', 'ogg', 'flac'].includes(ext);
+  return ['canvas', 'mp4', 'mov', 'avi', 'mkv', 'mp3', 'wav', 'ogg', 'flac'].includes(ext);
 }
 
 export function checkIfLinked(id: string, edges: CanvasEdgeData[]): boolean {
@@ -83,13 +83,12 @@ export async function getAllCards(): Promise<Model.Card[]> {
   const app = globalService.getState().app;
   const cards: Model.Card[] = [];
   const files = app.vault.getAllLoadedFiles().filter((file) => file instanceof TFile && file.extension === 'canvas');
+  const sortedFiles = files.sort((a: TFile, b: TFile) => b.stat.mtime - a.stat.mtime);
   await fileService.setFiles(files as TFile[]);
 
   for (const file of files) {
     await getCardFromCanvas(file as TFile, cards);
   }
-
-  console.log(cards);
 
   return cards;
 }
@@ -148,16 +147,16 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
     let type: CardSpecType = 'text';
     switch (node.type as CardSpecType) {
       case 'text': {
-        content = node?.text ? node?.text : '';
+        content = node?.text;
         break;
       }
       case 'link': {
-        content = node?.url ? node?.url : '';
+        content = node?.url;
         type = 'link';
         break;
       }
       case 'file': {
-        content = node?.file ? node?.file : '';
+        content = node?.file;
         type =
           getExtension(content) === 'pdf'
             ? 'pdf'
@@ -191,11 +190,13 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
 export async function createCardInCanvas({
   content,
   type,
-  path = 'basic.canvas',
+  path = 'card-library/card-root.canvas',
+  patch = {},
 }: {
   content: string;
   type: CardSpecType;
   path?: string;
+  patch?: CardPatch;
 }): Promise<Model.Card> {
   const app = globalService.getState().app;
   const date = moment();
@@ -217,10 +218,17 @@ export async function createCardInCanvas({
     type,
   };
 
-  const canvasFile = getCanvasFile(path, app);
+  if (patch?.color) {
+    card.color = getColorString(patch.color);
+  }
+
+  console.log(card.color, patch);
+
+  let canvasFile = getCanvasFile(path, app);
+
   if (!canvasFile || !(canvasFile instanceof TFile)) {
     new Notice('File not found for the given memoPath, is creating a new file');
-    return;
+    canvasFile = await createCanvasFile(path);
   }
 
   const canvasContent: string = await app.vault.read(canvasFile);
@@ -262,9 +270,10 @@ export async function createCardInCanvas({
     ...posFromNewestNode,
     ...commonProperties,
     ...nodeTypeSpecificProps,
+    ...patch,
   });
 
-  globalService.setChangedByMemos(true);
+  globalService.setChangedByCardLibrary(true);
   const newContent = JSON.stringify(json, null, 2);
 
   await app.vault.modify(canvasFile, newContent);
@@ -350,7 +359,7 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
   const newContent = JSON.stringify(json, null, 2);
   await app.vault.modify(canvasFile, newContent);
 
-  globalService.setChangedByMemos(true);
+  globalService.setChangedByCardLibrary(true);
   return {
     ...oldCard,
     content: patch.content ?? oldCard.content,
@@ -366,6 +375,30 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
       : '',
   };
 }
+
+export const createCanvasFile = async (path: string): Promise<TFile> => {
+  const app = globalService.getState().app;
+  let file = app.vault.getAbstractFileByPath(path);
+  if (!file) {
+    const folderPathList = path.split('/');
+    folderPathList.pop();
+    let cumulativePath = '';
+
+    // 检查并创建文件夹
+    for (const folderName of folderPathList) {
+      cumulativePath += (cumulativePath ? '/' : '') + folderName;
+      const folder = app.vault.getAbstractFileByPath(cumulativePath);
+      if (!folder) {
+        await app.vault.createFolder(cumulativePath);
+      }
+    }
+
+    file = await app.vault.create(path, '{"nodes": [], "edges": []}');
+    globalService.setChangedByCardLibrary(true);
+  }
+
+  return file as TFile;
+};
 
 export const showMemoInCanvas = async (memoId: string, memoPath: string): Promise<void> => {
   const app = globalService.getState().app;

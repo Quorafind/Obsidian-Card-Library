@@ -302,15 +302,18 @@ class CardService {
     text,
     type,
     path,
+    patch,
   }: {
     text: string;
     type: CardSpecType;
     path?: string;
+    patch?: CardPatch;
   }): Promise<Model.Card> {
     return await createCardInCanvas({
       content: text,
       type,
       path,
+      patch,
     });
   }
 

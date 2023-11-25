@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import { CopyIcon, Cross2Icon, FrameIcon } from '@radix-ui/react-icons';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 
 import { colors, labels, types } from '@/lib/mockdata';
 import { FacetedFilter, FacetedType } from './FacetedFilter';
@@ -14,9 +13,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { FilterIcon, FilterXIcon, CrosshairIcon } from 'lucide-react';
 import { Toggle } from '../ui/toggle';
 import { getCurrentCanvasView, revealCanvasByPath } from '@/lib/obsidianUtils';
-import { debounce } from 'obsidian';
-
-const search = debounce((value: string) => locationService.setTextQuery(value), 300, true);
+import { SearchBar } from '@/components/containers/SearchBar';
 
 function FacetedFilterListMap(tags?: string[]) {
   return {
@@ -150,18 +147,17 @@ function FocusAction() {
   );
 }
 
-export function LibraryToolbar() {
+export function LibraryToolbar({ children }: { children?: React.ReactNode }) {
   const {
-    globalState: { viewStatus },
+    globalState: { viewStatus, viewHeaderVisibility, hasCanvasViewOpened },
     locationState: { query },
   } = useContext(AppContext);
   const isFiltered = !queryIsEmptyOrBlank(query);
 
-  const [value, setValue] = React.useState<string>((query.text as string) ?? '');
-
   return (
-    <div className="flex items-center justify-between max-w-[90%] w-full gap-2">
-      <div className="flex items-center overflow-x-scroll space-x-2 lg:max-w-[520px]">
+    <div className="flex items-center justify-between w-full gap-2 overflow-x-scroll">
+      <div className="flex items-center overflow-x-scroll space-x-2 min-w-[80px] md:max-w-[520px] lg:max-w-full">
+        {children}
         {isMobileView(viewStatus) ? (
           <MobileFacetedFilterList>{FacetedFilterList()}</MobileFacetedFilterList>
         ) : (
@@ -195,18 +191,9 @@ export function LibraryToolbar() {
         )}
       </div>
       <div className="flex items-center justify-end space-x-2">
-        <FocusAction />
-        <Input
-          placeholder="Filter cards..."
-          value={value}
-          onChange={(event) => {
-            setValue(event.target.value);
-            search(event.target.value);
-          }}
-          className="search-bar h-9 w-[150px] lg:w-[240px] shadow-none active:shadow-none dark:focus-visible:border-slate-800"
-        />
+        {hasCanvasViewOpened && <FocusAction />}
+        {!viewHeaderVisibility && <SearchBar inputType="inline" />}
       </div>
-      {/*<CardLibraryViewOptions table={table} />*/}
     </div>
   );
 }

@@ -30,7 +30,6 @@ export function CardEditor(props: Props): React.JSX.Element {
   }, [props.type, app]);
 
   const editorConfig = useMemo(() => {
-    console.log(temp);
     return {
       initialContent: temp,
       onConfirmBtnClick: (content: string) => {
