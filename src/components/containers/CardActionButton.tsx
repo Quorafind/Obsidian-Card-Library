@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import React from 'react';
-import { COLOR_MAP } from '@/components/containers/CCard';
+import { COLOR_MAP } from '@/components/containers/CanvasCard';
 import { cn } from '@/lib/utils';
 import { colors } from '@/lib/mockdata';
 

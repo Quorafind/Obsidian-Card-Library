@@ -7,7 +7,7 @@ import { FocusIcon, Layers2, LayoutDashboardIcon } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { cardService, locationService } from '@/services';
 
-export function PathList({ card }: { card: Model.Card }) {
+export function PathList(props: Model.Card) {
   const {
     cardState: { cards },
   } = useContext(AppContext);
@@ -15,9 +15,9 @@ export function PathList({ card }: { card: Model.Card }) {
   const [pathMap, setPathMap] = useState<Map<string, string>>(new Map());
 
   useEffect(() => {
-    if (!card.content || !card.content.trim()) return;
+    if (!props.content || !props.content.trim()) return;
 
-    const sameContentCards = cards.filter((c) => c.content === card.content);
+    const sameContentCards = cards.filter((c) => c.content === props.content);
     const pathPairList = sameContentCards.map((c) => {
       return {
         path: c.path,

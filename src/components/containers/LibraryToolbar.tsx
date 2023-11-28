@@ -8,7 +8,7 @@ import { FacetedFilter, FacetedType } from './FacetedFilter';
 import { globalService, locationService } from '@/services';
 import AppContext from '@/stores/appContext';
 import { countByKey, isMobileView, queryIsEmptyOrBlank } from '@/lib/utils';
-import { COLOR_MAP } from '@/components/containers/CCard';
+import { COLOR_MAP } from '@/components/containers/CanvasCard';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { FilterIcon, FilterXIcon, CrosshairIcon } from 'lucide-react';
 import { Toggle } from '../ui/toggle';

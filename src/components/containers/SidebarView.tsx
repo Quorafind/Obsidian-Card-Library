@@ -8,9 +8,10 @@ import { debounce } from 'obsidian';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import useMarkdownRenderer from '@/hooks/useMarkdownRenderer';
-import { CardActionHeader, CCard, ICON_MAP } from '@/components/containers/CCard';
+import { CanvasCard, ICON_MAP } from '@/components/containers/CanvasCard';
 import Masonry from 'react-masonry-css';
 import { readFileContent } from '@/lib/obsidianUtils';
+import { CardActionHeader } from '@/components/containers/CardComponent';
 
 function SidebarEditor({ id, content, type }: { id: string; content: string; type: string }) {
   const {
@@ -95,7 +96,7 @@ const renderCardSection = ({
             columnClassName="masonry-cardlist-grid_column flex flex-col gap-2"
           >
             {linkedCard.map((card, index) => (
-              <CCard {...card} key={index} />
+              <CanvasCard {...card} key={index} />
             ))}
           </Masonry>
         </div>

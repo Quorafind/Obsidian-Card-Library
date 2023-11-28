@@ -48,12 +48,22 @@
         @apply h-48 px-0 justify-start overflow-hidden;
       }
 
-      &:not(.grid-card-action-header) {
-        .cl-card {
-          @apply  pt-4;
+        &.grid-card-action-header {
+          .cl-card {
+            @apply pt-0;
+          }
 
           .card-header {
             @apply flex;
+          }
+        }
+
+      &:not(.grid-card-action-header) {
+        .cl-card {
+        @apply  pt-4;
+
+          .card-header {
+            @apply hidden;
           }
         }
       }

@@ -84,9 +84,9 @@ export async function getAllCards(): Promise<Model.Card[]> {
   const cards: Model.Card[] = [];
   const files = app.vault.getAllLoadedFiles().filter((file) => file instanceof TFile && file.extension === 'canvas');
   const sortedFiles = files.sort((a: TFile, b: TFile) => b.stat.mtime - a.stat.mtime);
-  await fileService.setFiles(files as TFile[]);
+  await fileService.setFiles(sortedFiles as TFile[]);
 
-  for (const file of files) {
+  for (const file of sortedFiles) {
     await getCardFromCanvas(file as TFile, cards);
   }
 

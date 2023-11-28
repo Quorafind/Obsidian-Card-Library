@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import AppContext from '@/stores/appContext';
-import { CCard } from '@/components/containers/CCard';
+import { CanvasCard } from '@/components/containers/CanvasCard';
 import useStateRef from '@/hooks/useStateRef';
 import { debounce, Notice } from 'obsidian';
 import '@/less/card-list.less';
@@ -260,7 +260,7 @@ export default function CardList(): React.JSX.Element {
           columnClassName="masonry-cardlist-grid_column flex flex-col gap-2"
         >
           {temp.map((card, index) => {
-            return <CCard {...card} key={index} />;
+            return <CanvasCard {...card} key={index} />;
           })}
         </Masonry>
       </div>

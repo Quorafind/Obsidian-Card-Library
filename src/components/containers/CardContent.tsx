@@ -11,15 +11,12 @@ interface MouseActionProps {
   handleSingleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-export function CollapseCardContent({
-  path,
-  content,
-  mouseActionProps,
-}: {
-  path: string;
-  content: string;
-  mouseActionProps: MouseActionProps;
-}) {
+export function CollapseCardContent(
+  props: {
+    path: string;
+    content: string;
+  } & MouseActionProps,
+) {
   const {
     globalState: { app, view, settings },
   } = useContext(AppContext);
@@ -39,7 +36,7 @@ export function CollapseCardContent({
     const loadAndRenderContent = async () => {
       try {
         if (isMounted) {
-          await render(path, content);
+          await render(props.path, props.content);
         }
       } catch (error) {
         console.error('Error loading markdown content:', error);
@@ -51,13 +48,13 @@ export function CollapseCardContent({
     return () => {
       isMounted = false;
     };
-  }, [path, content, render]);
+  }, [props.path, props.content, render]);
 
   useEffect(() => {
     if (ref.current) {
       setIsContentTooTall(ref.current.scrollHeight + 80 > maxHeight);
     }
-  }, [content]);
+  }, [props.content]);
 
   return (
     <Collapsible className="relative" defaultOpen={false} open={isCodeExpanded} onOpenChange={setIsCodeExpanded}>
@@ -72,12 +69,12 @@ export function CollapseCardContent({
                 : `grid grid-rows-[150px]`
               : '',
           )}
-          onClick={mouseActionProps.handleSingleClick}
-          onDoubleClick={mouseActionProps.handleDoubleClick}
+          onClick={props.handleSingleClick}
+          onDoubleClick={props.handleDoubleClick}
         >
-          {content.trim().length === 0 ? (
+          {props.content.trim().length === 0 ? (
             <div className={cn('w-full max-w-full text-xs text-accent-foreground text-ellipsis', 'overflow-hidden')}>
-              <Button variant="outline" className="w-full h-full" onClick={mouseActionProps.handleDoubleClick}>
+              <Button variant="outline" className="w-full h-full" onClick={props.handleDoubleClick}>
                 Add content
               </Button>
             </div>
