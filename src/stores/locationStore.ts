@@ -23,6 +23,9 @@ type ActionPayloads = {
   SET_HASH: {
     hash: string;
   };
+  SET_SPEC_PATH: {
+    specPath: '' | 'archive' | 'starred' | 'trash';
+  };
 };
 
 export type Actions = {
@@ -167,6 +170,19 @@ export function reducer(state: State, action: Actions) {
         },
       };
     }
+    case 'SET_SPEC_PATH': {
+      if (action.payload.specPath === state.query.specPath) {
+        return state;
+      }
+
+      return {
+        ...state,
+        query: {
+          ...state.query,
+          specPath: action.payload.specPath,
+        },
+      };
+    }
     case 'SET_QUERY_FILTER': {
       if (action.payload === state.query.filter) {
         return state;
@@ -197,5 +213,6 @@ export const defaultState: State = {
     path: [],
     text: '',
     filter: '',
+    specPath: '',
   },
 };

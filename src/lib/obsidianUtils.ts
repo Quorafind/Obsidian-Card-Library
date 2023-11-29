@@ -11,6 +11,15 @@ import {
 
 type NodeTypeSpecificProps = CanvasTextData | CanvasLinkData | CanvasFileData;
 
+export const TYPE_TO_ORIGIN = {
+  text: 'text',
+  link: 'link',
+  pdf: 'file',
+  image: 'file',
+  media: 'file',
+  file: 'file',
+};
+
 export function randomId(e: number): string {
   const t = [];
   let n = 0;
@@ -31,7 +40,7 @@ export function checkImageExtension(path: string): boolean {
 
 export function checkMediaExtension(path: string): boolean {
   const ext = getExtension(path);
-  return ['mp4', 'mov', 'avi', 'mkv', 'mp3', 'wav', 'ogg', 'flac'].includes(ext);
+  return ['canvas', 'mp4', 'mov', 'avi', 'mkv', 'mp3', 'wav', 'ogg', 'flac'].includes(ext);
 }
 
 export function checkIfLinked(id: string, edges: CanvasEdgeData[]): boolean {
@@ -44,6 +53,14 @@ export async function readFileContent(app: App, path: string): Promise<string> {
   } else {
     return path;
   }
+}
+
+export async function updateFile(path: string, { content }) {
+  const app = globalService.getState().app;
+  const file = app.vault.getAbstractFileByPath(path) as TFile;
+  if (!file) return;
+  console.log(file, content);
+  await app.vault.modify(file, content);
 }
 
 export function getColorString(color: string): string {
@@ -66,13 +83,12 @@ export async function getAllCards(): Promise<Model.Card[]> {
   const app = globalService.getState().app;
   const cards: Model.Card[] = [];
   const files = app.vault.getAllLoadedFiles().filter((file) => file instanceof TFile && file.extension === 'canvas');
-  await fileService.setFiles(files as TFile[]);
+  const sortedFiles = files.sort((a: TFile, b: TFile) => b.stat.mtime - a.stat.mtime);
+  await fileService.setFiles(sortedFiles as TFile[]);
 
-  for (const file of files) {
+  for (const file of sortedFiles) {
     await getCardFromCanvas(file as TFile, cards);
   }
-
-  console.log(cards);
 
   return cards;
 }
@@ -118,7 +134,8 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
     content = await app.vault.cachedRead(file);
   }
   if (!content) return;
-  const canvasData = JSON.parse(content);
+  if (!content.startsWith('{')) return;
+  const canvasData = JSON.parse(content) as CanvasData;
   const nodes = canvasData?.nodes as CanvasNodeData[];
   const edges = canvasData?.edges as CanvasEdgeData[];
   if (!nodes) return;
@@ -130,16 +147,16 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
     let type: CardSpecType = 'text';
     switch (node.type as CardSpecType) {
       case 'text': {
-        content = node?.text ? node?.text : '';
+        content = node?.text;
         break;
       }
       case 'link': {
-        content = node?.url ? node?.url : '';
+        content = node?.url;
         type = 'link';
         break;
       }
       case 'file': {
-        content = node?.file ? node?.file : '';
+        content = node?.file;
         type =
           getExtension(content) === 'pdf'
             ? 'pdf'
@@ -151,17 +168,21 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
         break;
       }
     }
-    if (!content) continue;
+    // if (!content) continue;
     cards.push({
       id,
       pinned: !!node?.pinned,
-      rowStatus: node?.archived ? 'ARCHIVED' : 'NORMAL',
+      rowStatus: node?.rowStatus ?? 'NORMAL',
       color: getColorString(node?.color),
       content,
       deletedAt: node?.deletedAt ? moment(node?.deletedAt).format('YYYY/MM/DD HH:mm:SS') : '',
       path: file.path,
       linked: checkIfLinked(id, edges) ? 'linked' : 'single',
       type,
+      x: node?.x,
+      y: node?.y,
+      height: node?.height,
+      width: node?.width,
     });
   }
 }
@@ -169,11 +190,13 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
 export async function createCardInCanvas({
   content,
   type,
-  path = 'basic.canvas',
+  path = 'card-library/card-root.canvas',
+  patch = {},
 }: {
   content: string;
   type: CardSpecType;
   path?: string;
+  patch?: CardPatch;
 }): Promise<Model.Card> {
   const app = globalService.getState().app;
   const date = moment();
@@ -195,10 +218,17 @@ export async function createCardInCanvas({
     type,
   };
 
-  const canvasFile = getCanvasFile(path, app);
+  if (patch?.color) {
+    card.color = getColorString(patch.color);
+  }
+
+  console.log(card.color, patch);
+
+  let canvasFile = getCanvasFile(path, app);
+
   if (!canvasFile || !(canvasFile instanceof TFile)) {
     new Notice('File not found for the given memoPath, is creating a new file');
-    return;
+    canvasFile = await createCanvasFile(path);
   }
 
   const canvasContent: string = await app.vault.read(canvasFile);
@@ -240,9 +270,10 @@ export async function createCardInCanvas({
     ...posFromNewestNode,
     ...commonProperties,
     ...nodeTypeSpecificProps,
+    ...patch,
   });
 
-  globalService.setChangedByMemos(true);
+  globalService.setChangedByCardLibrary(true);
   const newContent = JSON.stringify(json, null, 2);
 
   await app.vault.modify(canvasFile, newContent);
@@ -262,6 +293,35 @@ export async function deleteCardInCanvas(card: Model.Card): Promise<Model.Card> 
   const newContent = JSON.stringify(json, null, 2);
   await app.vault.modify(canvasFile, newContent);
   return card;
+}
+
+export async function getAvailableEdges(
+  path: string,
+  id: string[],
+): Promise<{
+  edges: CanvasEdgeData[];
+  linkedNodes: CanvasNodeData[];
+}> {
+  const app = globalService.getState().app;
+  const file = app.vault.getAbstractFileByPath(path);
+  if (!file || !(file instanceof TFile))
+    return {
+      edges: [],
+      linkedNodes: [],
+    };
+  const content = await app.vault.read(file);
+  const edges = JSON.parse(content)?.edges as CanvasEdgeData[];
+  const nodes = JSON.parse(content)?.nodes as CanvasNodeData[];
+  const linkedNodes = nodes.filter((node) => {
+    if (node.type === 'group') return false;
+    if (id.includes(node.id)) return false;
+    return edges.some((edge) => edge.fromNode === node.id || edge.toNode === node.id);
+  });
+
+  return {
+    edges,
+    linkedNodes,
+  };
 }
 
 export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): Promise<Model.Card> {
@@ -296,10 +356,11 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
   if (patch.deleted !== undefined) node.deletedAt = patch.deleted ? deletedTime.format('YYYY/MM/DD HH:mm:ss') : '';
   node.updatedAt = deletedTime.format('YYYY/MM/DD HH:mm:ss');
 
+  globalService.setChangedByCardLibrary(true);
+
   const newContent = JSON.stringify(json, null, 2);
   await app.vault.modify(canvasFile, newContent);
 
-  globalService.setChangedByMemos(true);
   return {
     ...oldCard,
     content: patch.content ?? oldCard.content,
@@ -315,6 +376,30 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
       : '',
   };
 }
+
+export const createCanvasFile = async (path: string): Promise<TFile> => {
+  const app = globalService.getState().app;
+  let file = app.vault.getAbstractFileByPath(path);
+  if (!file) {
+    const folderPathList = path.split('/');
+    folderPathList.pop();
+    let cumulativePath = '';
+
+    // 检查并创建文件夹
+    for (const folderName of folderPathList) {
+      cumulativePath += (cumulativePath ? '/' : '') + folderName;
+      const folder = app.vault.getAbstractFileByPath(cumulativePath);
+      if (!folder) {
+        await app.vault.createFolder(cumulativePath);
+      }
+    }
+
+    file = await app.vault.create(path, '{"nodes": [], "edges": []}');
+    globalService.setChangedByCardLibrary(true);
+  }
+
+  return file as TFile;
+};
 
 export const showMemoInCanvas = async (memoId: string, memoPath: string): Promise<void> => {
   const app = globalService.getState().app;

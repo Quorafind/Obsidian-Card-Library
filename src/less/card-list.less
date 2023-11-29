@@ -24,6 +24,10 @@
 
   .content-wrapper {
     .sidebar-cl-card {
+      .cm-content {
+        @apply !pb-0;
+      }
+
       &:hover {
         .pin-button {
           > * {
@@ -34,10 +38,62 @@
     }
   }
 
+
+
   .card-list-container {
-    @apply w-full max-w-full p-4 flex gap-4;
+    @apply w-full max-w-full p-2 flex gap-4;
+
+    .grid-card-list {
+      .cl-card {
+        @apply h-48 px-0 justify-start overflow-hidden;
+
+        &:has(.card-library-editor-wrapper) {
+          @apply h-fit;
+        }
+      }
+
+        &.grid-card-action-header {
+          .cl-card {
+            @apply pt-0;
+          }
+
+          .card-header {
+            @apply flex;
+          }
+        }
+
+      &:not(.grid-card-action-header) {
+        .cl-card {
+        @apply  pt-4;
+
+          .card-header {
+            @apply hidden;
+          }
+        }
+      }
+
+      &:not(.show-new-card-button) {
+        div[data-card-id^="fake"].cl-card {
+          @apply hidden;
+        }
+      }
+    }
+
+    .masonry-card-list {
+      @apply p-2;
+
+      .card-header {
+        @apply flex;
+      }
+    }
 
       .cl-card {
+
+        .canvas-minimap {
+          rect {
+            @apply border border-gray-400 dark:border-gray-600 fill-gray-400 dark:fill-gray-600 stroke-gray-400 dark:stroke-gray-600;
+          }
+        }
 
         .content-collapsed {
           &:before {
@@ -75,3 +131,6 @@
 
 
 }
+
+
+

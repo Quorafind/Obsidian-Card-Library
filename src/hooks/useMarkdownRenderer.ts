@@ -11,7 +11,7 @@ function useMarkdownRenderer(app, view) {
       // content 是外部传入的文件内容
       if (!contentRef.current || !path || !app || !view) return;
 
-      const target = content || `![[${path}]]`;
+      const target = content;
 
       if (contentRef.current.hasChildNodes()) {
         contentRef.current.empty(); // 使用 innerHTML = '' 来清空子元素

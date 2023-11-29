@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import AppContext from '@/stores/appContext';
-import { CCard } from '@/components/containers/CCard';
+import { CanvasCard } from '@/components/containers/CanvasCard';
 import useStateRef from '@/hooks/useStateRef';
 import { debounce, Notice } from 'obsidian';
 import '@/less/card-list.less';
 import { cn, isMobileView, queryIsEmptyOrBlank } from '@/lib/utils';
-import { queryService } from '@/services';
+import { globalService, queryService } from '@/services';
 import { FIRST_TAG_REG, NOP_FIRST_TAG_REG, TAG_REG } from '@/lib/consts';
 import Masonry from 'react-masonry-css';
 
@@ -19,12 +19,18 @@ function createFakeCard(path: string) {
 }
 
 const shouldShowedCards = ({ temp, query }: { temp: Model.Card[]; query: Query }) => {
+  const isCurrentArchive = query.specPath === 'archive';
   const cards = temp.filter((card) => {
-    return !(card.rowStatus === 'ARCHIVED') && !(card.deletedAt !== '' && card.deletedAt);
+    return (
+      (isCurrentArchive ? card.rowStatus === 'ARCHIVED' : card.rowStatus === 'NORMAL') &&
+      !(card.deletedAt !== '' && card.deletedAt)
+    );
   });
   const { tags, color, linked, path, type, text: textQuery, filter: queryId } = query;
   const queryFilter = queryService.getQueryById(queryId);
   const isFiltered = !queryIsEmptyOrBlank(query);
+
+  console.log(isFiltered);
 
   if (!isFiltered) return cards;
 
@@ -119,7 +125,7 @@ export default function CardList(): React.JSX.Element {
   const {
     locationState: { query },
     cardState: { cards },
-    globalState: { viewStatus },
+    globalState: { viewStatus, settings },
   } = useContext(AppContext);
 
   const [isFetching, setIsFetching] = useState<boolean>(false);
@@ -150,11 +156,12 @@ export default function CardList(): React.JSX.Element {
       query,
     });
 
-    if (query.path && query.path.length === 1) {
+    if (query.path && query.path.length === 1 && query.specPath === '')
       filtered.unshift(createFakeCard(query.path[0] as string));
-    }
 
-    console.log(filtered);
+    if (!queryIsEmptyOrBlank(query)) {
+      globalService.setCopyCardId(filtered.length > 0 ? filtered.map((card) => card.id) : []);
+    }
 
     setShown(filtered);
   }, [cards, query]);
@@ -182,7 +189,6 @@ export default function CardList(): React.JSX.Element {
     ) {
       setIsComplete(true);
     }
-    console.log(cache);
     setTemp(cache);
   }, [cache]);
 
@@ -234,11 +240,11 @@ export default function CardList(): React.JSX.Element {
       if (shownRef.current.length > cacheRef.current.length) {
         setIsFetching(true);
         const fetchCount = Math.min(cacheRef.current.length + 40, shownRef.current.length) - cacheRef.current.length;
-        const fetchedMemos = shownRef.current.slice(cacheRef.current.length, cacheRef.current.length + fetchCount);
+        const fetchedCards = shownRef.current.slice(cacheRef.current.length, cacheRef.current.length + fetchCount);
 
-        setCache((prevCachedMemos) => [...prevCachedMemos, ...fetchedMemos]);
+        setCache((prevCachedCards) => [...prevCachedCards, ...fetchedCards]);
         setIsFetching(false);
-        setIsComplete(fetchedMemos.length < 40);
+        setIsComplete(fetchedCards.length < 40);
       }
     } catch (error: any) {
       console.error(error);
@@ -251,11 +257,17 @@ export default function CardList(): React.JSX.Element {
       <div className={cn('card-list-container')}>
         <Masonry
           breakpointCols={view === 'sm' ? 1 : view === 'md' ? 2 : view === 'lg' ? 3 : 5}
-          className={cn(isMobileView(viewStatus) ? 'mobile-list-view' : '', `flex w-full max-w-full gap-2`)}
+          className={cn(
+            isMobileView(viewStatus) ? 'mobile-list-view' : '',
+            `flex w-full max-w-full gap-2`,
+            settings.theme.listStyle === 'grid' ? 'grid-card-list' : 'masonry-card-list',
+            settings.theme.actionHeaderInGrid ? 'grid-card-action-header' : '',
+            query.path && query.path.length === 1 ? 'show-new-card-button' : '',
+          )}
           columnClassName="masonry-cardlist-grid_column flex flex-col gap-2"
         >
           {temp.map((card, index) => {
-            return <CCard {...card} key={index} />;
+            return <CanvasCard {...card} key={index} />;
           })}
         </Masonry>
       </div>

@@ -5,11 +5,13 @@ import {
   createCardInCanvas,
   deleteCardInCanvas,
   getAllCards,
+  getAvailableEdges,
   getCardFromCanvas,
   getDeletedCardsInCards,
   getLinkedCard,
   showMemoInCanvas,
   updateCardInFile,
+  updateFile,
 } from '@/lib/obsidianUtils';
 
 class CardService {
@@ -36,21 +38,32 @@ class CardService {
     return cards;
   }
 
-  // public async updateTypeMemos(type: SourceType) {
-  //     const memosList = await api.updateSpecificTypeMemo(type);
-  //     const removedMemos = this.getState().memos.filter((m) => m.sourceType !== type);
-  //     appStore.dispatch({
-  //         type: 'SET_MEMOS',
-  //         payload: {
-  //             memos: [...removedMemos, ...memosList.memos],
-  //         },
-  //     });
-  // }
-
   public async getDeletedCards() {
     const cards = await getDeletedCardsInCards(this.getState().cards);
     cards.sort((a: Model.Card, b: Model.Card) => moment(b.deletedAt).unix() - moment(a.deletedAt).unix());
     return cards;
+  }
+
+  public async getEdgesLinkedCard(cards: Model.Card[], ids: string[]) {
+    // Group cards by path
+    const cardsByPath = cards.reduce((acc, card) => {
+      if (!acc[card.path]) {
+        acc[card.path] = [];
+      }
+      acc[card.path].push(card);
+      return acc;
+    });
+    const edges = [];
+    // use getAvailableEdges to get all edges and linked cards, based on path
+    for (const path in cardsByPath) {
+      const { edges: availableEdges, linkedNodes } = await getAvailableEdges(path, ids);
+      edges.push(...availableEdges);
+      // update linked cards
+      for (const linkedNode of linkedNodes) {
+        if (ids.includes(linkedNode.id)) continue;
+        // cards.push();
+      }
+    }
   }
 
   public async editCard(card: Model.Card) {
@@ -95,9 +108,10 @@ class CardService {
     await showMemoInCanvas(card.id, card.path);
   }
 
-  public getCardById(id: string) {
+  public getCardById(id: string): Model.Card | null {
     const cards = this.getState().cards;
     const card = cards.find((c) => c.id === id);
+    console.log(card, id);
     if (card) return card;
 
     return null;
@@ -288,15 +302,18 @@ class CardService {
     text,
     type,
     path,
+    patch,
   }: {
     text: string;
     type: CardSpecType;
     path?: string;
+    patch?: CardPatch;
   }): Promise<Model.Card> {
     return await createCardInCanvas({
       content: text,
       type,
       path,
+      patch,
     });
   }
 
@@ -335,6 +352,14 @@ class CardService {
     return oldCard;
   }
 
+  public async patchFileCard(id: string, patch: CardPatch) {
+    const path = this.getCardById(id)?.content;
+    await updateFile(path, {
+      content: patch.content,
+    });
+    return this.getCardById(id);
+  }
+
   public async patchCardViaID(id: string, patch: CardPatch): Promise<Model.Card> {
     const oldCard = this.getCardById(id);
     if (oldCard) {
@@ -348,6 +373,6 @@ class CardService {
   }
 }
 
-const memoService = new CardService();
+const cardService = new CardService();
 
-export default memoService;
+export default cardService;

@@ -1,20 +1,20 @@
 import React, { useContext, useEffect } from 'react';
-import { Cross2Icon, FrameIcon } from '@radix-ui/react-icons';
+import { CopyIcon, Cross2Icon, FrameIcon } from '@radix-ui/react-icons';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 
 import { colors, labels, types } from '@/lib/mockdata';
 import { FacetedFilter, FacetedType } from './FacetedFilter';
 import { globalService, locationService } from '@/services';
 import AppContext from '@/stores/appContext';
 import { countByKey, isMobileView, queryIsEmptyOrBlank } from '@/lib/utils';
-import { COLOR_MAP } from '@/components/containers/CCard';
+import { COLOR_MAP } from '@/components/containers/CanvasCard';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { FilterIcon, FilterXIcon, CrosshairIcon } from 'lucide-react';
+import { FilterIcon, FilterXIcon, CrosshairIcon, ArchiveIcon, HomeIcon } from 'lucide-react';
 import { Toggle } from '../ui/toggle';
 import { getCurrentCanvasView, revealCanvasByPath } from '@/lib/obsidianUtils';
-import { around } from 'monkey-around';
+import { SearchBar } from '@/components/containers/SearchBar';
+import { Platform } from 'obsidian';
 
 function FacetedFilterListMap(tags?: string[]) {
   return {
@@ -148,38 +148,67 @@ function FocusAction() {
   );
 }
 
-export function LibraryToolbar() {
+export function LibraryToolbar({ children }: { children?: React.ReactNode }) {
   const {
-    globalState: { viewStatus },
+    globalState: { app, viewStatus, viewHeaderVisibility, hasCanvasViewOpened },
     locationState: { query },
   } = useContext(AppContext);
   const isFiltered = !queryIsEmptyOrBlank(query);
 
   return (
-    <div className="flex items-center justify-between max-w-[90%] w-full gap-2">
-      <div className="flex items-center overflow-x-scroll space-x-2 lg:max-w-[520px]">
+    <div className="flex items-center justify-between w-full min-w-fit gap-2 overflow-x-scroll">
+      <div className="flex items-center overflow-x-scroll space-x-2 min-w-[140px] md:max-w-[520px] lg:max-w-full">
+        {hasCanvasViewOpened && Platform.isDesktop && <FocusAction />}
+        {children}
         {isMobileView(viewStatus) ? (
           <MobileFacetedFilterList>{FacetedFilterList()}</MobileFacetedFilterList>
         ) : (
           FacetedFilterList()
         )}
         {isFiltered && (
-          <Button variant="ghost" onClick={() => locationService.clearQuery()} className="h-9 px-2 lg:px-3">
-            {isMobileView(viewStatus) ? <FilterXIcon className="h-4 w-4 text-red-300" /> : 'Reset'}
-            {!isMobileView(viewStatus) && <Cross2Icon className="ml-2 h-4 w-4" />}
-          </Button>
+          <>
+            <Button
+              aria-label="Clear filter"
+              variant="ghost"
+              onClick={() => locationService.clearQuery()}
+              className="h-9 px-2 lg:px-3"
+            >
+              {isMobileView(viewStatus) ? <FilterXIcon className="h-4 w-4 text-red-300" /> : 'Reset'}
+              {!isMobileView(viewStatus) && <Cross2Icon className="ml-2 h-4 w-4" />}
+            </Button>
+            <Button
+              aria-label="Copy cards"
+              variant="ghost"
+              size="icon"
+              onClick={(e) => {
+                if (e.metaKey || e.ctrlKey) {
+                  window.document.execCommand('copy');
+                } else {
+                  app.workspace.trigger('copy-cards-content');
+                }
+              }}
+            >
+              <CopyIcon className="h-4 w-4 text-muted-foreground" />
+            </Button>
+          </>
         )}
       </div>
       <div className="flex items-center justify-end space-x-2">
-        <FocusAction />
-        <Input
-          placeholder="Filter cards..."
-          value={(query.text as string) ?? ''}
-          onChange={(event) => locationService.setTextQuery(event.target.value)}
-          className="search-bar h-9 w-[150px] lg:w-[240px] shadow-none active:shadow-none dark:focus-visible:border-slate-800"
-        />
+        {
+          <Button
+            variant={'outline'}
+            size={'icon'}
+            onClick={() => locationService.setSpecPath(query.specPath === 'archive' ? '' : 'archive')}
+          >
+            {query.specPath === 'archive' ? (
+              <HomeIcon className="h-4 w-4 text-muted-foreground" />
+            ) : (
+              <ArchiveIcon className="h-4 w-4 text-muted-foreground" />
+            )}
+          </Button>
+        }
+        {!viewHeaderVisibility && <SearchBar inputType="inline" />}
       </div>
-      {/*<CardLibraryViewOptions table={table} />*/}
     </div>
   );
 }

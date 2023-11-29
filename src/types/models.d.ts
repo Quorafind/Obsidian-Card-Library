@@ -14,6 +14,11 @@ declare namespace Model {
     rowStatus?: CardRowStatus;
     color?: string;
     linked?: string;
+
+    x?: number;
+    y?: number;
+    height?: number;
+    width?: number;
   }
 
   interface Query extends BaseModel {

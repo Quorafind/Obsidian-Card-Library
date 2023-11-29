@@ -1,4 +1,4 @@
-import { App, FuzzyMatch, FuzzySuggestModal, SuggestModal, TFile } from 'obsidian';
+import { App, FuzzyMatch, FuzzySuggestModal, TFile } from 'obsidian';
 
 export const MIME_TYPES: Record<string, string[]> = {
   'image/apng': ['apng'],
