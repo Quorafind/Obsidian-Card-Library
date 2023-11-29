@@ -172,7 +172,7 @@ export async function getCardFromCanvas(file: TFile, cards: Model.Card[]): Promi
     cards.push({
       id,
       pinned: !!node?.pinned,
-      rowStatus: node?.archived ? 'ARCHIVED' : 'NORMAL',
+      rowStatus: node?.rowStatus ?? 'NORMAL',
       color: getColorString(node?.color),
       content,
       deletedAt: node?.deletedAt ? moment(node?.deletedAt).format('YYYY/MM/DD HH:mm:SS') : '',
@@ -356,10 +356,11 @@ export async function updateCardInFile(oldCard: Model.Card, patch: CardPatch): P
   if (patch.deleted !== undefined) node.deletedAt = patch.deleted ? deletedTime.format('YYYY/MM/DD HH:mm:ss') : '';
   node.updatedAt = deletedTime.format('YYYY/MM/DD HH:mm:ss');
 
+  globalService.setChangedByCardLibrary(true);
+
   const newContent = JSON.stringify(json, null, 2);
   await app.vault.modify(canvasFile, newContent);
 
-  globalService.setChangedByCardLibrary(true);
   return {
     ...oldCard,
     content: patch.content ?? oldCard.content,

@@ -21,12 +21,16 @@ import { colors } from '@/lib/mockdata';
 
 export interface ActionProps {
   handleEdit?: () => void;
-  handleCopy?: () => void;
+  handleDuplicate?: () => void;
   handlePin?: (pinned: boolean) => void;
   handleArchive?: () => void;
   handleSource?: () => void;
   handleDelete?: () => void;
   handleChangeColor?: (color: string) => void;
+  handleEditInTab?: () => void;
+  handleFocusCanvas?: () => void;
+  handleCopyCardData?: () => void;
+  handleCopyCardContent?: () => Promise<void>;
 }
 
 type Props = Model.Card & ActionProps;
@@ -44,7 +48,7 @@ export function CardActionButton(props: Props) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px] dark:border-slate-600">
-        <DropdownMenuItem onClick={() => props.handleEdit()}>Edit</DropdownMenuItem>
+        <DropdownMenuItem onClick={props.handleEdit}>Edit</DropdownMenuItem>
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Set color</DropdownMenuSubTrigger>
           <DropdownMenuPortal>
@@ -64,16 +68,16 @@ export function CardActionButton(props: Props) {
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
         </DropdownMenuSub>
-        <DropdownMenuItem onClick={() => props.handleCopy()}>Make a copy</DropdownMenuItem>
+        <DropdownMenuItem onClick={props.handleDuplicate}>Make a copy</DropdownMenuItem>
 
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => props.handlePin(!props.pinned)}>
           {props.pinned ? 'Unpin' : 'Pin'}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => props.handleArchive()}>Archive</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => props.handleSource()}>Source</DropdownMenuItem>
+        <DropdownMenuItem onClick={props.handleArchive}>Archive</DropdownMenuItem>
+        <DropdownMenuItem onClick={props.handleSource}>Source</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => props.handleDelete()}>
+        <DropdownMenuItem onClick={props.handleDelete}>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>

@@ -11,6 +11,7 @@ interface Query {
   text: string;
   filter: string;
   path: string[];
+  specPath: '' | 'archive' | 'starred' | 'trash';
 }
 
 type AppRouter = '/' | '/editor';

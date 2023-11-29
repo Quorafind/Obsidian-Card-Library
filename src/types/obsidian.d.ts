@@ -121,6 +121,7 @@ declare module 'obsidian' {
     on(name: 'focus-on-search-bar', callback: (current: 'inline' | 'header') => any, ctx?: any): EventRef;
     on(name: 'create-card-dialog', callback: () => any, ctx?: any): EventRef;
     on(name: 'create-card-dialog-from-clipboard', callback: () => any, ctx?: any): EventRef;
+    on(name: 'copy-cards-content', callback: () => any, ctx?: any): EventRef;
   }
 
   interface CanvasView extends View {

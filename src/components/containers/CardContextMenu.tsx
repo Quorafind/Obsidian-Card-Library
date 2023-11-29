@@ -24,25 +24,24 @@ type MenuActionProps = ActionProps & {
 };
 
 export function CardContextMenu(props: MenuActionProps) {
-  console.log('text', props);
+  const [confirmDelete, setConfirmDelete] = React.useState(false);
 
   return (
     <ContextMenu>
-      <ContextMenuTrigger
-        className="flex w-full h-full items-center justify-center rounded-md border border-dashed text-sm"
-        asChild={true}
-      >
+      <ContextMenuTrigger className="w-full h-full" asChild>
         {props.children}
       </ContextMenuTrigger>
       <ContextMenuContent className="w-64">
         <ContextMenuItem inset onClick={props.handleEdit}>
           Edit
         </ContextMenuItem>
-        <ContextMenuItem inset>Edit in new tab</ContextMenuItem>
+        <ContextMenuItem inset onClick={props.handleEditInTab}>
+          Edit in tab
+        </ContextMenuItem>
         <ContextMenuSub>
           <ContextMenuSubTrigger inset>Set color</ContextMenuSubTrigger>
           <ContextMenuSubContent className="w-48">
-            <ContextMenuLabel inset>Color</ContextMenuLabel>
+            <ContextMenuLabel inset>Set color for card</ContextMenuLabel>
             <ContextMenuRadioGroup value={props.card.color}>
               <ContextMenuSeparator />
               {Object.keys(COLOR_MAP).map((color, index) => {
@@ -68,21 +67,41 @@ export function CardContextMenu(props: MenuActionProps) {
         <ContextMenuItem inset onClick={props.handleArchive}>
           Archive
         </ContextMenuItem>
-
         <ContextMenuSeparator />
-        <ContextMenuItem inset>Reveal card</ContextMenuItem>
-        <ContextMenuItem inset>Focus card's canvas</ContextMenuItem>
-        <ContextMenuSeparator />
-        <ContextMenuItem inset>Make a copy</ContextMenuItem>
-        <ContextMenuItem inset>Copy card text</ContextMenuItem>
-        <ContextMenuItem inset>Copy card data</ContextMenuItem>
-        <ContextMenuItem inset>Send card to ...</ContextMenuItem>
-
-        <ContextMenuSeparator />
-        <ContextMenuItem inset onClick={props.handleDelete}>
-          Delete
+        <ContextMenuItem inset onClick={props.handleSource}>
+          Reveal card
+        </ContextMenuItem>
+        <ContextMenuItem inset onClick={props.handleFocusCanvas}>
+          Focus card's canvas
         </ContextMenuItem>
         <ContextMenuSeparator />
+        <ContextMenuItem inset onClick={props.handleCopyCardContent}>
+          Copy card text
+        </ContextMenuItem>
+        <ContextMenuItem inset onClick={props.handleCopyCardData}>
+          Copy card data
+        </ContextMenuItem>
+        <ContextMenuItem inset onClick={props.handleDuplicate}>
+          Make a copy
+        </ContextMenuItem>
+        <ContextMenuItem inset disabled>
+          Send card to ...
+        </ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuItem
+          className={'text-red-500 hover:text-red-800 dark:text-red-800 dark:hover:text-red-500'}
+          inset
+          onSelect={(event) => {
+            if (!confirmDelete) event.preventDefault();
+            setConfirmDelete(true);
+            if (confirmDelete) {
+              props.handleDelete();
+              return;
+            }
+          }}
+        >
+          {confirmDelete ? 'Confirm delete?' : 'Delete'}
+        </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   );

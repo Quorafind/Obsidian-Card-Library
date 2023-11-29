@@ -19,12 +19,18 @@ function createFakeCard(path: string) {
 }
 
 const shouldShowedCards = ({ temp, query }: { temp: Model.Card[]; query: Query }) => {
+  const isCurrentArchive = query.specPath === 'archive';
   const cards = temp.filter((card) => {
-    return !(card.rowStatus === 'ARCHIVED') && !(card.deletedAt !== '' && card.deletedAt);
+    return (
+      (isCurrentArchive ? card.rowStatus === 'ARCHIVED' : card.rowStatus === 'NORMAL') &&
+      !(card.deletedAt !== '' && card.deletedAt)
+    );
   });
   const { tags, color, linked, path, type, text: textQuery, filter: queryId } = query;
   const queryFilter = queryService.getQueryById(queryId);
   const isFiltered = !queryIsEmptyOrBlank(query);
+
+  console.log(isFiltered);
 
   if (!isFiltered) return cards;
 
@@ -150,7 +156,8 @@ export default function CardList(): React.JSX.Element {
       query,
     });
 
-    if (query.path && query.path.length === 1) filtered.unshift(createFakeCard(query.path[0] as string));
+    if (query.path && query.path.length === 1 && query.specPath === '')
+      filtered.unshift(createFakeCard(query.path[0] as string));
 
     if (!queryIsEmptyOrBlank(query)) {
       globalService.setCopyCardId(filtered.length > 0 ? filtered.map((card) => card.id) : []);
@@ -233,11 +240,11 @@ export default function CardList(): React.JSX.Element {
       if (shownRef.current.length > cacheRef.current.length) {
         setIsFetching(true);
         const fetchCount = Math.min(cacheRef.current.length + 40, shownRef.current.length) - cacheRef.current.length;
-        const fetchedMemos = shownRef.current.slice(cacheRef.current.length, cacheRef.current.length + fetchCount);
+        const fetchedCards = shownRef.current.slice(cacheRef.current.length, cacheRef.current.length + fetchCount);
 
-        setCache((prevCachedMemos) => [...prevCachedMemos, ...fetchedMemos]);
+        setCache((prevCachedCards) => [...prevCachedCards, ...fetchedCards]);
         setIsFetching(false);
-        setIsComplete(fetchedMemos.length < 40);
+        setIsComplete(fetchedCards.length < 40);
       }
     } catch (error: any) {
       console.error(error);

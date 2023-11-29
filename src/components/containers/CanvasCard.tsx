@@ -19,6 +19,7 @@ export interface MouseActionProps {
 }
 
 export const COLOR_MAP = {
+  'color-blank': 'bg-gray-100/30 dark:bg-gray-700/80 dark:border-gray-700/80 dark:text-slate-200',
   'color-1': 'bg-red-100/50 dark:bg-gray-700/80 dark:border-2 dark:border-red-500/80 dark:text-slate-200',
   'color-2': 'bg-orange-100/50 dark:bg-gray-700/80 dark:border-2 dark:border-orange-500/80 dark:text-slate-200',
   'color-3': 'bg-yellow-100/50 dark:bg-gray-700/80 dark:border-2 dark:border-yellow-500/80 dark:text-slate-200',
@@ -77,7 +78,7 @@ const customFetcher = async (url: string) => {
     });
   }
 
-  const metaInfo = {
+  return {
     title:
       metaInfos.find((i) => {
         return i.name === 'og:title' || i.property === 'og:title';
@@ -93,48 +94,65 @@ const customFetcher = async (url: string) => {
     siteName: url,
     hostname: url.replace('https://', '').replace('http://', '').split(/[/?#]/)[0],
   };
-
-  return metaInfo;
 };
 
-const cardType = (props: ActionProps & Model.Card & MouseActionProps) => {
-  const SpecificCard = CARD_COMPONENT_MAP[props.type];
+const cardType = (card: Model.Card, actionProps?: ActionProps, mouseActionProps?: MouseActionProps) => {
+  const SpecificCard = CARD_COMPONENT_MAP[card.type];
 
-  return <SpecificCard {...props} />;
+  return <SpecificCard card={card} actionProps={actionProps} mouseActionProps={mouseActionProps} />;
 };
 
-export function CanvasCard(props: Model.Card): React.JSX.Element {
+export function CanvasCard(card: Model.Card): React.JSX.Element {
   const {
     globalState: { editCardId, focused },
   } = useContext(AppContext);
-  const { type, path, content, id, color } = props;
+  const { type, path, content, id, color } = card;
 
-  const handleEdit = async () => {
+  const handleEdit = () => {
     globalService.setEditCardId(id);
     if (focused) focusNodeInCanvas(id);
   };
+
+  const handleEditInTab = () => {
+    locationService.setPathname('/editor');
+    globalService.setSidebarEditCardId(card.id);
+  };
+
+  const handleFocusCanvas = () => {
+    locationService.setQueryWithType('path', [card.path]);
+  };
+
+  const handleCopyCardData = () => {
+    globalService.setCopyCardId([card.id]);
+    window.document.execCommand('copy');
+  };
+
+  const handleCopyCardContent = async () => {
+    await navigator.clipboard.writeText(card.content);
+  };
+
   const handlePin = async (pinned: boolean) => {
     pinned ? await cardService.pinCardById(id) : await cardService.unpinCardById(id);
   };
 
   const handleDelete = async () => {
-    await cardService.hideMemoById(id);
+    await cardService.deleteMemoById(id);
   };
 
   const handleArchive = async () => {
-    await cardService.archiveCard(props);
+    await cardService.archiveCard(card);
   };
 
   const handleSource = async () => {
-    await cardService.revealCard(props);
+    await cardService.revealCard(card);
   };
 
-  const handleCopy = async () => {
-    await cardService.duplicateCard(props);
+  const handleDuplicate = async () => {
+    await cardService.duplicateCard(card);
   };
 
   const handleDoubleClick = async () => {
-    await handleEdit();
+    handleEdit();
   };
 
   const handleSingleClick = async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -151,86 +169,88 @@ export function CanvasCard(props: Model.Card): React.JSX.Element {
       locationService.setQueryWithType('tags', tags);
     }
     if (event.metaKey || event.ctrlKey) {
+      console.log('metaKey');
       await handleSource();
     } else if (event.shiftKey) {
-      await handleCopy();
+      await handleDuplicate();
     } else if (event.altKey) {
       await handleArchive();
     }
   };
 
   const handleChangeColor = async (color: string) => {
-    const card = await cardService.patchCardViaID(props.id, {
+    const targetCard = await cardService.patchCardViaID(card.id, {
       color: color.replace('color-', '').replace('default', ''),
     });
-    await cardService.editCard(card);
+    await cardService.editCard(targetCard);
   };
 
-  const actionProps = useMemo((): MouseActionProps & Model.Card & ActionProps => {
+  const actionProps = useMemo(() => {
     return {
-      ...props,
       handleEdit,
       handlePin,
       handleDelete,
       handleArchive,
       handleSource,
-      handleCopy,
+      handleDuplicate,
       handleChangeColor,
+      handleEditInTab,
+      handleFocusCanvas,
+      handleCopyCardData,
+      handleCopyCardContent,
+    };
+  }, [card]);
+
+  const mouseActionProps = useMemo(() => {
+    return {
       handleDoubleClick,
       handleSingleClick,
     };
-  }, [props]);
+  }, [card]);
 
   return (
     <>
-      <Card
-        className={cn(`cl-card`, `w-full max-w-full h-fit flex flex-col justify-center`, `${switchColor(color)}`)}
-        data-card-path={type === 'text' ? path : content}
-        data-card-type={type}
-        data-card-id={id}
-      >
-        {editCardId === id ? (
-          <CardEditor
-            {...props}
-            onSubmit={async (content) => {
-              let card: Model.Card;
-              if (id === 'fake') {
-                card = await cardService.createCard({
-                  text: content,
-                  type: 'text',
-                  path: path,
-                });
-                cardService.pushCard(card);
-              } else {
-                switch (type) {
-                  case 'text':
-                    card = await cardService.patchCardViaID(id, { content });
-                    break;
-                  case 'file':
-                    card = await cardService.patchFileCard(id, { content });
+      <CardContextMenu card={card} {...mouseActionProps} {...actionProps}>
+        <Card
+          className={cn(`cl-card`, `w-full max-w-full h-fit flex flex-col justify-center`, `${switchColor(color)}`)}
+          data-card-path={type === 'text' ? path : content}
+          data-card-type={type}
+          data-card-id={id}
+        >
+          {editCardId === id ? (
+            <CardEditor
+              {...card}
+              onSubmit={async (content) => {
+                let card: Model.Card;
+                if (id === 'fake') {
+                  card = await cardService.createCard({
+                    text: content,
+                    type: 'text',
+                    path: path,
+                  });
+                  cardService.pushCard(card);
+                } else {
+                  switch (type) {
+                    case 'text':
+                      card = await cardService.patchCardViaID(id, { content });
+                      break;
+                    case 'file':
+                      card = await cardService.patchFileCard(id, { content });
+                  }
+                  await cardService.editCard(card);
                 }
-                await cardService.editCard(card);
-              }
-              globalService.setEditCardId('');
-            }}
-          />
-        ) : id === 'fake' ? (
-          <Button variant={'ghost'} size={'lg'} className="h-20 shadow-none" onClick={handleEdit}>
-            <PlusIcon className="h-9 w-9 text-muted-foreground/50 dark:text-slate-500/80" />
-          </Button>
-        ) : (
-          <CardContextMenu card={props}>
-            <>
-              {props.type === 'text' && <TextCard {...actionProps} />}
-              {props.type === 'file' && <FileCard {...actionProps} />}
-              {props.type === 'image' && <ImageCard {...actionProps} />}
-              {props.type === 'link' && <LinkCard {...actionProps} />}
-              {props.type === 'media' && <MediaCard {...actionProps} />}
-              {props.type === 'pdf' && <PdfCard {...actionProps} />}
-            </>
-          </CardContextMenu>
-        )}
-      </Card>
+                globalService.setEditCardId('');
+              }}
+            />
+          ) : id === 'fake' ? (
+            <Button variant={'ghost'} size={'lg'} className="h-20 shadow-none" onClick={handleEdit}>
+              <PlusIcon className="h-9 w-9 text-muted-foreground/50 dark:text-slate-500/80" />
+            </Button>
+          ) : (
+            cardType(card, actionProps, mouseActionProps)
+          )}
+        </Card>
+      </CardContextMenu>
     </>
   );
 }

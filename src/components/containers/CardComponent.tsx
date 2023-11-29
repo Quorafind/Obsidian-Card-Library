@@ -74,13 +74,9 @@ export function CardActionHeader({
                 className={'h-8 w-8 ml-[-0.5rem]'}
                 onClick={async (event) => {
                   if (event.ctrlKey || event.metaKey) {
-                    globalService.setCopyCardId([card.id]);
-                    // const dataTransfer = new DataTransfer();
-                    // dataTransfer.setData('obsidian/canvas', JSON.stringify(card));
-
-                    window.document.execCommand('copy');
+                    funcProps.handleCopyCardData?.();
                   } else {
-                    await navigator.clipboard.writeText(card.content);
+                    await funcProps.handleCopyCardContent?.();
                   }
                 }}
               >
@@ -117,25 +113,43 @@ export function CardActionHeader({
   );
 }
 
-export function TextCard(props: Model.Card & ActionProps & MouseActionProps): React.JSX.Element {
+export function TextCard({
+  card,
+  actionProps,
+  mouseActionProps,
+}: {
+  card: Model.Card;
+  actionProps: ActionProps;
+  mouseActionProps: MouseActionProps;
+}): React.JSX.Element {
+  const { content, path, type } = card;
   return (
     <>
-      <CardActionHeader icon={ICON_MAP[props.type]} {...props}></CardActionHeader>
-      <CollapseCardContent {...props} />
+      <CardActionHeader icon={ICON_MAP[card.type]} card={card} funcProps={actionProps}></CardActionHeader>
+      <CollapseCardContent content={content} path={path} mouseActionProps={mouseActionProps} />
     </>
   );
 }
 
-export function FileCard(props: Model.Card & ActionProps & MouseActionProps): React.JSX.Element {
+export function FileCard({
+  card,
+  actionProps,
+  mouseActionProps,
+}: {
+  card: Model.Card;
+  actionProps: ActionProps;
+  mouseActionProps: MouseActionProps;
+}): React.JSX.Element {
   const {
     globalState: { app },
   } = useContext(AppContext);
+  const { content: path, type } = card;
   const [content, setContent] = useState('');
 
   useEffect(() => {
     const loadAndRenderContent = async () => {
       try {
-        const temp = await readFileContent(app, props.content);
+        const temp = await readFileContent(app, path);
         setContent(temp);
       } catch (error) {
         console.error('Error loading markdown content:', error);
@@ -147,22 +161,23 @@ export function FileCard(props: Model.Card & ActionProps & MouseActionProps): Re
     return () => {
       setContent('');
     };
-  }, [props.content]);
+  }, [path]);
 
   return (
     <>
       <CardActionHeader
-        icon={ICON_MAP[props.type]}
-        title={props.content.split('/').pop()}
-        {...props}
+        icon={ICON_MAP[card.type]}
+        card={card}
+        funcProps={actionProps}
+        title={path.split('/').pop()}
       ></CardActionHeader>
-      <CollapseCardContent {...props} content={content} path={props.content} />
+      <CollapseCardContent content={content} path={path} mouseActionProps={mouseActionProps} />
     </>
   );
 }
 
-export function ImageCard(props: Model.Card & ActionProps): React.JSX.Element {
-  const { content, path, type } = props;
+export function ImageCard({ card, actionProps }: { card: Model.Card; actionProps: ActionProps }): React.JSX.Element {
+  const { content, path, type } = card;
   const {
     globalState: { app, view },
   } = useContext(appContext);
@@ -176,8 +191,13 @@ export function ImageCard(props: Model.Card & ActionProps): React.JSX.Element {
 
   return (
     <>
-      <CardActionHeader {...props} icon={ICON_MAP[type]} title={content.split('/').pop()}></CardActionHeader>
-      <CardContent {...props}>
+      <CardActionHeader
+        icon={ICON_MAP[card.type]}
+        card={card}
+        funcProps={actionProps}
+        title={content.split('/').pop()}
+      ></CardActionHeader>
+      <CardContent>
         <div ref={ref} className="overflow-y-auto text-xs text-muted-foreground">
           {content}
         </div>
@@ -186,8 +206,8 @@ export function ImageCard(props: Model.Card & ActionProps): React.JSX.Element {
   );
 }
 
-export function PdfCard(props: Model.Card & ActionProps): React.JSX.Element {
-  const { content } = props;
+export function PdfCard({ card, actionProps }: { card: Model.Card; actionProps: ActionProps }): React.JSX.Element {
+  const { content } = card;
 
   return (
     <>
@@ -220,7 +240,7 @@ export function MediaCard({ card, actionProps }: { card: Model.Card; actionProps
   return (
     <>
       <CardActionHeader
-        icon={ICON_MAP[type]}
+        icon={ICON_MAP[card.type]}
         card={card}
         funcProps={actionProps}
         title={content.split('/').pop()}

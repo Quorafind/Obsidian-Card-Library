@@ -22,6 +22,7 @@ class LocationService {
         type: [],
         filter: '',
         path: [],
+        specPath: '',
       },
     };
     state.query.tags = (urlParams.get('tags') ?? []) as string[];
@@ -51,6 +52,7 @@ class LocationService {
         type: [],
         filter: '',
         path: [],
+        specPath: '',
       },
     });
   };
@@ -148,6 +150,15 @@ class LocationService {
     } else {
       return '/';
     }
+  };
+
+  public setSpecPath = (specPath: '' | 'archive' | 'starred' | 'trash') => {
+    appStore.dispatch({
+      type: 'SET_SPEC_PATH',
+      payload: {
+        specPath,
+      },
+    });
   };
 }
 

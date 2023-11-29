@@ -69,7 +69,7 @@ type ActionPayloads = {
   SET_PLUGIN_MANIFEST: {
     manifest: PluginManifest;
   };
-  CLEAR_MEMOS: null;
+  CLEAR_CARDS: null;
 };
 
 export type Actions = {
@@ -184,7 +184,7 @@ export function reducer(state: State, action: Actions) {
 
       return {
         ...state,
-        changedByMemos: action.payload.changedBySelf,
+        changedBySelf: action.payload.changedBySelf,
       };
     }
     case 'SET_PLUGIN_MANIFEST': {

@@ -24,6 +24,43 @@ const updateQueryPath = (file: TFile, oldPath?: string) => {
   }
 };
 
+const updateContent = (card: Model.Card) => {
+  const { type, content } = card;
+  switch (type) {
+    case 'text':
+      return content;
+    case 'file':
+    case 'media':
+    case 'image':
+    case 'pdf':
+      return `[[${content}]]`;
+    case 'link':
+      return `[${content}](${content})`;
+  }
+};
+
+const formatContent = (array: Model.Card[]) => {
+  const groupedByPath = array.reduce((acc, obj) => {
+    if (!acc[obj.path]) {
+      acc[obj.path] = [];
+    }
+    if (obj.content.trim() !== '') {
+      const formattedContent = `> [!note] ${obj.type}\n> ${updateContent(obj).trim().split('\n').join('\n> ')}`;
+      acc[obj.path].push(formattedContent);
+    }
+    return acc;
+  }, {});
+
+  // 遍历映射并格式化输出
+  let result = '';
+  for (const path in groupedByPath) {
+    result += `## [[${path}]]\n\n`;
+    result += groupedByPath[path].join('\n\n') + '\n\n';
+  }
+
+  return result;
+};
+
 class UpdateService {
   constructor() {
     this.handleFileCreate = this.handleFileCreate.bind(this);
@@ -55,7 +92,9 @@ class UpdateService {
 
   handleFileModify(file) {
     if (!isFileValid(file)) return;
+    console.log(globalService.getState().changedBySelf);
     if (globalService.getState().changedBySelf) {
+      console.log('changed by self');
       globalService.setChangedByCardLibrary(false);
       return;
     }
@@ -100,11 +139,25 @@ export class CardLibraryView extends ItemView {
     return 'library';
   }
 
+  getFilterCards = () => {
+    const copyCardId = globalService.getState().copyCardIds;
+    const cardList = copyCardId.map((id) => cardService.getCardById(id));
+    return cardList;
+  };
+
+  handleCopyContent = async () => {
+    const query = locationService.getState().query;
+    const cardList = this.getFilterCards();
+    // Split base on card path
+    const content = formatContent(cardList);
+    await navigator.clipboard.writeText(content);
+    if (queryIsEmptyOrBlank(query)) globalService.setCopyCardId([]);
+  };
+
   handleCopy = (e: ClipboardEvent) => {
     e.clipboardData.clearData();
-    const copyCardId = globalService.getState().copyCardIds;
     const query = locationService.getState().query;
-    const cardList = copyCardId.map((id) => cardService.getCardById(id));
+    const cardList = this.getFilterCards();
     const cardData: CanvasNodeData[] = [];
     for (const card of cardList) {
       const tempcard = { ...card, id: randomId(16), originId: card.id };
@@ -199,6 +252,14 @@ export class CardLibraryView extends ItemView {
     );
   }
 
+  initializeGlobalCopyEventListeners() {
+    this.registerEvent(
+      this.app.workspace.on('copy-cards-content', async () => {
+        await this.handleCopyContent();
+      }),
+    );
+  }
+
   initializeScopeEvent() {
     const { scope } = this;
     (scope as Scope).register(['Mod'], 'f', () => {
@@ -253,6 +314,7 @@ export class CardLibraryView extends ItemView {
     this.initializeScopeEvent();
     this.initializeFileEventListeners();
     this.initializeLayoutEventListeners();
+    this.initializeGlobalCopyEventListeners();
 
     this.contentEl.toggleClass('card-library', true);
     this.renderSearchBar();

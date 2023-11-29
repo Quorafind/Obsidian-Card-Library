@@ -46,6 +46,10 @@
     .grid-card-list {
       .cl-card {
         @apply h-48 px-0 justify-start overflow-hidden;
+
+        &:has(.card-library-editor-wrapper) {
+          @apply h-fit;
+        }
       }
 
         &.grid-card-action-header {

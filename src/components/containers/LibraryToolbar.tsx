@@ -10,10 +10,11 @@ import AppContext from '@/stores/appContext';
 import { countByKey, isMobileView, queryIsEmptyOrBlank } from '@/lib/utils';
 import { COLOR_MAP } from '@/components/containers/CanvasCard';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { FilterIcon, FilterXIcon, CrosshairIcon } from 'lucide-react';
+import { FilterIcon, FilterXIcon, CrosshairIcon, ArchiveIcon, HomeIcon } from 'lucide-react';
 import { Toggle } from '../ui/toggle';
 import { getCurrentCanvasView, revealCanvasByPath } from '@/lib/obsidianUtils';
 import { SearchBar } from '@/components/containers/SearchBar';
+import { Platform } from 'obsidian';
 
 function FacetedFilterListMap(tags?: string[]) {
   return {
@@ -149,14 +150,15 @@ function FocusAction() {
 
 export function LibraryToolbar({ children }: { children?: React.ReactNode }) {
   const {
-    globalState: { viewStatus, viewHeaderVisibility, hasCanvasViewOpened },
+    globalState: { app, viewStatus, viewHeaderVisibility, hasCanvasViewOpened },
     locationState: { query },
   } = useContext(AppContext);
   const isFiltered = !queryIsEmptyOrBlank(query);
 
   return (
-    <div className="flex items-center justify-between w-full gap-2 overflow-x-scroll">
-      <div className="flex items-center overflow-x-scroll space-x-2 min-w-[80px] md:max-w-[520px] lg:max-w-full">
+    <div className="flex items-center justify-between w-full min-w-fit gap-2 overflow-x-scroll">
+      <div className="flex items-center overflow-x-scroll space-x-2 min-w-[140px] md:max-w-[520px] lg:max-w-full">
+        {hasCanvasViewOpened && Platform.isDesktop && <FocusAction />}
         {children}
         {isMobileView(viewStatus) ? (
           <MobileFacetedFilterList>{FacetedFilterList()}</MobileFacetedFilterList>
@@ -180,8 +182,9 @@ export function LibraryToolbar({ children }: { children?: React.ReactNode }) {
               size="icon"
               onClick={(e) => {
                 if (e.metaKey || e.ctrlKey) {
-                } else {
                   window.document.execCommand('copy');
+                } else {
+                  app.workspace.trigger('copy-cards-content');
                 }
               }}
             >
@@ -191,7 +194,19 @@ export function LibraryToolbar({ children }: { children?: React.ReactNode }) {
         )}
       </div>
       <div className="flex items-center justify-end space-x-2">
-        {hasCanvasViewOpened && <FocusAction />}
+        {
+          <Button
+            variant={'outline'}
+            size={'icon'}
+            onClick={() => locationService.setSpecPath(query.specPath === 'archive' ? '' : 'archive')}
+          >
+            {query.specPath === 'archive' ? (
+              <HomeIcon className="h-4 w-4 text-muted-foreground" />
+            ) : (
+              <ArchiveIcon className="h-4 w-4 text-muted-foreground" />
+            )}
+          </Button>
+        }
         {!viewHeaderVisibility && <SearchBar inputType="inline" />}
       </div>
     </div>

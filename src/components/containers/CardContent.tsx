@@ -11,12 +11,15 @@ interface MouseActionProps {
   handleSingleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-export function CollapseCardContent(
-  props: {
-    path: string;
-    content: string;
-  } & MouseActionProps,
-) {
+export function CollapseCardContent({
+  path,
+  content,
+  mouseActionProps,
+}: {
+  path: string;
+  content: string;
+  mouseActionProps: MouseActionProps;
+}) {
   const {
     globalState: { app, view, settings },
   } = useContext(AppContext);
@@ -36,7 +39,7 @@ export function CollapseCardContent(
     const loadAndRenderContent = async () => {
       try {
         if (isMounted) {
-          await render(props.path, props.content);
+          await render(path, content);
         }
       } catch (error) {
         console.error('Error loading markdown content:', error);
@@ -48,20 +51,26 @@ export function CollapseCardContent(
     return () => {
       isMounted = false;
     };
-  }, [props.path, props.content, render]);
+  }, [path, content, render]);
 
   useEffect(() => {
     if (ref.current) {
       setIsContentTooTall(ref.current.scrollHeight + 80 > maxHeight);
     }
-  }, [props.content]);
+  }, [content]);
 
   return (
-    <Collapsible className="relative" defaultOpen={false} open={isCodeExpanded} onOpenChange={setIsCodeExpanded}>
-      <CollapsibleContent forceMount={true}>
+    <Collapsible
+      className={cn('relative', settings.theme.listStyle === 'grid' ? 'h-full' : '')}
+      defaultOpen={false}
+      open={isCodeExpanded}
+      onOpenChange={setIsCodeExpanded}
+    >
+      <CollapsibleContent className={cn(settings.theme.listStyle === 'grid' ? 'h-full' : '')} forceMount={true}>
         <CardContent
           className={cn(
-            'h-[calc(100%_-_4rem)] w-full max-w-full overflow-y-auto',
+            'w-full max-w-full overflow-y-auto',
+            settings.theme.listStyle === 'grid' ? 'h-full' : 'h-[calc(100%_-_4rem)]',
             collapsible && isContentTooTall ? (collapsible && !isCodeExpanded ? 'pb-1' : 'pb-16') : '',
             collapsible && isContentTooTall
               ? collapsible && isCodeExpanded
@@ -69,12 +78,12 @@ export function CollapseCardContent(
                 : `grid grid-rows-[150px]`
               : '',
           )}
-          onClick={props.handleSingleClick}
-          onDoubleClick={props.handleDoubleClick}
+          onClick={mouseActionProps.handleSingleClick}
+          onDoubleClick={mouseActionProps.handleDoubleClick}
         >
-          {props.content.trim().length === 0 ? (
+          {content.trim().length === 0 ? (
             <div className={cn('w-full max-w-full text-xs text-accent-foreground text-ellipsis', 'overflow-hidden')}>
-              <Button variant="outline" className="w-full h-full" onClick={props.handleDoubleClick}>
+              <Button variant="outline" className="w-full h-full" onClick={mouseActionProps.handleDoubleClick}>
                 Add content
               </Button>
             </div>

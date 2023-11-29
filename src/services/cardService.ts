@@ -373,6 +373,6 @@ class CardService {
   }
 }
 
-const memoService = new CardService();
+const cardService = new CardService();
 
-export default memoService;
+export default cardService;

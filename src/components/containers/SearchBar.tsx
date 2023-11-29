@@ -46,7 +46,7 @@ function SearchBar({ inputType }: { inputType: 'inline' | 'header' }): React.JSX
           search(event.target.value);
         }}
         className={cn(
-          'search-bar border-none h-9 w-[150px] lg:w-[240px] flex rounded-md bg-transparent py-3 text-sm outline-none shadow-none active:shadow-none dark:focus-visible:border-slate-800',
+          'search-bar border-none h-9 min-w-[80px] w-[150px] lg:w-[240px] flex rounded-md bg-transparent py-3 text-sm outline-none shadow-none active:shadow-none dark:focus-visible:border-slate-800',
           inputType === 'inline' ? '' : 'pl-1',
         )}
       />
