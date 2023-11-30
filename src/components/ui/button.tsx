@@ -10,15 +10,14 @@ const buttonVariants = cva(
     variants: {
       variant: {
         blank:
-          'bg-transparent text-muted-foreground shadow-none hover:text-accent-foreground dark:hover:text-accent-foreground dark:bg-slate-800 dark:hover:bg-slate-600',
-        default:
-          'bg-primary text-primary-foreground shadow hover:bg-primary/90 dark:bg-slate-800 dark:hover:bg-slate-600',
+          'bg-transparent text-muted-foreground shadow-none hover:text-accent-foreground dark:hover:text-accent-foreground dark:hover:bg-slate-600',
+        default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90 dark:hover:bg-slate-600',
         destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline:
-          'border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground dark:hover:text-accent-foreground dark:bg-slate-800 dark:hover:bg-slate-600',
+          'border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground dark:hover:text-accent-foreground dark:hover:bg-slate-600',
         secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
         ghost:
-          'shadow-none border-0 hover:bg-accent hover:text-accent-foreground dark:hover:text-accent-foreground dark:bg-slate-800 dark:hover:bg-slate-600',
+          'shadow-none border-0 hover:bg-accent hover:text-accent-foreground dark:hover:text-accent-foreground dark:hover:bg-slate-600',
         link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {

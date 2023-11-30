@@ -156,8 +156,8 @@ export function LibraryToolbar({ children }: { children?: React.ReactNode }) {
   const isFiltered = !queryIsEmptyOrBlank(query);
 
   return (
-    <div className="flex items-center justify-between w-full min-w-fit gap-2 overflow-x-scroll">
-      <div className="flex items-center overflow-x-scroll space-x-2 min-w-[140px] md:max-w-[520px] lg:max-w-full">
+    <div className="flex items-center justify-between w-full gap-2 overflow-x-scroll">
+      <div className="flex items-center w-full gap-2 overflow-x-scroll">
         {hasCanvasViewOpened && Platform.isDesktop && <FocusAction />}
         {children}
         {isMobileView(viewStatus) ? (
@@ -193,7 +193,7 @@ export function LibraryToolbar({ children }: { children?: React.ReactNode }) {
           </>
         )}
       </div>
-      <div className="flex items-center justify-end space-x-2">
+      <div className="flex flex-shrink items-center justify-end space-x-2">
         {
           <Button
             variant={'outline'}
