@@ -45,7 +45,7 @@ export function PathList({ card }: { card: Model.Card }) {
             </Button>
           </HoverCardTrigger>
           <HoverCardPortal>
-            <HoverCardContent className="flex flex-col gap-2">
+            <HoverCardContent className="flex flex-col gap-2 border-muted-foreground/40 ">
               <div className="flex flex-row items-center w-full gap-4">
                 <LayoutDashboardIcon className="h-4 w-4 text-muted-foreground" />
                 <Label className="text-md">Canvas</Label>
@@ -56,7 +56,7 @@ export function PathList({ card }: { card: Model.Card }) {
                   return (
                     <div className="flex flex-row w-full gap-2">
                       <Button
-                        className="w-full p-2 overflow-hidden text-ellipsis whitespace-nowrap"
+                        className="w-full p-2 overflow-hidden text-ellipsis whitespace-nowrap dark:bg-slate-800"
                         variant={'outline'}
                         size={'default'}
                         key={index}
@@ -66,7 +66,7 @@ export function PathList({ card }: { card: Model.Card }) {
                       >
                         {path.replace('.canvas', '')}
                       </Button>
-                      <Button size={'icon'} variant={'outline'}>
+                      <Button className={'dark:bg-slate-800'} size={'icon'} variant={'outline'}>
                         <FocusIcon
                           className="h-5 w-5 text-muted-foreground"
                           onClick={async () => {

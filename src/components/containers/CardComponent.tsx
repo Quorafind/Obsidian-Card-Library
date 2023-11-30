@@ -84,7 +84,7 @@ export function CardActionHeader({
               </Button>
             </TooltipTrigger>
             <TooltipPortal>
-              <TooltipContent>
+              <TooltipContent className="flex flex-col items-center dark:bg-slate-700 dark:text-muted-foreground">
                 <p>Click to copy Content to clipboard</p>
                 <p>⌘ + click to copy card</p>
               </TooltipContent>
@@ -98,7 +98,7 @@ export function CardActionHeader({
             </CardTitle>
           </TooltipTrigger>
           <TooltipPortal>
-            <TooltipContent>
+            <TooltipContent className="flex flex-col items-center dark:bg-slate-700 dark:text-muted-foreground">
               <p>{title}</p>
             </TooltipContent>
           </TooltipPortal>
